@@ -605,8 +605,24 @@ static __s32 key_msg_cb(void *msg)
 			 		pmsg->id 	= GUI_MSG_KEY_Qnex;
 					break;
 				}	
-
-				
+				case KPAD_ZOOM:
+			 	{
+					pmsg->type 	= GUI_MSG_KEY;
+			 		pmsg->id 	= GUI_MSG_KEY_ZOOM_UP;
+					break;
+				}	
+				case KPAD_SWITCH:
+			 	{
+					pmsg->type 	= GUI_MSG_KEY;
+			 		pmsg->id 	= GUI_MSG_KEY_DISPLAY;
+					break;
+				}
+				case KPAD_SETTING:
+				{			
+					pmsg->type 	= GUI_MSG_KEY;
+					pmsg->id 	= GUI_MSG_KEY_SETUP;
+					break;
+				}
 				case KPAD_POWEROFF:
 				{
 					pmsg->type 	= DSK_MSG_POWER_OFF;
