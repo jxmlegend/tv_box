@@ -183,7 +183,7 @@ void __autosearch_thread(void *p_arg)
 							else
 								dsk_tv_rcv->shemod = 0;
 
-							dsk_tv_rcv->wait_timer = 8;			//   2
+							dsk_tv_rcv->wait_timer = 4;			//   2
 							dsk_tv_rcv->ubNorPicture = com_video_get_status();
 	
 
@@ -983,9 +983,9 @@ void dsk_tv_set_sourceInput(__u32 flag)
 void dsk_tv_finerFreq(__u32 flag)
 {
 	if(flag==0)
-		dsk_tv_rcv->channltable[dsk_tv_rcv->cur_channl] -= 100000;
+		dsk_tv_rcv->channltable[dsk_tv_rcv->cur_channl] -= 10000;
 	else
-		dsk_tv_rcv->channltable[dsk_tv_rcv->cur_channl] += 100000;
+		dsk_tv_rcv->channltable[dsk_tv_rcv->cur_channl] += 10000;
 	
 	dsk_tv_rcv_curchafornum_play(0);
 }
