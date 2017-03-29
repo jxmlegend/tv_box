@@ -1287,8 +1287,8 @@ static __s32  explorer_list_win_key_proc(__gui_msg_t *msg)
 	{
 		switch(msg->dwAddData1)
 		{
-			case GUI_MSG_KEY_RIGHT:
-			case GUI_MSG_KEY_LONGRIGHT:					
+			//case GUI_MSG_KEY_RIGHT:
+			//case GUI_MSG_KEY_LONGRIGHT:					
 			case GUI_MSG_KEY_DOWN:
 			case GUI_MSG_KEY_LONGDOWN:					
 				__msg("----explorer list window on UP key----\n");
@@ -1297,8 +1297,8 @@ static __s32  explorer_list_win_key_proc(__gui_msg_t *msg)
 				explorer_list_long_string_stop_roll(list_para);
 				ExplorerListWinOnNextItem(list_para);				
 				break;
-			case GUI_MSG_KEY_LEFT:	
-			case GUI_MSG_KEY_LONGLEFT:
+			//case GUI_MSG_KEY_LEFT:	
+			//case GUI_MSG_KEY_LONGLEFT:
 			case GUI_MSG_KEY_UP:
 			case GUI_MSG_KEY_LONGUP:	
 				__msg("----explorer list window on DOWN key----\n");
@@ -1325,6 +1325,7 @@ static __s32  explorer_list_win_key_proc(__gui_msg_t *msg)
 				//ExplorerListWinOnPreviousPage(list_para);
 				break;				
 			case GUI_MSG_KEY_ENTER:
+			case GUI_MSG_KEY_RIGHT:
 				last_key = GUI_MSG_KEY_ENTER;
 				
 				if(list_para->media_type == RAT_MEDIA_TYPE_ALL)

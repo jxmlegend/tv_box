@@ -523,7 +523,7 @@ static __s32  mmenu_key_proc(__gui_msg_t *msg)
 		
 	if (KEY_UP_ACTION == msg->dwAddData2)
 	{
-		if (GUI_MSG_KEY_ENTER == last_key)
+		if (GUI_MSG_KEY_ENTER == last_key || GUI_MSG_KEY_MENU == last_key)
 		{
 			main_cmd2parent(msg->h_deswin, ID_OP_SUB_ENTER, mmenu_attr->focus_item, mmenu_attr->first_item);
 		}
@@ -599,6 +599,7 @@ static __s32  mmenu_key_proc(__gui_msg_t *msg)
 			case GUI_MSG_KEY_LONGDOWN:
 			case GUI_MSG_KEY_DOWN:
 			{
+				/*
                 ES_FILE      * p_disp;
                 static __s32 aux = 0;
                 __s32 arg[3];
@@ -614,8 +615,8 @@ static __s32  mmenu_key_proc(__gui_msg_t *msg)
 
                     eLIBs_fioctrl(p_disp, DISP_CMD_LCD_SWITCH_OUTPUT, aux, 0);
                 eLIBs_fclose(p_disp);
-                __here__
-				//main_cmd2parent(msg->h_deswin, ID_OP_SUB_DOWN, mmenu_attr->focus_item, mmenu_attr->first_item);
+                __here__*/
+				main_cmd2parent(msg->h_deswin, ID_OP_SUB_DOWN, mmenu_attr->focus_item, mmenu_attr->first_item);
 				break;	
 			}
 		}

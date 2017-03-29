@@ -419,12 +419,22 @@ static __s32 music_explorer_key_proc(__gui_msg_t *msg)
 					music_player_set_play_pause(this);
 				}
 				break;
-    			case GUI_MSG_KEY_QPre:
+			case GUI_MSG_KEY_UP:
+			case GUI_MSG_KEY_LONGUP:
+				MusicMoveF = 1;
+				music_explorer_on_previous_key(msg);
+				break;
+			case GUI_MSG_KEY_DOWN:
+			case GUI_MSG_KEY_LONGDOWN:
+				MusicMoveF = 1;
+				music_explorer_on_next_key(msg);
+				break;
+    		case GUI_MSG_KEY_QPre:
 				music_player_set_play_previous(this);
 				break;
-    			case GUI_MSG_KEY_Qnex:   
+    		case GUI_MSG_KEY_Qnex:   
 				music_player_set_play_next(this);						
-    				break;
+    			break;
 			case GUI_MSG_KEY_VADD:
 				last_key = GUI_MSG_KEY_VADD;
 				break;
@@ -441,6 +451,8 @@ static __s32 music_explorer_key_proc(__gui_msg_t *msg)
 
 			case GUI_MSG_IR_RIGHT:
 			case GUI_MSG_IR_LONGRIGHT:	
+			case GUI_MSG_KEY_RIGHT:
+			case GUI_MSG_KEY_LONGRIGHT:
 				{
 					music_player_ctrl_t *player_ctrl = NULL;			
 					player_ctrl = (music_player_ctrl_t *)GUI_WinGetAttr(msg->h_deswin);
@@ -455,6 +467,8 @@ static __s32 music_explorer_key_proc(__gui_msg_t *msg)
 					break;
 			case GUI_MSG_IR_LEFT:
 			case GUI_MSG_IR_LONGLEFT:	
+			case GUI_MSG_KEY_LEFT:
+			case GUI_MSG_KEY_LONGLEFT:
 				{
 					music_player_ctrl_t *player_ctrl = NULL;			
 					player_ctrl = (music_player_ctrl_t *)GUI_WinGetAttr(msg->h_deswin);	
@@ -483,36 +497,24 @@ static __s32 music_explorer_key_proc(__gui_msg_t *msg)
 		{
 			//case GUI_MSG_KEY_ENTER:	//因为现在不支持定时长按键，因此
 										//只能判断Menu Up时才会响应close消息
-			case GUI_MSG_KEY_RIGHT:
-			case GUI_MSG_KEY_LONGRIGHT:	
-					
-				__msg("----explorer list window on UP key----\n");
-				//_long_string_stop_roll();
-				//ExplorerListWinOnNextItem(list_para);				
-				music_explorer_on_next_key(msg);	
-				break;
 
 			case GUI_MSG_KEY_DOWN:
 			case GUI_MSG_KEY_LONGDOWN:
-				MusicMoveF = 1;
-				music_explorer_on_next_key(msg);
+				//MusicMoveF = 1;
+				//music_explorer_on_next_key(msg);
 //				music_explorer_on_menu_key(msg);
 //				this->menu_mode = MUSIC_SET_PLAYER_MODE;
+				music_explorer_on_enter_key(msg);
 				break;
-			case GUI_MSG_KEY_LEFT:	
-			case GUI_MSG_KEY_LONGLEFT:
-				//__msg("----explorer list window on DOWN key----\n");
-				//ExplorerListWinOnPreviousItem(list_para);
-				//ListCtrl->OnPreviousKey((void *)ListCtrl);
-				music_explorer_on_previous_key(msg);
-				break;					
+
 			case GUI_MSG_KEY_UP:
 			case GUI_MSG_KEY_LONGUP:		
 				//__msg("----explorer list window on DOWN key----\n");
 				//ExplorerListWinOnPreviousItem(list_para);
 				//ListCtrl->OnPreviousKey((void *)ListCtrl);
-				MusicMoveF = 1;
-				music_explorer_on_previous_key(msg);
+				//MusicMoveF = 1;
+				//music_explorer_on_previous_key(msg);
+				music_explorer_on_enter_key(msg);
 				break;				
 
 			case GUI_MSG_KEY_MENU:

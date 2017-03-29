@@ -1234,8 +1234,8 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 		{
 			case GUI_MSG_IR_UP:
 			case GUI_MSG_IR_LONGUP:	
-			case GUI_MSG_KEY_LONGDOWN:
-			case GUI_MSG_KEY_DOWN:					
+			case GUI_MSG_KEY_LONGUP:
+			case GUI_MSG_KEY_UP:					
 			{		
 				if(tv_data.tv_page==0)
 				{
@@ -1264,8 +1264,8 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 			break;
 			case GUI_MSG_IR_DOWN:
 			case GUI_MSG_IR_LONGDOWN:				
-			case GUI_MSG_KEY_UP:
-			case GUI_MSG_KEY_LONGUP:		
+			case GUI_MSG_KEY_DOWN:
+			case GUI_MSG_KEY_LONGDOWN:		
 			case GUI_MSG_KEY_ENTER:					
 			{
 				if(tv_data.tv_page==0)
