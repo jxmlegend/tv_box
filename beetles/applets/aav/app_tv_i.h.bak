@@ -1,0 +1,32 @@
+#ifndef  _DRV_POWER_I_H_
+#define  _DRV_POWER_I_H_
+
+#include "epdk.h"
+
+
+typedef struct
+{
+	ES_FILE 				*tv_drv;
+	__u8 				thread_id;
+	__u8				ubLocked;
+	__u8				ubNorPicture;
+	__u8				ubSearchStart;
+	__u8				wait_timer;
+	__u32				ucTestFre;				//读出的高频头数据
+	__u32				ucSoundSys;
+	__u32				cur_freq;
+	__u32				manual_search_way;		//add by Kingvan
+	__u32				auto_maual_mode;
+	__u32				search_flag;/*1,searching,2,search over*/	
+	__u32				total_channl;
+	__u32				cur_channl;
+	__u32				pre_channl;	
+	__u32				channltable[249];
+	__u32				bright;
+	__u32				sourceInput;
+
+}dsk_tv_rcv_t;
+
+extern  dsk_tv_rcv_t *dsk_tv_rcv;
+
+#endif
