@@ -220,7 +220,8 @@ static __s32 init_power_off_proc(__gui_msg_t * msg)
 		dsk_reg_flush();
    // 		dsk_reg_deinit_para();
 
-		dsk_display_off();	
+		//dsk_display_off();	
+   		display_switch_to_pc();
 #if 0		
 		scene_on_dialog(msg);		
 		__here__;
@@ -322,6 +323,7 @@ led_flash_rcv_t *led_flash_rcv = NULL;
 
 
 static __hdle           g_pe12 = 0;
+static __hdle           g_gpio_switch = 0;
 
 static __s32 __app_request_pins(void)
 {
@@ -385,7 +387,67 @@ static __s32 __app_pulldown_pe(void)
 	return EPDK_OK;
 }
 
+static __s32 display_switch_request_pins(void)
+{
+    __s32            ret;
+    user_gpio_set_t  gpio_set[1];  
 
+    if(!g_gpio_switch)
+    {
+        /* 申请tv_en */
+        eLIBs_memset(gpio_set, 0, sizeof(user_gpio_set_t));
+        ret = esCFG_GetKeyValue("display_para", "DISPLAY_SWITCH", (int *)gpio_set, sizeof(user_gpio_set_t)/4);
+        if (!ret)
+        {
+            g_gpio_switch = esPINS_PinGrpReq(gpio_set, 1);
+            if (!g_gpio_switch)
+            {
+                __msg("request display_switch pin failed\n");
+                return EPDK_FAIL;
+            }
+        }
+        else
+        {
+            __msg("fetch display_para from script failed\n");
+            return EPDK_FAIL;
+        }
+    }
+
+    return EPDK_OK;
+}
+
+static __s32 display_switch_to_pc(void)
+{  
+	__s32            ret;
+	user_gpio_set_t  gpio_set[16];  
+
+	if(!g_gpio_switch)
+	{
+    __msg("__app_pullup_pe fail...\n");
+    return EPDK_FAIL;
+	}
+
+	__msg("__app_pullup_pe...\n");
+    esPINS_WritePinData(g_gpio_switch, 1, 0);
+	return EPDK_OK;
+}
+
+static __s32 display_switch_to_tv(void)
+{  
+	__s32            ret;
+	user_gpio_set_t  gpio_set[16];  
+
+	if(!g_gpio_switch)
+	{
+		__msg("__app_pullup_pe fail...\n");
+		return EPDK_FAIL;
+	}
+
+	__msg("__app_pulldown_pe...\n");
+	esPINS_WritePinData(g_gpio_switch, 0, 0);
+		
+	return EPDK_OK;
+}
 
 void __ledflash_thread(void *p_arg)
 {
@@ -1192,6 +1254,9 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 			Led_flash_open();				// led 任务
 			led_flash_rcv->ubchange = 1;
 			led_flash_rcv->ub_onoff = 1;
+
+			display_switch_request_pins();
+			display_switch_to_tv();
 			break;
 		}
 		
@@ -1670,28 +1735,28 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 			if(msg->dwAddData2 == KEY_UP_ACTION)
 			{     
 #if 1			
-	                    static __bool bfirst = 1;
-	                    static __bool bup = 1;
+	        	static __bool bfirst = 1;
+	            static __bool bup = 1;
 
-	                    if(bfirst)
-	                    {
-	                		//关屏计时开始
-	                		if(g_b_Ir_poweroff==0)
-	                		{
-	                			g_b_Ir_poweroff = 1;
-	          		      		init_restart_close_scn(msg);
+	            if(bfirst)
+	            {
+	            	//关屏计时开始
+	                if(g_b_Ir_poweroff==0)
+	                {
+	                	g_b_Ir_poweroff = 1;
+	          		    init_restart_close_scn(msg);
 						__here__;
 						init_power_off_proc(msg);	
 	                			__here__;
 						led_flash_rcv->flag = 1;		
-	                		}	
+	                }	
 					else
 					{
 						esKSRV_Reset();
 						
 					}	
-	                        bfirst = 0;
-	                    }
+	                bfirst = 0;
+	            }
 				else
 				{
 					__here__
@@ -1699,7 +1764,8 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 					led_flash_rcv->flag = 0;	
 					__app_pulldown_pe();
 					
-					dsk_display_on(DISP_OUTPUT_TYPE_TV);
+					//dsk_display_on(DISP_OUTPUT_TYPE_LCD);
+					display_switch_to_tv();
 					activity_load_app("application://app_root");	
 					g_b_Ir_poweroff = 0;
 					bfirst = 1;
