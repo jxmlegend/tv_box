@@ -419,11 +419,15 @@ static __s32 music_explorer_key_proc(__gui_msg_t *msg)
 					music_player_set_play_pause(this);
 				}
 				break;
+			case GUI_MSG_IR_UP:
+			case GUI_MSG_IR_LONGUP:
 			case GUI_MSG_KEY_UP:
 			case GUI_MSG_KEY_LONGUP:
 				MusicMoveF = 1;
 				music_explorer_on_previous_key(msg);
 				break;
+			case GUI_MSG_IR_DOWN:
+			case GUI_MSG_IR_LONGDOWN:
 			case GUI_MSG_KEY_DOWN:
 			case GUI_MSG_KEY_LONGDOWN:
 				MusicMoveF = 1;
