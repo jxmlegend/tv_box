@@ -625,8 +625,8 @@ static __s32 key_msg_cb(void *msg)
 				}
 				case KPAD_POWEROFF:
 				{
-					pmsg->type 	= DSK_MSG_POWER_OFF;
-//					pmsg->type 	= DSK_MSG_SCREEN_CLOSE;
+					pmsg->type 	= GUI_MSG_KEY;
+					pmsg->id 	= GUI_MSG_KEY_POWEROFF;
 					break;
 				}
 				default:

@@ -1412,6 +1412,18 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 					}
 					return GUI_ManWinDefaultProc(msg);
 				}	
+				case GUI_MSG_KEY_POWEROFF:
+					if(msg->dwAddData2 != KEY_UP_ACTION) {
+						msg->id = DSK_MSG_POWER_OFF;
+						GUI_SendNotifyMessage(msg);
+					}
+					break;
+				case GUI_MSG_KEY_LONGMENU:
+					if(g_b_Ir_poweroff == 1 && msg->dwAddData2 != KEY_UP_ACTION) {
+						msg->id = DSK_MSG_POWER_OFF;
+						GUI_SendNotifyMessage(msg);
+					}
+					break;
 				default:
 					return GUI_ManWinDefaultProc(msg);
 			}			
@@ -1731,60 +1743,55 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
         	}            
 		case DSK_MSG_POWER_OFF:
 		{            
-			__here__;
-			if(msg->dwAddData2 == KEY_UP_ACTION)
-			{     
 #if 1			
-	        	static __bool bfirst = 1;
-	            static __bool bup = 1;
+        	static __bool bfirst = 1;
+            static __bool bup = 1;
 
-	            if(bfirst)
-	            {
-	            	//关屏计时开始
-	                if(g_b_Ir_poweroff==0)
-	                {
-	                	g_b_Ir_poweroff = 1;
-	          		    init_restart_close_scn(msg);
-						__here__;
-						init_power_off_proc(msg);	
-	                			__here__;
-						led_flash_rcv->flag = 1;		
-	                }	
-					else
-					{
-						esKSRV_Reset();
-						
-					}	
-	                bfirst = 0;
-	            }
-				else
-				{
-					__here__
-						
-					led_flash_rcv->flag = 0;	
-					__app_pulldown_pe();
-					
-					//dsk_display_on(DISP_OUTPUT_TYPE_LCD);
-					display_switch_to_tv();
-					activity_load_app("application://app_root");	
-					g_b_Ir_poweroff = 0;
-					bfirst = 1;
-					__here__
-				}
-#else					
-                		//关屏计时开始
-                		if(g_b_Ir_poweroff==0)
-                		{
-                			g_b_Ir_poweroff = 1;
-          		      		init_restart_close_scn(msg);
+            if(bfirst)
+            {
+            	//关屏计时开始
+                if(g_b_Ir_poweroff==0)
+                {
+                	g_b_Ir_poweroff = 1;
+          		    init_restart_close_scn(msg);
 					__here__;
 					init_power_off_proc(msg);	
                 			__here__;
-                		}	
+					led_flash_rcv->flag = 1;		
+                }	
 				else
-					__err("Ir/key reset!\n");
-#endif				
+				{
+					esKSRV_Reset();		
+				}	
+                bfirst = 0;
+            }
+			else
+			{
+				__here__
+					
+				led_flash_rcv->flag = 0;	
+				__app_pulldown_pe();
+				
+				//dsk_display_on(DISP_OUTPUT_TYPE_LCD);
+				display_switch_to_tv();
+				activity_load_app("application://app_root");	
+				g_b_Ir_poweroff = 0;
+				bfirst = 1;
+				__here__
 			}
+#else					
+            //关屏计时开始
+            if(g_b_Ir_poweroff==0)
+            {
+            	g_b_Ir_poweroff = 1;
+      		    init_restart_close_scn(msg);
+				__here__;
+				init_power_off_proc(msg);	
+            	__here__;
+            }	
+			else
+				__err("Ir/key reset!\n");
+#endif				
 			break;
 		}
 	

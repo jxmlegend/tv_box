@@ -55,7 +55,7 @@ typedef struct tag_tv_para
 app_tv_data_t *app_tv_data = NULL;
 
 static reg_system_para_t* setting_reg_para;
-
+static int long_key = 0;
 extern __u32 movie_muteflag;
 extern __u32 movie_volume;
 /***********************************************************************************************************
@@ -639,8 +639,9 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 			}
 			else if(GUI_MSG_KEY_LONGMENU==msg->dwAddData1)
 			{			
-				__TvOSD_si(msg);
-				TV_cmd2parent(msg->h_deswin, SWITCH_TO_MMENU, 0, 0);
+				//__TvOSD_si(msg);
+				//TV_cmd2parent(msg->h_deswin, SWITCH_TO_MMENU, 0, 0);
+				long_key = 0;
 			}	
 	}
 	else
@@ -934,8 +935,11 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 					break;
 					case GUI_MSG_KEY_LONGMENU:
 					{
-						__TvOSD_si(msg);
-						TV_cmd2parent(msg->h_deswin, SWITCH_TO_MMENU, 0, 0);
+						if(long_key++ >= 8) {
+							long_key = 0;
+							__TvOSD_si(msg);
+							TV_cmd2parent(msg->h_deswin, SWITCH_TO_MMENU, 0, 0);
+						}
 					}
 					break;
 					default:

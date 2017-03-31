@@ -44,6 +44,8 @@ typedef struct tag_home_para
 	__u32	root_type; 
 }home_para_t;
 
+static int long_key = 0;
+
 /***********************************************************************************************************
 	½¨Á¢Í¼²ã
 ************************************************************************************************************/
@@ -376,7 +378,19 @@ static __s32 app_home_proc(__gui_msg_t *msg)
 			msg->dwAddData1 = GUI_MSG_KEY_LONGUP;
 		if(msg->dwAddData1==GUI_MSG_IR_LONGDOWN)	
 			msg->dwAddData1 = GUI_MSG_KEY_LONGDOWN;	
-		
+
+		if(msg->dwAddData1==GUI_MSG_KEY_LONGMENU) {
+			if(msg->dwAddData2 == KEY_UP_ACTION) {
+				long_key = 0;
+			} else {
+				if(long_key++ >= 8) {
+					long_key = 0;
+					msg->h_deswin = GUI_WinGetParent(GUI_WinGetParent(GUI_WinGetHandFromName(APP_ROOT)));
+					msg->id = DSK_MSG_POWER_OFF;
+					GUI_SendNotifyMessage(msg);
+				}
+			}
+		}
 		__msg("******app_home_proc GUI_MSG_KEY*****\n");
 		break;
 	case GUI_MSG_TOUCH:
