@@ -614,7 +614,7 @@ static __s32 key_msg_cb(void *msg)
 				case KPAD_SWITCH:
 			 	{
 					pmsg->type 	= GUI_MSG_KEY;
-			 		pmsg->id 	= GUI_MSG_KEY_DISPLAY;
+			 		pmsg->id 	= GUI_MSG_KEY_SHIFT;
 					break;
 				}
 				case KPAD_SETTING:
