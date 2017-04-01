@@ -1340,7 +1340,7 @@ static __s32  explorer_list_win_key_proc(__gui_msg_t *msg)
 				}
 				break;
 			case GUI_MSG_KEY_MENU:
-			//case GUI_MSG_KEY_ESCAPE:
+			case GUI_MSG_KEY_ESCAPE:
 				last_key = GUI_MSG_KEY_MENU;
 				//explorer_list_long_string_stop_roll(list_para);
 				//explorer_cmd2parent(msg->h_deswin, SWITCH_TO_OTHER_APP, EXPLR_SW_TO_MAIN, 0);
@@ -1355,6 +1355,7 @@ static __s32  explorer_list_win_key_proc(__gui_msg_t *msg)
 	{
 		switch(msg->dwAddData1)
 		{
+			case GUI_MSG_KEY_ESCAPE:
 			case GUI_MSG_KEY_MENU:
 				if(last_key == GUI_MSG_KEY_MENU)		//回到上一级菜单.
 				{
