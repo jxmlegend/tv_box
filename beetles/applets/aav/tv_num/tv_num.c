@@ -551,9 +551,9 @@ static __s32 tvinputnum(__u8 num)
 {
 	if(dsk_tv_rcv->tv_barflag<2)
 	{
-		dsk_tv_rcv->tv_barflag = 0;
 		if(dsk_tv_rcv->tv_barflag==1)
 			dsk_tv_rcv_curchafornum_play(num);	
+		dsk_tv_rcv->tv_barflag = 0;
 	}	
 	if(dsk_tv_rcv->tv_barflag==2)
 	{
