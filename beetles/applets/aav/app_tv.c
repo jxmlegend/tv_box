@@ -935,7 +935,7 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 					break;
 					case GUI_MSG_KEY_LONGMENU:
 					{
-						if(long_key++ >= 8) {
+						if(long_key++ >= 5) {
 							long_key = 0;
 							__TvOSD_si(msg);
 							TV_cmd2parent(msg->h_deswin, SWITCH_TO_MMENU, 0, 0);

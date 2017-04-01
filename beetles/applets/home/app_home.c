@@ -383,7 +383,7 @@ static __s32 app_home_proc(__gui_msg_t *msg)
 			if(msg->dwAddData2 == KEY_UP_ACTION) {
 				long_key = 0;
 			} else {
-				if(long_key++ >= 8) {
+				if(long_key++ >= 5) {
 					long_key = 0;
 					msg->h_deswin = GUI_WinGetParent(GUI_WinGetParent(GUI_WinGetHandFromName(APP_ROOT)));
 					msg->id = DSK_MSG_POWER_OFF;
