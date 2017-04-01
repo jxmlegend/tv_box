@@ -2938,31 +2938,7 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
 								}            
 							}
 						}	
-					}	
-
-/*                    ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_PLAYSTA_ID));
-				    if(EPDK_FALSE == ret)//如果没有除字幕和playpause以外的子场景，则处理上一个下一个
-                    {
-                        __cedar_status_t fsm_sta;
-
-                        __movie_delete_subscene_by_id(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));
-				
-        				fsm_sta = robin_get_fsm_status();
-        				if (CEDAR_STAT_PLAY == fsm_sta
-                            ||CEDAR_STAT_PAUSE == fsm_sta                            
-                            ||CEDAR_STAT_STOP == fsm_sta)
-        				{
-        					__msg("before __movie_play_prev\n");
-        					__movie_play_prev(movie_ctrl);
-        					__msg("after __movie_play_prev\n");
-                            bok = EPDK_OK;
-        				}
-        				else
-        				{
-        					__msg("fsm in ff/rr status, do not play prev\n");
-        				} 
-				    }      
-*/				    
+					}	  
                 }
                 else if(GUI_MSG_KEY_RIGHT == last_key)
                 {
@@ -3013,8 +2989,11 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
 								}       
 							}
 						}	
-					}
- /*                   ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_PLAYSTA_ID));
+					}			    
+                }
+				else if(GUI_MSG_KEY_UP == last_key) {
+					__s32 ret;
+                    ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_PLAYSTA_ID));
 				    if(EPDK_FALSE == ret)//如果没有除字幕和playpause以外的子场景，则处理上一个下一个
                     {
                         __cedar_status_t fsm_sta;
@@ -3023,21 +3002,65 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
 				
         				fsm_sta = robin_get_fsm_status();
         				if (CEDAR_STAT_PLAY == fsm_sta
-                            	||CEDAR_STAT_PAUSE == fsm_sta                            
-                            	||CEDAR_STAT_STOP == fsm_sta)
+                            ||CEDAR_STAT_PAUSE == fsm_sta                            
+                            ||CEDAR_STAT_STOP == fsm_sta)
         				{
         					__msg("before __movie_play_prev\n");
-        					__movie_play_next(movie_ctrl);
+        					__movie_play_prev(movie_ctrl);
         					__msg("after __movie_play_prev\n");
-                            		bok = EPDK_OK;
+                            bok = EPDK_OK;
         				}
         				else
         				{
-        					__msg("fsm in ff/rr status, do not play next\n");
+        					__msg("fsm in ff/rr status, do not play prev\n");
         				} 
-				    }    
-*/				    
-                }
+				    }      
+				}
+				else if(GUI_MSG_KEY_DOWN == last_key) {
+					__s32 ret;
+					ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_PLAYSTA_ID));
+					 if(EPDK_FALSE == ret)//如果没有除字幕和playpause以外的子场景，则处理上一个下一个
+					 {
+						 __cedar_status_t fsm_sta;
+					
+						 __movie_delete_subscene_by_id(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));
+					
+						 fsm_sta = robin_get_fsm_status();
+						 if (CEDAR_STAT_PLAY == fsm_sta
+								 ||CEDAR_STAT_PAUSE == fsm_sta							  
+								 ||CEDAR_STAT_STOP == fsm_sta)
+						 {
+							 __msg("before __movie_play_prev\n");
+							 __movie_play_next(movie_ctrl);
+							 __msg("after __movie_play_prev\n");
+									 bok = EPDK_OK;
+						 }
+						 else
+						 {
+							 __msg("fsm in ff/rr status, do not play next\n");
+						 } 
+					 }	  
+				}
+				else if(GUI_MSG_KEY_SHIFT == last_key) {
+					__s32 zoom;
+					reg_movie_para_t* para;
+					zoom = robin_get_zoom();
+					zoom++;
+					if(zoom >= 5)
+					{
+						zoom = 0;
+					}
+					__msg("spsc_ctrl_scene_msg_screenset, zoom=%d\n", zoom);
+					robin_set_zoom(zoom);
+					
+				    para = (reg_movie_para_t*)dsk_reg_get_para_by_app(REG_APP_MOVIE);
+				    if(para)
+				    {
+				        para->zoom_mode = zoom;
+				        __msg("para->zoom_mode=%d\n", para->zoom_mode);
+				    }
+					bok = EPDK_OK;
+				}
 			}
 			else 
 			{
