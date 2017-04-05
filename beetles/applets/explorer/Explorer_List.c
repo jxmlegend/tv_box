@@ -1400,7 +1400,7 @@ static __s32  explorer_list_win_key_proc(__gui_msg_t *msg)
 					}
 					__here__;
 					{
-					__s32 str[] = {0, STRING_EXPLR_DELETE_CONFIRM};
+					__s32 str[] = {STRING_EXPLR_DELETE_FILE, STRING_EXPLR_DELETE_CONFIRM};
 					H_WIN parent = GUI_WinGetParent(msg->h_deswin);
 					//__wait__;
 					default_dialog(list_para->h_dialog,parent, DELETE_FILE_DIALOG_ID, ADLG_YESNO, str);					

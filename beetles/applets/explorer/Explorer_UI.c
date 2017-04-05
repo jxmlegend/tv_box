@@ -41,8 +41,8 @@ static explorer_viewer_ui_t  explr_viewer_ui_400_240 =
     	{ 650,	74,	8,	392},      		 //scroll rect
       	4, 	4, 	4,                        //scroll head/body/tail height
 */
-	{ 650,	40,	8,	456},			//scroll bg rect
-    	{ 650,	54,	8,	426},      		 //scroll rect
+	{ 700,	50,	8,	446},			//scroll bg rect
+    	{ 700,	64,	8,	416},      		 //scroll rect
       	 6, 	1, 	6,                        //scroll head/body/tail height
 
 /*
@@ -55,27 +55,27 @@ static explorer_viewer_ui_t  explr_viewer_ui_400_240 =
     
     //list item attribute，以下坐标为点对于listbar rectangle的相对坐标   
     { 
-    	{ 166, 80, 530, 400},				//all item rect     		//整个列表的显视区域           	
-        { 170, 30, 500, 50 },       			//item rect                	//一行的的大小
+    	{ 250, 70, 530, 416},				//all item rect     		//整个列表的显视区域           	
+        { 250, 0, 500, 52 },       			//item rect                	//一行的的大小
         { 0 , 20, 254, 2 },        			//item_top_line;
         { 0 , 0, 254, 2 },        			//item_bottom_line;
         { 0 , 10, 2, 38},       				//item_dividing_line;
         
  //       { 24, 4, 15, 15 },        			//icon rect 
- 	    { 44, 12, 15, 15 },        			//icon rect 		// 小图标的位置
+ 	    { 0, 0, 15, 15 },        			//icon rect 		// 小图标的位置
         { 40, 0, 50, 30 },       			//miniature rect, 缩略图 UI 参数
         
 //        { 24+35, 0, 254 -24 -35 - 2 - 7, 30 },  //text rect
-		{ 24+65, 6, 390 -24 -35 - 2 - 7, 30 },  //text rect  		//文件的名字
+		{ 66, 0, 390 -24 -35 - 2 - 7, 52 },  //text rect  		//文件的名字
           
 //        { 7, 2, 254, 30 },      			//focus icon rect(select picture)
-        { 27, 0, 500, 50 }, 				//选择背景
+        { 0, 0, 500, 52 }, 				//选择背景
 //        { 24, 53, 88, 110},					//媒体类型图标位置(显示在左边区域的大图标) 
-            { 64, 93, 98, 130},
+            { 34, 132, 170, 160},
             
-        {50, 40, 120, 28 },      			//title rect, only for file manager
-        {30, 53+110+1+50,130, 20},      		//file size rect 
-        {30, 53+110+1+20+50,130, 20},      		//file create time rect
+        {34, 84, 170, 28 },      			//title rect, only for file manager
+        {34, 296,170, 20},      		//file size rect 
+        {34, 316,170, 20},      		//file create time rect
         {0, 0, 150, 34 },      				//number rect                
     },
     
@@ -131,9 +131,9 @@ static explorer_viewer_ui_t  explr_viewer_ui_400_240 =
 		{ ID_EXPLORER_PHOTO_ICON_UNFOCUSED_BMP, NULL,  				 NULL }, 	// picture文件icon图标,与文件名一起的                                                      				        
 		{ ID_EXPLORER_PHOTO_ICON_FOCUSED_BMP, 	NULL,  				 NULL }, 	// picture文件icon图标,与文件名一起的                                                      				        				
 
-        { ID_EXPLORER_EBOOK_FILE_BMP,      		NULL,  				 NULL }, 	// Ebook文件标志                                                     				
-		{ ID_EXPLORER_EBOOK_ICON_UNFOCUSED_BMP, NULL,  				 NULL }, 	// Ebook文件icon图标,与文件名一起的                                                      				        
-		{ ID_EXPLORER_EBOOK_ICON_FOCUSED_BMP, 	NULL,  				 NULL }, 	// Ebook文件icon图标,与文件名一起的                                                      				        				
+        { ID_EXPLORER_UNKNOWN_FILE_BMP,      		NULL,  				 NULL }, 	// Ebook文件标志                                                     				
+		{ ID_EXPLORER_UNKNOWN_FILE_UNFOCUSED_BMP, NULL,  				 NULL }, 	// Ebook文件icon图标,与文件名一起的                                                      				        
+		{ ID_EXPLORER_UNKNOWN_FILE_FOCUSED_BMP, 	NULL,  				 NULL }, 	// Ebook文件icon图标,与文件名一起的                                                      				        				
 		
 		{ ID_EXPLORER_DELETE_ICON_UNFOCUSED_BMP,NULL,  			 	 NULL }, 	// 删除文件icon图标,
 		{ ID_EXPLORER_DELETE_ICON_FOCUSED_BMP, 	NULL,  				 NULL }, 	// 删除文件icon图标,
@@ -146,7 +146,7 @@ static explorer_viewer_ui_t  explr_viewer_ui_400_240 =
         { ID_EXPLORER_LIST_SCROLL_BODY_BMP,     NULL,  				 NULL }, 	// scroll bar , 滑块，高度必须为1
         { ID_EXPLORER_LIST_SCROLL_TAIL_BMP,     NULL,  				 NULL }, 	// scroll bar , 滑块，高度必须为1        
 
-		{ ID_EXPLORER_LIST_ITEM_FOCUS_BG_BMP,     NULL,  				 NULL }, 	// 长字符串滚动背景//ID_EXPLORER_LONG_STR_SCROLL_BG_BMP
+		{ ID_EXPLORER_LONG_STR_SCROLL_BG_BMP,     NULL,  				 NULL }, 	// 长字符串滚动背景//ID_EXPLORER_LONG_STR_SCROLL_BG_BMP
 		{ID_EXPLORER_ERROR_BMP ,				 NULL,				 NULL } ,
         { 0,                                    NULL,  				 NULL }      //browser_icon_max
     },                                                 				
@@ -493,6 +493,7 @@ __s32 explorer_draw_FileTypeIcon(explr_list_para_t *list_para, rat_media_type_t 
 	//picH =  GUI_BMP_GetYSize(pic_buf);										//获得图片高度		
 	if(pic_buf != NULL)
 	{
+		GUI_ClearRect(picX,picY, picX+170, picY+160);
 		GUI_BMP_Draw(pic_buf, picX, picY);	
 	}	
 	return EPDK_OK;
