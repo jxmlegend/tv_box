@@ -399,15 +399,15 @@ __s32 DrawMusicSystemTime(__time_t *sys_time)
 
 __s32 DrawMusicHeadbar(music_player_ctrl_t *player_ctrl)
 {	
-	__time_t sys_time = {0,0,0};	
-	return EPDK_OK;	
+	//__time_t sys_time = {0,0,0};	
+	//return EPDK_OK;	
 	//__wait__;
 	DrawMusicPlayModeStatus(player_ctrl->play_mode);	
 	DrawMusicEQModeStatus(player_ctrl->EQ_mode);
 	//DrawMusicBLLastTimeStatus(player_ctrl->BL_time);
 	player_ctrl->volume = dsk_volume_get();
 	DrawMusicVolumeStatus(player_ctrl->volume);	
-
+/*
 	dsk_power_get_voltage_level(&(player_ctrl->battery_status));	
 	DrawMusicBatteryStatus(player_ctrl->battery_status);
 
@@ -419,7 +419,7 @@ __s32 DrawMusicHeadbar(music_player_ctrl_t *player_ctrl)
 #else
 	DrawMusicBLLastTimeStatus(player_ctrl->BL_time);
 #endif
-	
+*/
 	return EPDK_OK;	
 }
 
@@ -861,12 +861,12 @@ __s32 DrawMusicVolStatusButton(music_play_status_e status)
 {	
 	void *pic_buf = NULL;
 	__s32 X = 0, Y = 0;	
-	music_palyer_ui_t *player_ui;
-	player_ui = music_get_player_ui_param();				
+	music_headbar_ui_t *headbar_ui;
+	headbar_ui = music_get_headbar_ui_param();				
 
 //	return EPDK_OK;	
-	X = player_ui->play_status_rect.x+180;
-	Y = player_ui->play_status_rect.y;
+	X = headbar_ui->volume_icon_rect.x;
+	Y = headbar_ui->volume_icon_rect.y;
 
 	if(status == 0)
 	{

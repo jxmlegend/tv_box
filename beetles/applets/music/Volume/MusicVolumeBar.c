@@ -26,25 +26,25 @@
 #define C_MUSIC_VB_HEIGHT			21
 
 const VolumeBarUI_t MusicVolBarUI = {
-		{150,440,700-150,21},					//Background rect
+		{0,538,720,40},					//Background rect
 		ID_MUSIC_VOL_BAR_BG_BMP,			//BG bmp id
 		
-		{40,2,15,12},						//Leftspeaker
+		{52,9,20,20},						//Leftspeaker
 		ID_MUSIC_VOL_SPEAKER_LEFT_BMP,		//leftespeaker icon id
 		
-		{40+30,8,240,4},					//BarBody rect
+		{80,16,550,8},					//BarBody rect
 		ID_MUSIC_VOL_BAR_BODY_BMP,			//BarBody icon id
 		
-		{40+30,8,8,4},						//Point rect
+		{80,16,2,8},						//Point rect
 		ID_MUSIC_VOL_BAR_POINT_BMP,			//point icon id
 		
-		{40+30+252+3,2,15,12},				//Rightspeaker
+		{634,9,30,20},				//Rightspeaker
 		ID_MUSIC_VOL_SPEAKER_RIGHT_BMP,		//Rightespeaker icon id
 		
-		{0,0,15,12},						//Mutespeaker
+		{0,0,30,20},						//Mutespeaker
 		ID_MUSIC_VOL_SHUT_DOWN_BMP,			//Mutespeaker icon id	
 
-		{62+30+252+3+12+3, 0, 20, 16}		//volume number
+		{688, 12, 20, 16}		//volume number
 };
 
 

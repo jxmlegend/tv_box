@@ -28,11 +28,11 @@ static music_ui_t  music_ui_400_240 =
 */
     //list window, 浏览文件
     {
-    		{50, 40, 350, 450},						//listbar area
-    		{20, 30, 350, 50},						//item rectangle
-    		{25, 9, 370, 50},						//focus icon(select border)
-    		{30,12,15, 15 },						//file icon 
-    		{30+25+10, 0, 188-11-15-10-3-1, 36},		//text rectangle
+    		{6, 42, 360, 462},						//listbar area
+    		{0, 0, 360, 42},						//item rectangle
+    		{0, 0, 360, 42},						//focus icon(select border)
+    		{30,0,15, 15 },						//file icon 
+    		{38,0, 310, 42},		//text rectangle
     },
     
     //scroll bar ui
@@ -45,8 +45,8 @@ static music_ui_t  music_ui_400_240 =
     },
  */   
     	{
-    		{351,	40,	8,	456},					//scroll bar background
-    		{351,	54,	8,	426},					//scroll 
+    		{368,	40,	8,	456},					//scroll bar background
+    		{368,	54,	8,	426},					//scroll 
     		6,										//head
     		1,										//body
     		6,										//tail
@@ -56,11 +56,11 @@ static music_ui_t  music_ui_400_240 =
     {
     	{370,80,700-370,250-80},					//headbar background
     	#if BEETLES_RTC_EXIST
-    	{398,10,26,16},								//播放模式状态图标
-    	{426,10,50,16},								//EQ模式状态图标		
+    	{400,42,26,16},								//播放模式状态图标
+    	{494,42,50,16},								//EQ模式状态图标		
     	{426,10,26,16},								//背光关闭时间图标
-    	{478,10,26,16},								//音量图标
-    	{504,6,18,16},								//音量text
+    	{642,42,26,16},								//音量图标
+    	{686,46,18,16},								//音量text
     	{526,12,31,12},								//电池图标
     	{559,6,40,16},								//时间显示区域
     	#else
@@ -269,8 +269,8 @@ static music_ui_t  music_ui_400_240 =
        { ID_EXPLORER_LIST_SCROLL_BODY_BMP,				NULL,  			 	NULL },        
        { ID_EXPLORER_LIST_SCROLL_TAIL_BMP,				NULL,  			 	NULL }, 
 
-     	{ ID_MUSIC_VOL_SPEAKER_LEFT_BMP,				NULL,				NULL }, 								//正在播放状态
-       { ID_MUSIC_VOL_SHUT_DOWN_BMP,					NULL,  				NULL }, 								//暂停状态
+     	{ ID_MUSIC_SPEAKER_BMP,				NULL,				NULL }, 								//正在播放状态
+       { ID_MUSIC_MUTE_BMP,					NULL,  				NULL }, 								//暂停状态
 
 	{ 0,                                    		NULL,  				NULL }      	//browser_icon_max
     },                                                 				

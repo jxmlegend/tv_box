@@ -331,7 +331,7 @@ static __s32 music_list_normal_item_on_draw(__lbar_draw_para_t *draw_param)
 
 	//draw_music_list_focus_item_BG(draw_param);
 	__here__;
-	draw_music_list_normal_item_icon(draw_param);		
+	//draw_music_list_normal_item_icon(draw_param);		
 		__here__;
 	draw_music_list_item_text(draw_param);		
 		__here__;
@@ -348,7 +348,7 @@ static __s32 music_list_focus_item_on_draw(__lbar_draw_para_t *draw_param)
 	#endif
 	//---------------------------------------------------------------------------------
 	draw_music_list_focus_item_BG(draw_param);
-	draw_music_list_focus_item_icon(draw_param);			
+	//draw_music_list_focus_item_icon(draw_param);			
 	draw_music_list_item_text(draw_param);		
 
 	//---------------------------------------------------------------------------------
