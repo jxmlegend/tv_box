@@ -31,7 +31,7 @@ typedef struct tag_mmenu_uipara_pos
 
 #define MAX_PARTITION		11		//可以有11 个盘
 
-#define MAX_ITEM_NUM	5
+#define MAX_ITEM_NUM	6
 
 #define ID_SWITCH_ITEM		0
 #define ID_OP_SUB_UP			1
