@@ -42,12 +42,12 @@ static H_LYR __volume_8bpp_layer_create(RECT *rect, __s32 pipe)
 	{
 	    {0, 0},                                   		/* size      */
 	    {0, 0, 0},                                      /* buffer    */
-	    {FB_TYPE_RGB, {PIXEL_MONO_8BPP, 0, (__rgb_seq_t)0}},    /* fmt       */
+	    {FB_TYPE_RGB, {PIXEL_COLOR_ARGB8888, 0, (__rgb_seq_t)0}},    /* fmt       */
 	};
 
 	__disp_layer_para_t lstlyr =
 	{
-	    DISP_LAYER_WORK_MODE_PALETTE,                    /* mode      */
+	    DISP_LAYER_WORK_MODE_NORMAL,                    /* mode      */
 	    0,                                              /* ck_mode   */
 	    0,                                              /* alpha_en  */
 	    0,                                              /* alpha_val */
@@ -336,16 +336,17 @@ static __s32 __volume_update_volume_ui(movie_volume_scene_t* scene_para)
 	{
 		char str_val[32]={0};
 		GUI_RECT gui_rect;
-		GUI_SetBkColor(0xF0);
+		//GUI_SetBkColor(0xF0);
 		GUI_SetColor(APP_COLOR_WHITE);
 
 		gui_rect.x0 = ui_para->uipara_volume_text.x;
 		gui_rect.y0 = ui_para->uipara_volume_text.y;
 		gui_rect.x1 = gui_rect.x0+ui_para->uipara_volume_text.w;
 		gui_rect.y1 = gui_rect.y0+ui_para->uipara_volume_text.h;
-		GUI_ClearRectEx(&gui_rect);
+		//GUI_ClearRectEx(&gui_rect);
+		GUI_BMP_Draw(dsk_theme_hdl2buf(ui_para->uipara_volume_bg.res_hdl[0]), ui_para->uipara_volume_bg.x + 698, ui_para->uipara_volume_bg.y);
 		eLIBs_sprintf(str_val, "%d", scene_para->cur_val);
-		GUI_DispStringInRect(str_val, &gui_rect, GUI_TA_VCENTER|GUI_TA_HCENTER);
+		GUI_DispStringAt(str_val, gui_rect.x0, gui_rect.y0);
 	}
 
 	//»­½ø¶ÈÌõ±³¾°

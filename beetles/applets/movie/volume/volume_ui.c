@@ -61,37 +61,37 @@ static movie_volume_uipara_t uipara_720_576 =
 {
 	1,
 	{
-		(720-356)/2, 452, 356, 24
+		0, 536, 720, 40
 	},
 	{
-		0, 0, 356, 24
+		0, 0, 720, 40
 	},
 	{
-		0, 0, 356, 24,
+		0, 0, 720, 40,
 		ID_MOVIE_VOLUME_BG_BMP
 	},
 	{
 		{
-			29, 6, 15, 12,
+			62, 14, 20, 20,
 			ID_MOVIE_LVOLUME_F_BMP,
 			ID_MOVIE_LVOLUME_UF_BMP,
 		},
 		{
-			314, 6, 18, 18,
+			644, 14, 30, 20,
 			ID_MOVIE_RVOLUME_F_BMP,
 			ID_MOVIE_RVOLUME_UF_BMP
 		},
 		{
-			52, 10, 250, 4,
+			88, 20, 550, 8,
 			ID_MOVIE_VOLUME_PROG_BG_UF_BMP
 		},
 		{
-			52, 10, 5, 4,
+			88, 20, 2, 8,
 			ID_MOVIE_VOLUME_PROG_CURSOR_UF_BMP
 		}
 	},
 	{		
-		336, 0, 16, 24					
+		698, 14, 40, 40		//336			
 	}
 };
 
@@ -160,5 +160,5 @@ movie_volume_uipara_t* movie_volume_get_uipara(__s32 rotate)
 		break;
 	}	
 
-	return &uipara_400_240;		
+	return &uipara_720_576;		
 }

@@ -71,5 +71,5 @@ movie_spsc_uipara_t* movie_spsc_get_uipara(__s32 rotate)
 		break;
 	}	
 
-	return &uipara_400_240;			
+	return &uipara_720_576;			
 }
