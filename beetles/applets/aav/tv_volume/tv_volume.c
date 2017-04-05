@@ -46,12 +46,12 @@ static H_LYR __volume_8bpp_layer_create(RECT *rect, __s32 pipe)
 	{
 	    {0, 0},                                   		/* size      */
 	    {0, 0, 0},                                      /* buffer    */
-	    {FB_TYPE_RGB, {PIXEL_MONO_8BPP, 0, (__rgb_seq_t)0}},    /* fmt       */
+	    {FB_TYPE_RGB, {PIXEL_COLOR_ARGB8888, 0, (__rgb_seq_t)0}},    /* fmt       */
 	};
 
 	__disp_layer_para_t lstlyr =
 	{
-	    DISP_LAYER_WORK_MODE_PALETTE,                    /* mode      */
+	    DISP_LAYER_WORK_MODE_NORMAL,                    /* mode      */
 	    0,                                              /* ck_mode   */
 	    0,                                              /* alpha_en  */
 	    0,                                              /* alpha_val */
@@ -515,7 +515,7 @@ static __s32 __tv_volume_proc(__gui_msg_t* msg)
 
 			scene_para->hfrm = msg->h_deswin;//必须在此初始化，因为窗口创建未返回，否则该值仍然是空
 
-			com_set_palette_by_id(ID_MOVIE_PAL_BMP);//设置调色板
+			//com_set_palette_by_id(ID_MOVIE_PAL_BMP);//设置调色板
 			
 			__volume_init_ui();
 

@@ -46,7 +46,7 @@ static tv_menu_uipara_t uipara_720_480 =
 {
 	1,
 	{
-		180, 100, 720-180, 480-100
+		115, 118, 720-115, 576-118
 	},
 	{
 		0, 0, 360, 334
@@ -77,11 +77,11 @@ static tv_menu_uipara_t uipara_720_480 =
 		},
 		{
 			22, 18, 34, 36,
-			ID_TV_COMMON_MENU_RIGHTWARD_NORMAL_BMP,	
+			ID_TV_COMMON_MENU_ALEFT_FOCUS_BMP,	
 		},
 		{
 			22, 18, 34, 36,
-			ID_TV_COMMON_MENU_ALEFT_FOCUS_BMP,	
+			ID_TV_COMMON_MENU_RIGHTWARD_NORMAL_BMP,	
 		},
 		{
 			22, 18, 34, 36,
@@ -95,15 +95,23 @@ static tv_menu_uipara_t uipara_720_480 =
 		},
 		{
 			22, 18, 34, 36,
-			ID_TV_TV_PAGE2_SET_NORMAL_BMP,	
-		},
-		{
-			22, 18, 34, 36,
 			ID_TV_TV_PAGE1_SET_FOCUS_BMP,	
 		},
 		{
 			22, 18, 34, 36,
+			ID_TV_TV_PAGE2_SET_NORMAL_BMP,	
+		},
+		{
+			22, 18, 34, 36,
 			ID_TV_TV_PAGE2_SET_FOCUS_BMP,	
+		},
+		{
+			22, 18, 34, 36,
+			ID_TV_TV_PAGE3_SET_NORMAL_BMP,	
+		},
+		{
+			22, 18, 34, 36,
+			ID_TV_TV_PAGE3_SET_FOCUS_BMP,	
 		}
 	},	
 	{
@@ -142,18 +150,18 @@ static tv_menu_uipara_t uipara_720_480 =
 		},
 		{
 			22, 18, 34, 36,
-			ID_TV_TV_INPUT_NALMOR_BMP,	
+			ID_TV_TV_INPUT_NORMAL_BMP,	
 			ID_TV_TV_INPUT_FOCUS_BMP,
 		},		
 		{
 			22, 18, 34, 36,
-			ID_TV_TV_LANG_NORMAL_BMP,	
-			ID_TV_TV_LANG_FOCUS_BMP,			
+			ID_TV_TV_STANDARD_NORMAL_BMP,	
+			ID_TV_TV_STANDARD_FOCUS_BMP,			
 		},	
 		{
 			22, 18, 34, 36,
-			ID_TV_TV_SYSTEM_NORMAL_BMP,	
-			ID_TV_TV_SYSTEM_FOCUS_BMP,
+			ID_TV_TV_CHANNEL_NORMAL_BMP,	
+			ID_TV_TV_CHANNEL_FOCUS_BMP,
 		},
 		{
 			22, 18, 34, 36,
@@ -176,8 +184,8 @@ static tv_menu_uipara_t uipara_720_480 =
 		{336, 0, 16, 24,STRING_TV_CONTRAST},	
 		{336, 0, 16, 24,STRING_TV_COLOR},	
 		{336, 0, 16, 24,STRING_TV_INPUT_SOURCE},	
-		{336, 0, 16, 24,STRING_TV_LANG},	
 		{336, 0, 16, 24,STRING_TV_VIDEOSYS},	
+		{336, 0, 16, 24,STRING_TV_CHANNELNU},	
 		{336, 0, 16, 24,STRING_TV_AUTOSRH},	
 		{336, 0, 16, 24,STRING_TV_MANUALSRH},	
 		{336, 0, 16, 24,STRING_TV_FINETUNE},			
