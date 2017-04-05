@@ -57,10 +57,10 @@
 
 #endif
 //////////////////////////////////////////////////////////////////////////
-#define BTN_Y_END_OFFSET          8
-#define BTN_X_OFFSET              8
-#define TITLE_X_OFFSET            4
-#define TITLE_Y_OFFSET            4
+#define BTN_Y_END_OFFSET          36
+#define BTN_X_OFFSET              100
+#define TITLE_X_OFFSET            100
+#define TITLE_Y_OFFSET            22
 //#define TITLE_WIDTH               60
 #define TITLE_HEIGHT              20
 #define ICON_CONTENT_X_OFFSET     4
@@ -68,8 +68,8 @@
 #define CONTENT_X_END_OFFSET      5//CONTENT_X_OFFSET
 #define CONTENT_Y_OFFSET          8
 #define CONTENT_Y_END_OFFSET      5
-#define ICON_X_OFFSET             5
-#define ICON_Y_OFFSET             35
+#define ICON_X_OFFSET             60
+#define ICON_Y_OFFSET             62
 
 #define IsDialogTimerValid(_v)    ((_v) > 0)
 #define ID_TIMER_DIALOG_TIMEOUT   100
