@@ -1424,6 +1424,26 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 						GUI_SendNotifyMessage(msg);
 					}
 					break;
+				case GUI_MSG_KEY_ZOOM_UP:
+					if(msg->dwAddData2 != KEY_UP_ACTION) {
+		                ES_FILE      * p_disp;
+		                static __s32 aux = 0;
+		                __s32 arg[3];
+		                __here__;
+		                p_disp = eLIBs_fopen("b:\\DISP\\DISPLAY", "r+");
+		                if(!p_disp)
+		                {
+		                    break;
+		                }   
+		                aux++;
+		                if (aux > 2)
+		                    aux = 0;
+
+		                    eLIBs_fioctrl(p_disp, DISP_CMD_LCD_SWITCH_OUTPUT, aux, 0);
+		                eLIBs_fclose(p_disp);
+		                __here__
+					}
+					break;
 				default:
 					return GUI_ManWinDefaultProc(msg);
 			}			
