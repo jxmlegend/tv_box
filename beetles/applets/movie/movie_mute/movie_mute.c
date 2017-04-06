@@ -25,6 +25,8 @@
 ************************************************************************************************************/
 static H_LYR __moviemute_8bpp_layer_create(RECT *rect, __s32 pipe)
 {
+	__s32           screen_width;
+    __s32 			screen_height;
 	H_LYR layer = NULL;
 	FB  fb =
 	{
@@ -55,6 +57,7 @@ static H_LYR __moviemute_8bpp_layer_create(RECT *rect, __s32 pipe)
 	    GUI_LYRWIN_STA_SUSPEND,
 	    GUI_LYRWIN_NORMAL
 	};
+	dsk_display_get_size(&screen_width, &screen_height);
 	
 	fb.size.width		= rect->width;
 	fb.size.height		= rect->height;	
@@ -64,8 +67,8 @@ static H_LYR __moviemute_8bpp_layer_create(RECT *rect, __s32 pipe)
 	lstlyr.src_win.width 	= rect->width;
 	lstlyr.src_win.height 	= rect->height;
 	
-	lstlyr.scn_win.x		= rect->x;
-	lstlyr.scn_win.y		= rect->y;
+	lstlyr.scn_win.x		= rect->x + (screen_width - 720)/2;
+	lstlyr.scn_win.y		= rect->y + (screen_height - 576)/2;
 	lstlyr.scn_win.width  	= rect->width;
 	lstlyr.scn_win.height 	= rect->height;
 	

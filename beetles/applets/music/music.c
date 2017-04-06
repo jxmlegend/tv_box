@@ -634,6 +634,8 @@ static __s32 music_scene_delete(__gui_msg_t *msg)
 
 static H_LYR music_8bpp_layer_create(__u8 pipe)
 {
+	__s32           screen_width;
+    __s32 			screen_height;
 	H_LYR layer = NULL;
 	RECT LayerRect;
 	//int ret;
@@ -670,6 +672,7 @@ static H_LYR music_8bpp_layer_create(__u8 pipe)
     };	
 	
 	music_get_screen_rect(&LayerRect);
+	dsk_display_get_size(&screen_width, &screen_height);
 	
     fb.size.width		= LayerRect.width;            
     fb.size.height		= LayerRect.height;	        
@@ -680,8 +683,8 @@ static H_LYR music_8bpp_layer_create(__u8 pipe)
 	lstlyr.src_win.width 	= LayerRect.width;
 	lstlyr.src_win.height 	= LayerRect.height;
 	
-	lstlyr.scn_win.x		= LayerRect.x;
-	lstlyr.scn_win.y		= LayerRect.y;
+	lstlyr.scn_win.x		= LayerRect.x + (screen_width - 720)/2;
+	lstlyr.scn_win.y		= LayerRect.y + (screen_height - 576)/2;
 	lstlyr.scn_win.width  	= LayerRect.width;
 	lstlyr.scn_win.height 	= LayerRect.height;
 	
@@ -713,6 +716,8 @@ static H_LYR music_8bpp_layer_create(__u8 pipe)
 */
 static H_LYR music_32bpp_layer_create(__u8 pipe)
 {
+	__s32           screen_width;
+    __s32 			screen_height;
 	H_LYR layer = NULL;
 	RECT LayerRect;
 //	int ret;
@@ -749,6 +754,7 @@ static H_LYR music_32bpp_layer_create(__u8 pipe)
     };	
 	
 	music_get_screen_rect(&LayerRect);
+	dsk_display_get_size(&screen_width, &screen_height);
 	
     fb.size.width		= LayerRect.width;            
     fb.size.height		= LayerRect.height;	        
@@ -759,8 +765,8 @@ static H_LYR music_32bpp_layer_create(__u8 pipe)
 	lstlyr.src_win.width 	= LayerRect.width;
 	lstlyr.src_win.height 	= LayerRect.height;
 	
-	lstlyr.scn_win.x		= LayerRect.x;
-	lstlyr.scn_win.y		= LayerRect.y;
+	lstlyr.scn_win.x		= LayerRect.x + (screen_width - 720)/2;
+	lstlyr.scn_win.y		= LayerRect.y + (screen_height - 576)/2;
 	lstlyr.scn_win.width  	= LayerRect.width;
 	lstlyr.scn_win.height 	= LayerRect.height;
 	

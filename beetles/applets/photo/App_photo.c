@@ -214,64 +214,67 @@ static __s32 photo_init(__gui_msg_t *msg)
 /***********************************************************************************************************
 	½¨Á¢Í¼²ã
 ************************************************************************************************************/
-#define photo_layer_palette_create(_lyr, _prt)      app_com_layer_create_default(_lyr, _prt, "photo  layer")
-// static H_LYR photo_layer_palette_create(RECT *rect)
-// {
-// 	H_LYR layer = NULL;
-// 	FB  fb =
-// 	{
-// 	    {0, 0},                                   		/* size      */
-// 	    {0, 0, 0},                                      /* buffer    */
-// 	    {FB_TYPE_RGB, {PIXEL_MONO_8BPP, 0, (__rgb_seq_t)0}},    /* fmt       */
-// 	};
-// 
-// 	__disp_layer_para_t lstlyr =
-// 	{
-// 	    DISP_LAYER_WORK_MODE_PALETTE,                    /* mode      */
-// 	    0,                                              /* ck_mode   */
-// 	    0,                                              /* alpha_en  */
-// 	    0,                                              /* alpha_val */
-// 	    1,                                              /* pipe      */
-// 	    0xff,                                           /* prio      */
-// 	    {0, 0, 0, 0},                           		/* screen    */
-// 	    {0, 0, 0, 0},                               	/* source    */
-// 	    DISP_LAYER_OUTPUT_CHN_DE_CH1,                   /* channel   */
-// 	    NULL                                            /* fb        */
-// 	};
-// 
-// 	__layerwincreate_para_t lyrcreate_info =
-// 	{
-// 	    "photo  layer",
-// 	    NULL,
-// 	    GUI_LYRWIN_STA_SUSPEND,
-// 	    GUI_LYRWIN_NORMAL
-// 	};
-// 	
-// 	fb.size.width		= rect->width;
-// 	fb.size.height		= rect->height;	
-// 	
-// 	lstlyr.src_win.x  		= 0;
-// 	lstlyr.src_win.y  		= 0;
-// 	lstlyr.src_win.width 	= rect->width;
-// 	lstlyr.src_win.height 	= rect->height;
-// 	
-// 	lstlyr.scn_win.x		= rect->x;
-// 	lstlyr.scn_win.y		= rect->y;
-// 	lstlyr.scn_win.width  	= rect->width;
-// 	lstlyr.scn_win.height 	= rect->height;
-// 	
-// 	lstlyr.pipe = 1;
-// 	lstlyr.fb = &fb;
-// 	lyrcreate_info.lyrpara = &lstlyr;
-// 	
-// 	layer = GUI_LyrWinCreate(&lyrcreate_info);
-// 	if( !layer )
-// 	{
-// 		__err("app bar layer create error !\n");
-// 	} 
-// 		
-// 	return layer;	
-// }
+//#define photo_layer_palette_create(_lyr, _prt)      app_com_layer_create_default(_lyr, _prt, "photo  layer")
+static H_LYR photo_layer_palette_create(RECT *rect)
+{
+	__s32           screen_width;
+    __s32 			screen_height;
+	H_LYR layer = NULL;
+	FB  fb =
+	{
+	    {0, 0},                                   		/* size      */
+	    {0, 0, 0},                                      /* buffer    */
+	    {FB_TYPE_RGB, {PIXEL_MONO_8BPP, 0, (__rgb_seq_t)0}},    /* fmt       */
+	};
+
+	__disp_layer_para_t lstlyr =
+	{
+	    DISP_LAYER_WORK_MODE_PALETTE,                    /* mode      */
+	    0,                                              /* ck_mode   */
+	    0,                                              /* alpha_en  */
+	    0,                                              /* alpha_val */
+	    1,                                              /* pipe      */
+	    0xff,                                           /* prio      */
+	    {0, 0, 0, 0},                           		/* screen    */
+	    {0, 0, 0, 0},                               	/* source    */
+	    DISP_LAYER_OUTPUT_CHN_DE_CH1,                   /* channel   */
+	    NULL                                            /* fb        */
+	};
+
+	__layerwincreate_para_t lyrcreate_info =
+	{
+	    "photo  layer",
+	    NULL,
+	    GUI_LYRWIN_STA_SUSPEND,
+	    GUI_LYRWIN_NORMAL
+	};
+	dsk_display_get_size(&screen_width, &screen_height);
+	
+	fb.size.width		= rect->width;
+	fb.size.height		= rect->height;	
+	
+	lstlyr.src_win.x  		= 0;
+	lstlyr.src_win.y  		= 0;
+	lstlyr.src_win.width 	= rect->width;
+	lstlyr.src_win.height 	= rect->height;
+	
+	lstlyr.scn_win.x		= rect->x + (screen_width - 720)/2;
+	lstlyr.scn_win.y		= rect->y + (screen_height - 576)/2;
+	lstlyr.scn_win.width  	= rect->width;
+	lstlyr.scn_win.height 	= rect->height;
+	
+	lstlyr.pipe = 1;
+	lstlyr.fb = &fb;
+	lyrcreate_info.lyrpara = &lstlyr;
+	
+	layer = GUI_LyrWinCreate(&lyrcreate_info);
+	if( !layer )
+	{
+		__err("app bar layer create error !\n");
+	} 
+		
+	return layer;	
+}
 
 /*
 	spsc create
@@ -294,7 +297,7 @@ static __s32 spsc_win_create(__gui_msg_t *msg)
 	rect.width = photo_uipara->spsc_layer.w;		//csq
 	rect.height = photo_uipara->spsc_layer.h;
 
-	photo_layer_palette_create(photo_ctrl->lyr_photo_spsc, &rect);
+	photo_ctrl->lyr_photo_spsc = photo_layer_palette_create(&rect);
 	
 	eLIBs_memset(&spsc_para, 0, sizeof(photo_spsc_para_t));
 	spsc_para.layer = photo_ctrl->lyr_photo_spsc;
@@ -425,7 +428,7 @@ static __s32 sset_win_create(__gui_msg_t *msg, __s32 mset_id)
 			return EPDK_FAIL;
 	}
 	
-	photo_layer_palette_create(photo_ctrl->lyr_photo_sset, &rect);
+	photo_ctrl->lyr_photo_sset = photo_layer_palette_create(&rect);
 	sset_para.layer = photo_ctrl->lyr_photo_sset;
 	sset_para.sset_font = photo_ctrl->photo_font;
 	sset_para.main_id = mset_id;
@@ -456,7 +459,7 @@ static __s32 mset_win_create(__gui_msg_t *msg)
 	rect.y = photo_uipara->sset_main_layer.y;
 	rect.width = photo_uipara->sset_main_layer.w;	
 	rect.height = photo_uipara->sset_main_layer.h;
-	photo_layer_palette_create(photo_ctrl->lyr_photo_mset, &rect);
+	photo_ctrl->lyr_photo_mset = photo_layer_palette_create(&rect);
 	
 	eLIBs_memset(&mset_para, 0, sizeof(photo_mset_para_t));
 	mset_para.h_spsc = msg->h_deswin;

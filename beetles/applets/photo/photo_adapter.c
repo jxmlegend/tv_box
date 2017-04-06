@@ -367,6 +367,7 @@ void LongStrDestroy(void)
 //for anole / ANOLE
 __s32 ANOLE_Init(__anole_para_t *para)
 {
+	__s32 screen_width, screen_height;
 	__s32 ret;
 	RECT  rect;
 	DEBUG_CallFuncHere(anole_init);
@@ -375,10 +376,11 @@ __s32 ANOLE_Init(__anole_para_t *para)
 
 	//anole_get_scn_rect(&rect);
 	//__msg("x y w h = %d %d %d %d \n", rect.x ,rect.y, rect.width, rect.height);
-	rect.x = 14;				//csq  //14
+	dsk_display_get_size(&screen_width, &screen_height);
+	rect.x = 0;				//csq  //14
 	rect.y = 0;
-	rect.height = 576;
-	rect.width = 682;			//682
+	rect.width = screen_width;			//682
+	rect.height = screen_height;
 	anole_set_scn_rect(&rect);
 	
 	if (ret == 0)
