@@ -1048,7 +1048,7 @@ static __s32  file_manager_list_on_enter_key(__gui_msg_t *msg)
 		||(fatdirattr == RAT_MEDIA_TYPE_USB_DEVICE)
 		||(fatdirattr == RAT_MEDIA_TYPE_SD_DEVICE))
 	{
-		explorer_clean_delete_file_hint_area();
+		//explorer_clean_delete_file_hint_area();
 		explorer_list_long_string_stop_roll(list_para);		
 			//进入下一级子文件夹
 		LISTBAR_GetScene(list_para->listbar_handle, &ListBarScene);
