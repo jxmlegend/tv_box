@@ -324,6 +324,7 @@ led_flash_rcv_t *led_flash_rcv = NULL;
 
 static __hdle           g_pe12 = 0;
 static __hdle           g_gpio_switch = 0;
+static __bool			pc_output = EPDK_FALSE;
 
 static __s32 __app_request_pins(void)
 {
@@ -429,6 +430,7 @@ static __s32 display_switch_to_pc(void)
 
 	__msg("__app_pullup_pe...\n");
     esPINS_WritePinData(g_gpio_switch, 1, 0);
+	pc_output = EPDK_TRUE;
 	return EPDK_OK;
 }
 
@@ -445,7 +447,7 @@ static __s32 display_switch_to_tv(void)
 
 	__msg("__app_pulldown_pe...\n");
 	esPINS_WritePinData(g_gpio_switch, 0, 0);
-		
+	pc_output = EPDK_FALSE;
 	return EPDK_OK;
 }
 
@@ -1414,7 +1416,7 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 				}	
 				case GUI_MSG_KEY_POWEROFF:
 					if(msg->dwAddData2 != KEY_UP_ACTION) {
-						msg->id = DSK_MSG_POWER_OFF;
+						msg->id = DSK_MSG_SCREEN_SWITCH;
 						GUI_SendNotifyMessage(msg);
 					}
 					break;
@@ -1860,26 +1862,14 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 
 		case DSK_MSG_SCREEN_SWITCH:
 		{			
-			__init_ctl_t * init_ctr;
-			init_ctr= (__init_ctl_t *)GUI_WinGetAttr(msg->h_deswin);				
-			
-			if( msg->dwAddData1 == LION_DISP_LCD )		// 切换到LCD，打开触摸屏消息
+			if( pc_output == EPDK_TRUE)
 			{
-				init_lock(msg);
-				init_ctr->tp_msg_enble = EPDK_TRUE;				
-				init_unlock(msg);
+				display_switch_to_tv();
 			}
-			else											// 切换到tv , 关闭触摸屏消息
-			{				
-				init_lock(msg);
-				init_ctr->tp_msg_enble = EPDK_FALSE;				
-				init_unlock(msg);				
-			}
-			
-			//重新创建场景			
-			init_scene_destroy(msg);			
-			init_scene_create(msg);				
-			
+			else
+			{		
+				display_switch_to_pc();				
+			}			
 			break;
 		}
 
