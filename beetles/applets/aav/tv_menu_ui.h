@@ -53,6 +53,7 @@ typedef struct
 	tv_menu_rect_t uipara_icon[tv_menu_icon_num];	// 各小项的小图标
 	tv_menu_rect_t uipara_bright_text[tv_menu_icon_num]; //  文字
 	tv_menu_rect_t uipara_ch_text[3]; //  文字
+	tv_menu_rect_t uipara_page_text[3]; //  文字
 }tv_menu_uipara_t;
 
 /*

@@ -194,7 +194,12 @@ static tv_menu_uipara_t uipara_720_480 =
 		{336, 0, 16, 24,STRING_TV_CHANNLM},	
 		{336, 0, 16, 24,STRING_TV_CHANNDOT},	
 		{336, 0, 16, 24,STRING_TV_CH},			
-	}			
+	},
+	{		
+		{336, 0, 16, 24,STRING_TV_SET_IMG},	
+		{336, 0, 16, 24,STRING_TV_SET_FUN},	
+		{336, 0, 16, 24,STRING_TV_SET_FRE},			
+	}		
 };
 
 tv_menu_uipara_t* tv_menu_get_uipara(__s32 rotate)

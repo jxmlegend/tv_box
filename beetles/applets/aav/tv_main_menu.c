@@ -44,7 +44,7 @@ typedef struct
 	HTHEME icon_bar[4];	
 	char item_str[9][28];
 	char item_ch_str[3][8];
-	
+	char item_page_str[3][18];
 }tv_menu_scene_t;
 
 
@@ -229,7 +229,10 @@ static void tvmenu_init_res(tv_menu_scene_t *smenu_attr)
 
 	dsk_langres_get_menu_text(sub_ui_para->uipara_ch_text[0].res_id, smenu_attr->item_ch_str[0], GUI_TITLE_MAX); 
 	dsk_langres_get_menu_text(sub_ui_para->uipara_ch_text[1].res_id, smenu_attr->item_ch_str[1], GUI_TITLE_MAX); 
-	dsk_langres_get_menu_text(sub_ui_para->uipara_ch_text[2].res_id, smenu_attr->item_ch_str[2], GUI_TITLE_MAX); 		
+	dsk_langres_get_menu_text(sub_ui_para->uipara_ch_text[2].res_id, smenu_attr->item_ch_str[2], GUI_TITLE_MAX); 	
+	dsk_langres_get_menu_text(sub_ui_para->uipara_page_text[0].res_id, smenu_attr->item_page_str[0], GUI_TITLE_MAX); 
+	dsk_langres_get_menu_text(sub_ui_para->uipara_page_text[1].res_id, smenu_attr->item_page_str[1], GUI_TITLE_MAX); 
+	dsk_langres_get_menu_text(sub_ui_para->uipara_page_text[2].res_id, smenu_attr->item_page_str[2], GUI_TITLE_MAX); 	
     	smenu_attr->res_init = EPDK_TRUE;
 
 	return ;
@@ -322,6 +325,8 @@ static void tvmenu_uninit_res(tv_menu_scene_t *smenu_attr)
 	smenu_attr->icon_page[1] = NULL;	
 	smenu_attr->icon_page[2] = NULL;	
 	smenu_attr->icon_page[3] = NULL;	
+	smenu_attr->icon_page[4] = NULL;	
+	smenu_attr->icon_page[5] = NULL;
 
 	smenu_attr->icon_bar[0] = NULL;	
 	smenu_attr->icon_bar[1] = NULL;	
@@ -1098,7 +1103,14 @@ static __s32 tv_menu_paint_all(__gui_msg_t *msg)
 		
 	{
 		{
+			GUI_RECT rect;
+			rect.y0 = 40;
+			rect.y1 = 65;
 			GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->bmp_bg[0]), 115, 65 );	
+			
+			dsk_langres_get_menu_text(ui_para->uipara_page_text[0].res_id, smenu_attr->item_page_str[0], GUI_TITLE_MAX); 
+			dsk_langres_get_menu_text(ui_para->uipara_page_text[1].res_id, smenu_attr->item_page_str[1], GUI_TITLE_MAX); 
+			dsk_langres_get_menu_text(ui_para->uipara_page_text[2].res_id, smenu_attr->item_page_str[2], GUI_TITLE_MAX); 
 			
 			if(tv_data.tv_page==0)
 			{
@@ -1107,6 +1119,17 @@ static __s32 tv_menu_paint_all(__gui_msg_t *msg)
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_page[1]), 115, 0 );
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_page[2]), 243, 0 );
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_page[4]), 371, 0 );
+				GUI_SetColor(GUI_YELLOW);
+				rect.x0 = 115 + 4;
+				rect.x1 = 115 + 128 - 4;
+				GUI_DispStringInRect(smenu_attr->item_page_str[0], &rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
+				GUI_SetColor(GUI_WHITE);
+				rect.x0 = 243 + 4;
+				rect.x1 = 243 + 128 - 4;
+				GUI_DispStringInRect(smenu_attr->item_page_str[1], &rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
+				rect.x0 = 371 + 4;
+				rect.x1 = 371 + 128 - 4;
+				GUI_DispStringInRect(smenu_attr->item_page_str[2], &rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
 			}
 			else if(tv_data.tv_page==1)
 			{
@@ -1115,6 +1138,19 @@ static __s32 tv_menu_paint_all(__gui_msg_t *msg)
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_page[3]), 243, 0 );	
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_page[4]), 371, 0 );
 //				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->bmp_bg[1]), 285, 50 );	
+				GUI_SetColor(GUI_WHITE);
+				rect.x0 = 115 + 4;
+				rect.x1 = 115 + 128 - 4;
+				GUI_DispStringInRect(smenu_attr->item_page_str[0], &rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
+				GUI_SetColor(GUI_YELLOW);
+				rect.x0 = 243 + 4;
+				rect.x1 = 243 + 128 - 4;
+				GUI_DispStringInRect(smenu_attr->item_page_str[1], &rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
+				GUI_SetColor(GUI_WHITE);
+				rect.x0 = 371 + 4;
+				rect.x1 = 371 + 128 - 4;
+				GUI_DispStringInRect(smenu_attr->item_page_str[2], &rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
+
 			}else if(tv_data.tv_page==2)
 			{
 				//GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->bmp_bg[1]), 192, 50 );	
@@ -1122,6 +1158,18 @@ static __s32 tv_menu_paint_all(__gui_msg_t *msg)
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_page[2]), 243, 0 );
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_page[5]), 371, 0 );
 //				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->bmp_bg[1]), 285, 50 );	
+				GUI_SetColor(GUI_WHITE);
+				rect.x0 = 115 + 4;
+				rect.x1 = 115 + 128 - 4;
+				GUI_DispStringInRect(smenu_attr->item_page_str[0], &rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
+				rect.x0 = 243 + 4;
+				rect.x1 = 243 + 128 - 4;
+				GUI_DispStringInRect(smenu_attr->item_page_str[1], &rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
+				GUI_SetColor(GUI_YELLOW);
+				rect.x0 = 371 + 4;
+				rect.x1 = 371 + 128 - 4;
+				GUI_DispStringInRect(smenu_attr->item_page_str[2], &rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
+
 			}
 			
 //			GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_page[0]), 208, 20 );

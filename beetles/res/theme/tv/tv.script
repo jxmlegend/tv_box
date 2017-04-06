@@ -1,0 +1,336 @@
+[res_13001]
+name	  	=TV_AV_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\AV.bmp
+commentCN 	=AV
+commentEN 	=AV
+
+[res_13002]
+name	  	=TV_COMMON_MENU_ALEFT_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\common_menu_aleft_focus.bmp
+commentCN 	=COMMON_MENU_ALEFT_FOCUS
+commentEN 	=COMMON_MENU_ALEFT_FOCUS
+
+[res_13003]
+name	  	=TV_COMMON_MENU_ALEFT_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\common_menu_aleft_normal.bmp
+commentCN 	=COMMON_MENU_ALEFT_NORMAL
+commentEN 	=COMMON_MENU_ALEFT_NORMAL
+
+[res_13004]
+name	  	=TV_COMMON_MENU_RIGHTWARD_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\common_menu_rightward_focus.bmp
+commentCN 	=COMMON_MENU_RIGHTWARD_FOCUS
+commentEN 	=COMMON_MENU_RIGHTWARD_FOCUS
+
+[res_13005]
+name	  	=TV_COMMON_MENU_RIGHTWARD_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\common_menu_rightward_normal.bmp
+commentCN 	=COMMON_MENU_RIGHTWARD_NORMAL
+commentEN 	=COMMON_MENU_RIGHTWARD_NORMAL
+
+[res_13006]
+name	  	=TV_COMMON_MENU_SHASHA_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\common_menu_shasha.bmp
+commentCN 	=COMMON_MENU_SHASHA
+commentEN 	=COMMON_MENU_SHASHA
+
+[res_13007]
+name	  	=TV_PAGE_SEL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\page_sel.bmp
+commentCN 	=PAGE_SEL
+commentEN 	=PAGE_SEL
+
+[res_13008]
+name	  	=TV_PAGE_SEL_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\page_sel_focus.bmp
+commentCN 	=PAGE_SEL_FOCUS
+commentEN 	=PAGE_SEL_FOCUS
+
+[res_13009]
+name	  	=TV_PROCESS_BAR_BODY_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\process_bar_body.bmp
+commentCN 	=PROCESS_BAR_BODY
+commentEN 	=PROCESS_BAR_BODY
+
+[res_13010]
+name	  	=TV_PROCESS_BAR_HEAD_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\process_bar_head.bmp
+commentCN 	=PROCESS_BAR_HEAD
+commentEN 	=PROCESS_BAR_HEAD
+
+[res_13011]
+name	  	=TV_PROCESS_BAR_POINT_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\process_bar_point.bmp
+commentCN 	=PROCESS_BAR_POINT
+commentEN 	=PROCESS_BAR_POINT
+
+[res_13012]
+name	  	=TV_PROCESS_BAR_TAIL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\process_bar_tail.bmp
+commentCN 	=PROCESS_BAR_TAIL
+commentEN 	=PROCESS_BAR_TAIL
+
+[res_13013]
+name	  	=TV_SLIDE_BAR_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\slide_bar.bmp
+commentCN 	=SLIDE_BAR
+commentEN 	=SLIDE_BAR
+
+[res_13014]
+name	  	=TV_SLIDE_BAR_BG_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\slide_bar_bg.bmp
+commentCN 	=SLIDE_BAR_BG
+commentEN 	=SLIDE_BAR_BG
+
+[res_13015]
+name	  	=TV_TV_AUTOSEARCH_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_autosearch_focus.bmp
+commentCN 	=TV_AUTOSEARCH_FOCUS
+commentEN 	=TV_AUTOSEARCH_FOCUS
+
+[res_13016]
+name	  	=TV_TV_AUTOSEARCH_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_autosearch_normal.bmp
+commentCN 	=TV_AUTOSEARCH_NORMAL
+commentEN 	=TV_AUTOSEARCH_NORMAL
+
+[res_13017]
+name	  	=TV_TV_BG_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_bg.bmp
+commentCN 	=TV_BG
+commentEN 	=TV_BG
+
+[res_13018]
+name	  	=TV_TV_BRIGHT_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_bright_focus.bmp
+commentCN 	=TV_BRIGHT_FOCUS
+commentEN 	=TV_BRIGHT_FOCUS
+
+[res_13019]
+name	  	=TV_TV_BRIGHT_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_bright_normal.bmp
+commentCN 	=TV_BRIGHT_NORMAL
+commentEN 	=TV_BRIGHT_NORMAL
+
+[res_13020]
+name	  	=TV_TV_CHANNEL_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_channel_focus.bmp
+commentCN 	=TV_CHANNEL_FOCUS
+commentEN 	=TV_CHANNEL_FOCUS
+
+[res_13021]
+name	  	=TV_TV_CHANNEL_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_channel_normal.bmp
+commentCN 	=TV_CHANNEL_NORMAL
+commentEN 	=TV_CHANNEL_NORMAL
+
+[res_13022]
+name	  	=TV_TV_COLOR_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_color_focus.bmp
+commentCN 	=TV_COLOR_FOCUS
+commentEN 	=TV_COLOR_FOCUS
+
+[res_13023]
+name	  	=TV_TV_COLOR_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_color_normal.bmp
+commentCN 	=TV_COLOR_NORMAL
+commentEN 	=TV_COLOR_NORMAL
+
+[res_13024]
+name	  	=TV_TV_CONTRAST_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_contrast_focus.bmp
+commentCN 	=TV_CONTRAST_FOCUS
+commentEN 	=TV_CONTRAST_FOCUS
+
+[res_13025]
+name	  	=TV_TV_CONTRAST_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_contrast_normal.bmp
+commentCN 	=TV_CONTRAST_NORMAL
+commentEN 	=TV_CONTRAST_NORMAL
+
+[res_13026]
+name	  	=TV_TV_DIGITAL_0_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_digital_0.bmp
+commentCN 	=TV_DIGITAL_0
+commentEN 	=TV_DIGITAL_0
+
+[res_13027]
+name	  	=TV_TV_DIGITAL_1_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_digital_1.bmp
+commentCN 	=TV_DIGITAL_1
+commentEN 	=TV_DIGITAL_1
+
+[res_13028]
+name	  	=TV_TV_DIGITAL_2_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_digital_2.bmp
+commentCN 	=TV_DIGITAL_2
+commentEN 	=TV_DIGITAL_2
+
+[res_13029]
+name	  	=TV_TV_DIGITAL_3_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_digital_3.bmp
+commentCN 	=TV_DIGITAL_3
+commentEN 	=TV_DIGITAL_3
+
+[res_13030]
+name	  	=TV_TV_DIGITAL_4_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_digital_4.bmp
+commentCN 	=TV_DIGITAL_4
+commentEN 	=TV_DIGITAL_4
+
+[res_13031]
+name	  	=TV_TV_DIGITAL_5_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_digital_5.bmp
+commentCN 	=TV_DIGITAL_5
+commentEN 	=TV_DIGITAL_5
+
+[res_13032]
+name	  	=TV_TV_DIGITAL_6_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_digital_6.bmp
+commentCN 	=TV_DIGITAL_6
+commentEN 	=TV_DIGITAL_6
+
+[res_13033]
+name	  	=TV_TV_DIGITAL_7_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_digital_7.bmp
+commentCN 	=TV_DIGITAL_7
+commentEN 	=TV_DIGITAL_7
+
+[res_13034]
+name	  	=TV_TV_DIGITAL_8_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_digital_8.bmp
+commentCN 	=TV_DIGITAL_8
+commentEN 	=TV_DIGITAL_8
+
+[res_13035]
+name	  	=TV_TV_DIGITAL_9_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_digital_9.bmp
+commentCN 	=TV_DIGITAL_9
+commentEN 	=TV_DIGITAL_9
+
+[res_13036]
+name	  	=TV_TV_DIGITAL_LINE_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_digital_line.bmp
+commentCN 	=TV_DIGITAL_LINE
+commentEN 	=TV_DIGITAL_LINE
+
+[res_13037]
+name	  	=TV_TV_INPUT_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_input_focus.bmp
+commentCN 	=TV_INPUT_FOCUS
+commentEN 	=TV_INPUT_FOCUS
+
+[res_13038]
+name	  	=TV_TV_INPUT_NALMOR_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_input_nalmor.bmp
+commentCN 	=TV_INPUT_NALMOR
+commentEN 	=TV_INPUT_NALMOR
+
+[res_13039]
+name	  	=TV_TV_INPUT_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_input_normal.bmp
+commentCN 	=TV_INPUT_NORMAL
+commentEN 	=TV_INPUT_NORMAL
+
+[res_13040]
+name	  	=TV_TV_LANG_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_lang_focus.bmp
+commentCN 	=TV_LANG_FOCUS
+commentEN 	=TV_LANG_FOCUS
+
+[res_13041]
+name	  	=TV_TV_LANG_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_lang_normal.bmp
+commentCN 	=TV_LANG_NORMAL
+commentEN 	=TV_LANG_NORMAL
+
+[res_13042]
+name	  	=TV_TV_MANUALSEARCH_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_manualsearch_focus.bmp
+commentCN 	=TV_MANUALSEARCH_FOCUS
+commentEN 	=TV_MANUALSEARCH_FOCUS
+
+[res_13043]
+name	  	=TV_TV_MANUALSEARCH_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_manualsearch_normal.bmp
+commentCN 	=TV_MANUALSEARCH_NORMAL
+commentEN 	=TV_MANUALSEARCH_NORMAL
+
+[res_13044]
+name	  	=TV_TV_MINITRIM_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_minitrim_focus.bmp
+commentCN 	=TV_MINITRIM_FOCUS
+commentEN 	=TV_MINITRIM_FOCUS
+
+[res_13045]
+name	  	=TV_TV_MINITRIM_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_minitrim_normal.bmp
+commentCN 	=TV_MINITRIM_NORMAL
+commentEN 	=TV_MINITRIM_NORMAL
+
+[res_13046]
+name	  	=TV_TV_MUTE_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_mute.bmp
+commentCN 	=TV_MUTE
+commentEN 	=TV_MUTE
+
+[res_13047]
+name	  	=TV_TV_PAGE1_SET_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_page1_set_focus.bmp
+commentCN 	=TV_PAGE1_SET_FOCUS
+commentEN 	=TV_PAGE1_SET_FOCUS
+
+[res_13048]
+name	  	=TV_TV_PAGE1_SET_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_page1_set_normal.bmp
+commentCN 	=TV_PAGE1_SET_NORMAL
+commentEN 	=TV_PAGE1_SET_NORMAL
+
+[res_13049]
+name	  	=TV_TV_PAGE2_SET_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_page2_set_focus.bmp
+commentCN 	=TV_PAGE2_SET_FOCUS
+commentEN 	=TV_PAGE2_SET_FOCUS
+
+[res_13050]
+name	  	=TV_TV_PAGE2_SET_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_page2_set_normal.bmp
+commentCN 	=TV_PAGE2_SET_NORMAL
+commentEN 	=TV_PAGE2_SET_NORMAL
+
+[res_13051]
+name	  	=TV_TV_PAGE3_SET_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_page3_set_focus.bmp
+commentCN 	=TV_PAGE3_SET_FOCUS
+commentEN 	=TV_PAGE3_SET_FOCUS
+
+[res_13052]
+name	  	=TV_TV_PAGE3_SET_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_page3_set_normal.bmp
+commentCN 	=TV_PAGE3_SET_NORMAL
+commentEN 	=TV_PAGE3_SET_NORMAL
+
+[res_13053]
+name	  	=TV_TV_STANDARD_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_standard_focus.bmp
+commentCN 	=TV_STANDARD_FOCUS
+commentEN 	=TV_STANDARD_FOCUS
+
+[res_13054]
+name	  	=TV_TV_STANDARD_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_standard_normal.bmp
+commentCN 	=TV_STANDARD_NORMAL
+commentEN 	=TV_STANDARD_NORMAL
+
+[res_13055]
+name	  	=TV_TV_SYSTEM_FOCUS_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_system_focus.bmp
+commentCN 	=TV_SYSTEM_FOCUS
+commentEN 	=TV_SYSTEM_FOCUS
+
+[res_13056]
+name	  	=TV_TV_SYSTEM_NORMAL_BMP
+file	  	=D:\Projects\tv_box\C500_sdk_public\livedesk\beetles\res\theme\./tv\tv_system_normal.bmp
+commentCN 	=TV_SYSTEM_NORMAL
+commentEN 	=TV_SYSTEM_NORMAL
+
