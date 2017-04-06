@@ -341,6 +341,8 @@ static void BSP_TVD_input_select(__u32 input)
 // system:是否自动识别TVD_SYSTEM_FORMAT_MAX : 是； 其它:否
 __s32 video_dev_init(__s32 video_source, __s32 tvd_channel,  __s32 enable_3d,__drv_TVD_system system)
 {
+	__s32           screen_width;
+    __s32 			screen_height;
     __s32 i;
     __u32 mod_num=0;
     __tvd_mode_all_t tvd_mode_all;
@@ -595,22 +597,20 @@ __here__;
 	video_ctrl.layer_para.src_win.height   = tvd_mode.size.width;
 
 #else
-    video_ctrl.layer_para.src_win.x        = 10;
-    video_ctrl.layer_para.src_win.y        = 3+8;
-    video_ctrl.layer_para.src_win.width    = tvd_mode.size.width -30;//tvd_mode.size.width;
-    video_ctrl.layer_para.src_win.height   = tvd_mode.size.height-6  -8*2;//tvd_mode.size.height;
+    video_ctrl.layer_para.src_win.x        = 0;
+    video_ctrl.layer_para.src_win.y        = 0;
+    video_ctrl.layer_para.src_win.width    = tvd_mode.size.width;//tvd_mode.size.width;
+    video_ctrl.layer_para.src_win.height   = tvd_mode.size.height;//tvd_mode.size.height;
 #endif
 __here__;
 
-    video_ctrl.layer_para.scn_win.x        = 0;
-    video_ctrl.layer_para.scn_win.y        = 0;
-    video_ctrl.layer_para.scn_win.width    = eLIBs_fioctrl(video_ctrl.disphd, DISP_CMD_SCN_GET_WIDTH, 0, 0);
-    video_ctrl.layer_para.scn_win.height   = eLIBs_fioctrl(video_ctrl.disphd, DISP_CMD_SCN_GET_HEIGHT, 0, 0);
+    screen_width = eLIBs_fioctrl(video_ctrl.disphd, DISP_CMD_SCN_GET_WIDTH, 0, 0);
+    screen_height = eLIBs_fioctrl(video_ctrl.disphd, DISP_CMD_SCN_GET_HEIGHT, 0, 0);
 
-	video_ctrl.layer_para.scn_win.x  = 8;
-	video_ctrl.layer_para.scn_win.y        =  10;	
-	video_ctrl.layer_para.scn_win.width = video_ctrl.layer_para.scn_win.width - 30;
-	video_ctrl.layer_para.scn_win.height = video_ctrl.layer_para.scn_win.height -32;
+	video_ctrl.layer_para.scn_win.x  = (screen_width - 720)/2;
+	video_ctrl.layer_para.scn_win.y  = (screen_height - 576)/2;	
+	video_ctrl.layer_para.scn_win.width = tvd_mode.size.width;
+	video_ctrl.layer_para.scn_win.height = tvd_mode.size.height;
 __here__;
 	//layer0
     arg[0] = DISP_LAYER_WORK_MODE_SCALER;
