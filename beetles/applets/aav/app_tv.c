@@ -646,7 +646,15 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 				//__TvOSD_si(msg);
 				//TV_cmd2parent(msg->h_deswin, SWITCH_TO_MMENU, 0, 0);
 				long_key = 0;
-			}	
+			}
+			else if(GUI_MSG_KEY_ESCAPE==msg->dwAddData1)
+			{	
+				if(dsk_tv_rcv->tv_menuID != TVMENU_MUTE) {
+					__TvOSD_si(msg);
+					if(movie_muteflag==1)
+						__TvOSD_OPEN(msg,TVMENU_MUTE);
+				}
+			}
 	}
 	else
 	{
