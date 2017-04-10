@@ -1418,11 +1418,8 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 					switch(tv_data.item)
 					{
 						case 0:
-							if(dsk_tv_rcv->sourceInput==0)
-							{
-								tv_data.tv_page = 1;
-								tv_menu_paint_all(msg);
-							}	
+							tv_data.tv_page = 1;
+							tv_menu_paint_all(msg);
 							break;
 							
 						case 1:
@@ -1480,7 +1477,12 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 					switch(tv_data.item)
 					{
 						case 0:
-							tv_data.tv_page = 2;
+							if(dsk_tv_rcv->sourceInput==0)
+							{
+								tv_data.tv_page = 2;
+							} else {
+								tv_data.tv_page = 0;
+							}
 							tv_menu_paint_all(msg);
 							break;
 						case 1:
@@ -1552,8 +1554,10 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 							if(dsk_tv_rcv->sourceInput==0)
 							{
 								tv_data.tv_page = 2;
-								tv_menu_paint_all(msg);
-							}	
+							} else {
+								tv_data.tv_page = 1;
+							}
+							tv_menu_paint_all(msg);
 							break;
 							
 						case 1:
