@@ -524,11 +524,11 @@ static __s32 music_explorer_key_proc(__gui_msg_t *msg)
 			case GUI_MSG_KEY_MENU:
 				if(last_key == GUI_MSG_KEY_MENU)
 				{
-					if(robin_get_fsm_status() != CEDAR_STAT_PLAY)			//关闭音乐
-					{
+					//if(robin_get_fsm_status() != CEDAR_STAT_PLAY)			//关闭音乐
+					//{
 						music_send_command(msg->h_deswin, GUI_MSG_COMMAND, SWITCH_TO_MMENU, 0);
-					}
-					else
+					//}
+					/*else
 					{		//退出时，正在播放则进入背景播放状?
 						//__wait__;
 						//music_send_command(msg->h_deswin, GUI_MSG_COMMAND, EXPLR_SW_TO_MAIN, MUSICPLAYER_BACKGROUND);
@@ -543,7 +543,7 @@ static __s32 music_explorer_key_proc(__gui_msg_t *msg)
 							//GUI_SendNotifyMessage(&msg);
 							GUI_SendMessage(&my_msg);
 						}
-					}
+					}*/
 				}
 				break;
 			case GUI_MSG_KEY_LONGMENU:
