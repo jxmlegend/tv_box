@@ -672,9 +672,8 @@ static __s32 tv_menu_paint_protel(__gui_msg_t *msg,__s32 item,__s32 color)
 					gui_rect.x0 = 445;
 					gui_rect.y0 = 204-118;
 					GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->bmp_bg[3]), gui_rect.x0, gui_rect.y0 );
-					dsk_langres_get_menu_text(TVinput[dsk_tv_rcv->sourceInput], protel_str, GUI_TITLE_MAX);  
-		 			GUI_DispStringAt(protel_str, gui_rect.x0 , gui_rect.y0);		
-							
+					uint2str(dsk_tv_rcv->cur_channl, str);
+					GUI_DispStringAt(str, gui_rect.x0 , gui_rect.y0);
 					break;
 				case 2:
 					GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->bmp_bg[3]), 393, 255-118 );
@@ -951,7 +950,7 @@ static __s32 tv_freBar_updata(__gui_msg_t *msg)
 				dsk_langres_get_menu_text(ui_para->uipara_ch_text[0].res_id, smenu_attr->item_ch_str[0], GUI_TITLE_MAX);  
 	 			GUI_DispStringAt(smenu_attr->item_ch_str[0], 385 , 280);	
 				
-			}	
+			}
 }
 
 
@@ -1042,6 +1041,7 @@ static __s32 tv_menu_updata_search_ui(__gui_msg_t *msg)
 			}	
 		}
 		tv_freBar_updata(msg);
+		tv_menu_paint_protel(msg,1,0);
 	}
 	else
 	{
@@ -1517,6 +1517,11 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 							break;
 
 						case 1:
+							if(dsk_tv_rcv->sourceInput==0) {
+								dsk_tv_rcv_next_freq_play();
+								tv_menu_paint_protel(msg,tv_data.item,1);
+								tv_freBar_updata(msg);
+							}
 							break;
 						case 2:
 							dsk_tv_rcv->auto_maual_mode=0x10;
@@ -1640,10 +1645,12 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 							tv_data.tv_page = 1;
 							tv_menu_paint_all(msg);
 							break;
-							
-						default:
-							break;
 						case 1:
+							if(dsk_tv_rcv->sourceInput==0) {
+								dsk_tv_rcv_pre_freq_play();
+								tv_menu_paint_protel(msg,tv_data.item,1);
+								tv_freBar_updata(msg);
+							}
 							break;
 						case 2:
 							dsk_tv_rcv->auto_maual_mode=0x10;
@@ -1656,7 +1663,9 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 						case 4:
 							dsk_tv_finerFreq(0);
 							tv_freBar_updata(msg);
-							break;	
+							break;
+						default:
+							break;
 					}
 				}
 				atiurset = 1;
