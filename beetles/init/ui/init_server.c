@@ -220,8 +220,7 @@ static __s32 init_power_off_proc(__gui_msg_t * msg)
 		dsk_reg_flush();
    // 		dsk_reg_deinit_para();
 
-		//dsk_display_off();	
-   		display_switch_to_pc();
+		//dsk_display_off();
 #if 0		
 		scene_on_dialog(msg);		
 		__here__;
@@ -325,6 +324,7 @@ led_flash_rcv_t *led_flash_rcv = NULL;
 static __hdle           g_pe12 = 0;
 static __hdle           g_gpio_switch = 0;
 static __bool			pc_output = EPDK_FALSE;
+static __s32			vol;
 
 static __s32 __app_request_pins(void)
 {
@@ -388,6 +388,24 @@ static __s32 __app_pulldown_pe(void)
 	return EPDK_OK;
 }
 
+static __s32 pc_audio_enable(void)
+{	     		
+	ES_FILE *paudio;
+
+    paudio = eLIBs_fopen("b:\\AUDIO\\FM", "r+");
+   	if(!paudio)
+	{
+		__wrn("Open Audio Dev File Failed\n");
+		return EPDK_FAIL;
+	}
+
+	eLIBs_fioctrl(paudio, AUDIO_DEV_CMD_START, 0xff, 0);	
+
+	eLIBs_fclose(paudio);
+
+	return EPDK_OK;
+}
+
 static __s32 display_switch_request_pins(void)
 {
     __s32            ret;
@@ -422,6 +440,8 @@ static __s32 display_switch_to_pc(void)
 	__s32            ret;
 	user_gpio_set_t  gpio_set[16];  
 
+	pc_audio_enable();
+
 	if(!g_gpio_switch)
 	{
     __msg("__app_pullup_pe fail...\n");
@@ -438,7 +458,7 @@ static __s32 display_switch_to_tv(void)
 {  
 	__s32            ret;
 	user_gpio_set_t  gpio_set[16];  
-
+	
 	if(!g_gpio_switch)
 	{
 		__msg("__app_pullup_pe fail...\n");
@@ -1786,6 +1806,9 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 					esKSRV_Reset();		
 				}	
                 bfirst = 0;
+                vol= dsk_volume_get();
+				dsk_volume_set(30);
+				display_switch_to_pc();	
             }
 			else
 			{
@@ -1795,11 +1818,12 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 				__app_pulldown_pe();
 				
 				//dsk_display_on(DISP_OUTPUT_TYPE_LCD);
-				display_switch_to_tv();
 				activity_load_app("application://app_root");	
 				g_b_Ir_poweroff = 0;
 				bfirst = 1;
-				__here__
+				__here__;
+				dsk_volume_set(vol);
+				display_switch_to_tv();
 			}
 #else					
             //关屏计时开始
@@ -1861,15 +1885,34 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 		}
 
 		case DSK_MSG_SCREEN_SWITCH:
-		{			
+		{	
+			H_WIN hwin_movie, hwin_music, hwin_tv;
+			
 			if( pc_output == EPDK_TRUE)
 			{
+				dsk_volume_set(vol);
 				display_switch_to_tv();
 			}
 			else
 			{		
-				display_switch_to_pc();				
-			}			
+				vol= dsk_volume_get();
+				dsk_volume_set(30);
+				display_switch_to_pc();	
+			}		
+			hwin_tv = GUI_WinGetHandFromName("app_tv");
+			if(hwin_tv != NULL) {
+				SEND_MSG(DSK_MSG_SCREEN_SWITCH, 0, hwin_tv, pc_output, 0); 
+			}
+
+			hwin_music = GUI_WinGetHandFromName("app_music");
+			if(hwin_movie != NULL) {
+				SEND_MSG(DSK_MSG_SCREEN_SWITCH, 0, hwin_music, pc_output, 0); 
+			}
+
+			hwin_movie = GUI_WinGetHandFromName("app_movie");
+			if(hwin_movie != NULL) {
+				SEND_MSG(DSK_MSG_SCREEN_SWITCH, 0, hwin_movie, pc_output, 0); 
+			}
 			break;
 		}
 

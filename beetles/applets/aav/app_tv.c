@@ -1168,6 +1168,18 @@ static __s32 app_tv_proc(__gui_msg_t *msg)
 	case DSK_APP_RESTORE:
 
 		return EPDK_OK;
+
+	case DSK_MSG_SCREEN_SWITCH:
+		if(msg->dwAddData1 == EPDK_FALSE) {
+			if(dsk_tv_rcv->sourceInput==1) {
+				eLIBs_fioctrl(app_tv_data->audio_drv, AUDIO_DEV_CMD_STOP, 0xff, 0);
+				eLIBs_fioctrl(app_tv_data->audio_drv, AUDIO_DEV_CMD_START, 0, 0); 
+			} else {
+				eLIBs_fioctrl(app_tv_data->audio_drv, AUDIO_DEV_CMD_STOP, 0, 0);	
+				eLIBs_fioctrl(app_tv_data->audio_drv, AUDIO_DEV_CMD_START, 0xff, 0);
+			}
+		}
+		break;
 	case GUI_MSG_COMMAND:
 		{
 			tv_para_t *tv_para_comman;
