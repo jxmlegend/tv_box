@@ -415,8 +415,8 @@ static __s32 setting_general_content_paint(__gui_msg_t *msg)
 	GUI_ClearRect(p_item_res->string_content_rect.x,p_item_res->string_content_rect.y,p_item_res->string_content_rect.x+p_item_res->string_content_rect.width,p_item_res->string_content_rect.y+p_item_res->string_content_rect.height);
 	
 	GUI_SetColor(general_attr->focus_txt_color);
-	gui_rect.x0 = SET_CONT_START_X;
-	gui_rect.y0 = SET_CONT_START_Y + SET_CONT_H*general_attr->new_focus;
+	gui_rect.x0 = p_item_res->bmp_focus_pos.x;
+	gui_rect.y0 = p_item_res->bmp_focus_pos.y;
 	gui_rect.x1 = gui_rect.x0+ SET_CONT_W;
 	gui_rect.y1 = gui_rect.y0+SET_CONT_H;
 	
@@ -426,7 +426,12 @@ static __s32 setting_general_content_paint(__gui_msg_t *msg)
 	GUI_BMP_Draw(theme_hdl2buf(p_item_res->h_bmp_right), p_item_res->bmp_right_pos.x, p_item_res->bmp_right_pos.y); 		
 
 	GUI_DispStringAt(p_item_res->string_title, p_item_res->string_title_pos.x, p_item_res->string_title_pos.y);
-//	GUI_DispStringInRect(p_item_res->string_content, &gui_rect, GUI_TA_HCENTER|GUI_TA_VCENTER);  
+
+	gui_rect.x0 = p_item_res->string_content_rect.x;
+	gui_rect.y0 = p_item_res->string_content_rect.y;
+	gui_rect.x1 = gui_rect.x0+ SET_CONT_W;
+	gui_rect.y1 = gui_rect.y0+SET_CONT_H;
+	GUI_DispStringInRect(p_item_res->string_content, &gui_rect, GUI_TA_HCENTER|GUI_TA_VCENTER);  
 //	GUI_CloseAlphaBlend();
 //	GUI_LyrWinCacheOff();
 	
@@ -503,16 +508,16 @@ static __s32 setting_general_item_paint(__gui_msg_t *msg)
 		}
 		else if(i == general_attr->old_focus)
 		{
-			gui_rect.x0 = SET_ITEM_START_X;
-			gui_rect.y0 = SET_ITEM_START_Y + SET_ITEM_H*i;
+			gui_rect.x0 = p_item_res->bmp_focus_pos.x;
+			gui_rect.y0 = p_item_res->bmp_focus_pos.y;
 			gui_rect.x1 = gui_rect.x0+SET_ITEM_W;
 			gui_rect.y1 = gui_rect.y0+SET_ITEM_H;
 			GUI_ClearRectEx(&gui_rect);
 			GUI_SetColor(general_attr->unfocus_txt_color);
 			GUI_DispStringAt(p_item_res->string_title, p_item_res->string_title_pos.x, p_item_res->string_title_pos.y);
 
-			gui_rect.x0 = SET_CONT_START_X;
-			gui_rect.y0 = SET_CONT_START_Y + SET_CONT_H*i;
+			gui_rect.x0 = p_item_res->string_content_rect.x;
+			gui_rect.y0 = p_item_res->string_content_rect.y;
 			gui_rect.x1 = gui_rect.x0+ SET_CONT_W;
 			gui_rect.y1 = gui_rect.y0+SET_CONT_H;
 			GUI_DispStringInRect(p_item_res->string_content, &gui_rect, GUI_TA_VCENTER|GUI_TA_HCENTER);    
@@ -695,8 +700,8 @@ static __s32 setting_general_paint(__gui_msg_t *msg)
 		}
 		else
 		{
-			gui_rect.x0 = SET_ITEM_START_X;
-			gui_rect.y0 = SET_ITEM_START_Y + SET_ITEM_H*i;
+			gui_rect.x0 = p_item_res->bmp_focus_pos.x;
+			gui_rect.y0 = p_item_res->bmp_focus_pos.y;
 			gui_rect.x1 = gui_rect.x0+SET_ITEM_W;
 			gui_rect.y1 = gui_rect.y0+SET_ITEM_H;
 			GUI_ClearRectEx(&gui_rect);
@@ -704,8 +709,8 @@ static __s32 setting_general_paint(__gui_msg_t *msg)
 			GUI_SetColor(general_attr->unfocus_txt_color);
 			GUI_DispStringAt(p_item_res->string_title, p_item_res->string_title_pos.x, p_item_res->string_title_pos.y);
 
-			gui_rect.x0 = SET_CONT_START_X;
-			gui_rect.y0 = SET_CONT_START_Y + SET_CONT_H*i;
+			gui_rect.x0 = p_item_res->string_content_rect.x;
+			gui_rect.y0 = p_item_res->string_content_rect.y;
 			gui_rect.x1 = gui_rect.x0+ SET_CONT_W;
 			gui_rect.y1 = gui_rect.y0+SET_CONT_H;
 			GUI_DispStringInRect(p_item_res->string_content, &gui_rect, GUI_TA_HCENTER|GUI_TA_VCENTER);    
