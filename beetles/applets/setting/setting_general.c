@@ -723,6 +723,26 @@ static __s32  setting_general_key_proc(__gui_msg_t *msg)
 	static __s32 last_key = -1;
 	general_attr = (setting_general_attr_t *)GUI_WinGetAddData(msg->h_deswin);
 
+	if(msg->dwAddData1==GUI_MSG_IR_RIGHT)	
+		msg->dwAddData1 = GUI_MSG_KEY_RIGHT;
+	if(msg->dwAddData1==GUI_MSG_IR_LEFT)	
+		msg->dwAddData1 = GUI_MSG_KEY_LEFT;
+
+	if(msg->dwAddData1==GUI_MSG_IR_LONGRIGHT)	
+		msg->dwAddData1 = GUI_MSG_KEY_LONGRIGHT;
+	if(msg->dwAddData1==GUI_MSG_IR_LONGLEFT)	
+		msg->dwAddData1 = GUI_MSG_KEY_LONGLEFT;
+
+	if(msg->dwAddData1==GUI_MSG_IR_UP)	
+		msg->dwAddData1 = GUI_MSG_KEY_UP;
+	if(msg->dwAddData1==GUI_MSG_IR_DOWN)	
+		msg->dwAddData1 = GUI_MSG_KEY_DOWN;
+
+	if(msg->dwAddData1==GUI_MSG_IR_LONGUP)	
+		msg->dwAddData1 = GUI_MSG_KEY_LONGUP;
+	if(msg->dwAddData1==GUI_MSG_IR_LONGDOWN)	
+		msg->dwAddData1 = GUI_MSG_KEY_LONGDOWN;
+
 	if (KEY_UP_ACTION == msg->dwAddData2)
 	{
 		if (GUI_MSG_KEY_ENTER == last_key)
@@ -817,6 +837,7 @@ static __s32 _setting_general_Proc(__gui_msg_t *msg)
 			
 			GUI_WinSetAddData(msg->h_deswin, (__u32)general_attr);
 			GUI_LyrWinSetSta(general_attr->layer, GUI_LYRWIN_STA_ON);
+			GUI_LyrWinSetTop(general_attr->layer);
 		}
 		return EPDK_OK;
 	case GUI_MSG_CLOSE:
