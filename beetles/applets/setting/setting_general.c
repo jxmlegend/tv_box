@@ -120,6 +120,7 @@ static __s32 content_resolution_id[] = //Êä³öÀàĞÍ
 {
 	STRING_SET_RESOLUTION_800_600_CON,
 	STRING_SET_RESOLUTION_1024_768_CON,
+	STRING_SET_RESOLUTION_1280_768_CON,
 	STRING_SET_RESOLUTION_UNSUPPORTED_CON
 };
 
@@ -346,7 +347,7 @@ static void _setting_general_content_res_reset(setting_general_attr_t *general_a
 			p_item_res = &general_attr->res_resolution;
 			content_id = content_resolution_id;
 			get_menu_text(content_id[p_item_res->content_num], p_item_res->string_content, 128); ///
-			p_item_res->content_nr = 2;
+			p_item_res->content_nr = sizeof(content_resolution_id)/sizeof(__s32);
 			break;
 		case 5:
 			p_item_res = &general_attr->res_keytone;
@@ -610,12 +611,14 @@ static __s32 setting_general_paint(__gui_msg_t *msg)
 						p_item_res->content_num = 0;
 					} else if (screen_width == 1024 && screen_height == 768) {
 						p_item_res->content_num = 1;
-					} else {
+					} else if (screen_width == 1280 && screen_height == 768) {
 						p_item_res->content_num = 2;
+					}  else {
+						p_item_res->content_num = 3;
 					}
 				}
 
-				p_item_res->content_nr = 2;
+				p_item_res->content_nr = sizeof(content_resolution_id)/sizeof(__s32);
 				get_menu_text(content_resolution_id[p_item_res->content_num], p_item_res->string_content, 128);
 				break;
 			case 5:
@@ -1003,8 +1006,8 @@ static __s32 _setting_general_Proc(__gui_msg_t *msg)
 				case 4:
 					{
 						p_item_res = &general_attr->res_resolution;
-						if (p_item_res->content_num >= p_item_res->content_nr-1)
-							p_item_res->content_num = 0;
+						if (p_item_res->content_num >= p_item_res->content_nr-2)
+							p_item_res->content_num = 1;
 						else
 							p_item_res->content_num++;
 							
