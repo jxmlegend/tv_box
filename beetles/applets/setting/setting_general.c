@@ -82,7 +82,7 @@ typedef struct tag_setting_general_attr
 	setting_item_res_t res_topic;
 	setting_item_res_t res_product_info;
 	setting_item_res_t res_factory;
-	setting_item_res_t res_output;
+	setting_item_res_t res_resolution;
 	setting_item_res_t res_keytone;
 
 	__s32	focus_txt_color;
@@ -116,10 +116,11 @@ static __s32 content_style_id[] = //ITEM2 (设置主题风格)
 	STRING_SET_COMMON_TOPIC_STYLE3_CON
 };
 
-static __s32 content_output_id[] = //输出类型
+static __s32 content_resolution_id[] = //输出类型
 {
-	STRING_SET_OUTPUT_NTSC_CON,
-	STRING_SET_OUTPUT_PAL_CON
+	STRING_SET_RESOLUTION_800_600_CON,
+	STRING_SET_RESOLUTION_1024_768_CON,
+	STRING_SET_RESOLUTION_UNSUPPORTED_CON
 };
 
 static __s32 content_keytone_id[] = //按键音
@@ -133,7 +134,7 @@ static setting_focus_item_id_t setting_focus_item_res_id[] =
 	{ STRING_SET_COMMON_TOPIC_STYLE_EX,ID_SETTING_SET_ITEM_F_BMP},	// 1
 	{ STRING_SET_COMMON_PRODUCTINFO_EX,ID_SETTING_SET_ITEM_F_BMP},		// 2
 	{ STRING_SET_COMMON_FACTORY_DEFAULT_EX,ID_SETTING_SET_ITEM_F_BMP},	// 3
-	{ STRING_SET_OUTPUT_EX,ID_SETTING_SET_ITEM_F_BMP},	// 4
+	{ STRING_SET_RESOLUTION_EX,ID_SETTING_SET_ITEM_F_BMP},	// 4
 	{ STRING_SET_KEYTONE_EX,ID_SETTING_SET_ITEM_F_BMP}	// 5
 };
 
@@ -143,7 +144,7 @@ static setting_item_id_t setting_general_res_id[] =
 	{STRING_SET_COMMON_TOPIC_STYLE_EX,STRING_SET_COMMON_TOPIC_STYLE_DE, STRING_SET_COMMON_TOPIC_STYLE_TITLE,STRING_SET_COMMON_TOPIC_STYLE1_CON,ID_SETTING_SET_BUTT_LF_BMP,ID_SETTING_SET_BUTT_RF_BMP},	// 1
 	{STRING_SET_COMMON_PRODUCTINFO_EX, STRING_SET_COMMON_PRODUCTINFO_DE,STRING_SET_COMMON_PRODUCTINFO_TITLE,NULL,NULL,ID_SETTING_SET_BUTT_RF_BMP},		// 2
 	{STRING_SET_COMMON_FACTORY_DEFAULT_EX,STRING_SET_COMMON_FACTORY_DEFAULT_DE, STRING_SET_COMMON_FACTORY_DEFAULT_TITLE,NULL,NULL,ID_SETTING_SET_BUTT_RF_BMP},	// 5
-	{STRING_SET_OUTPUT_EX,STRING_SET_OUTPUT_DE, STRING_SET_OUTPUT_TITLE,STRING_SET_OUTPUT_PAL_CON,ID_SETTING_SET_BUTT_LF_BMP,ID_SETTING_SET_BUTT_RF_BMP},	// 输出
+	{STRING_SET_RESOLUTION_EX,STRING_SET_RESOLUTION_DE, STRING_SET_RESOLUTION_TITLE,STRING_SET_RESOLUTION_800_600_CON,ID_SETTING_SET_BUTT_LF_BMP,ID_SETTING_SET_BUTT_RF_BMP},	// 输出
 	{STRING_SET_KEYTONE_EX,STRING_SET_KEYTONE_DE, STRING_SET_KEYTONE_TITLE,STRING_SET_KEYTONE_ON_CON,ID_SETTING_SET_BUTT_LF_BMP,ID_SETTING_SET_BUTT_RF_BMP}	// 按键音
 };
 
@@ -207,7 +208,7 @@ static void _setting_general_res_init(setting_general_attr_t *general_attr)
 				p_item_res = &general_attr->res_factory;
 				break;
 			case 4:
-				p_item_res = &general_attr->res_output;
+				p_item_res = &general_attr->res_resolution;
 				break;
 			case 5:
 				p_item_res = &general_attr->res_keytone;
@@ -258,7 +259,7 @@ static void _setting_general_res_uninit(setting_general_attr_t *general_attr)
 				p_item_res = &general_attr->res_factory;
 				break;
 			case 4:
-				p_item_res = &general_attr->res_output;
+				p_item_res = &general_attr->res_resolution;
 				break;
 			case 5:
 				p_item_res = &general_attr->res_keytone;
@@ -292,7 +293,7 @@ static void _setting_general_focus_res_reset(setting_general_attr_t *general_att
 			p_item_res = &general_attr->res_factory;
 			break;
 		case 4:
-			p_item_res = &general_attr->res_output;
+			p_item_res = &general_attr->res_resolution;
 			break;
 		case 5:
 			p_item_res = &general_attr->res_keytone;
@@ -342,10 +343,10 @@ static void _setting_general_content_res_reset(setting_general_attr_t *general_a
 			p_item_res = &general_attr->res_factory;
 			break;
 		case 4:
-			p_item_res = &general_attr->res_output;
-			content_id = content_output_id;
+			p_item_res = &general_attr->res_resolution;
+			content_id = content_resolution_id;
 			get_menu_text(content_id[p_item_res->content_num], p_item_res->string_content, 128); ///
-			p_item_res->content_nr = sizeof(content_output_id)/sizeof(__s32);
+			p_item_res->content_nr = 2;
 			break;
 		case 5:
 			p_item_res = &general_attr->res_keytone;
@@ -400,7 +401,7 @@ static __s32 setting_general_content_paint(__gui_msg_t *msg)
 			p_item_res = &general_attr->res_factory;
 			break;
 		case 4:
-			p_item_res = &general_attr->res_output;
+			p_item_res = &general_attr->res_resolution;
 			break;
 		case 5:
 			p_item_res = &general_attr->res_keytone;
@@ -492,7 +493,7 @@ static __s32 setting_general_item_paint(__gui_msg_t *msg)
 				p_item_res = &general_attr->res_factory;
 				break;
 			case 4:
-				p_item_res = &general_attr->res_output;
+				p_item_res = &general_attr->res_resolution;
 				break;
 			case 5:
 				p_item_res = &general_attr->res_keytone;
@@ -601,20 +602,21 @@ static __s32 setting_general_paint(__gui_msg_t *msg)
 				p_item_res = &general_attr->res_factory;
 				break;
 			case 4:
-				p_item_res = &general_attr->res_output;
-				if(setting_reg_para)
+				p_item_res = &general_attr->res_resolution;
 				{
-					p_item_res->content_num = setting_reg_para->pal_ntsc; //0 ntsc , 1 pal
-					if(p_item_res->content_num > 1)
+					__s32 screen_width, screen_height;
+					dsk_display_get_size(&screen_width, &screen_height);
+					if(screen_width == 800 && screen_height == 600) {
 						p_item_res->content_num = 0;
-				}
-				else
-				{
-					p_item_res->content_num = 0;
+					} else if (screen_width == 1024 && screen_height == 768) {
+						p_item_res->content_num = 1;
+					} else {
+						p_item_res->content_num = 2;
+					}
 				}
 
-				p_item_res->content_nr = sizeof(content_output_id)/sizeof(__s32);
-				get_menu_text(content_output_id[p_item_res->content_num], p_item_res->string_content, 128);
+				p_item_res->content_nr = 2;
+				get_menu_text(content_resolution_id[p_item_res->content_num], p_item_res->string_content, 128);
 				break;
 			case 5:
 				p_item_res = &general_attr->res_keytone;
@@ -685,7 +687,7 @@ static __s32 setting_general_paint(__gui_msg_t *msg)
 				p_item_res = &general_attr->res_factory;
 				break;
 			case 4:
-				p_item_res = &general_attr->res_output;
+				p_item_res = &general_attr->res_resolution;
 				break;
 			case 5:
 				p_item_res = &general_attr->res_keytone;
@@ -1000,17 +1002,24 @@ static __s32 _setting_general_Proc(__gui_msg_t *msg)
 				
 				case 4:
 					{
-						p_item_res = &general_attr->res_output;
+						p_item_res = &general_attr->res_resolution;
 						if (p_item_res->content_num >= p_item_res->content_nr-1)
 							p_item_res->content_num = 0;
 						else
 							p_item_res->content_num++;
-
-						setting_general_content_paint( msg);
-						
-						if(setting_reg_para)
-							setting_reg_para->pal_ntsc = p_item_res->content_num;
-
+							
+						{
+							ES_FILE 	 * p_disp;
+							p_disp = eLIBs_fopen("b:\\DISP\\DISPLAY", "r+");
+							if(!p_disp)
+							{
+								break;
+							}
+							eLIBs_fioctrl(p_disp, DISP_CMD_LCD_SWITCH_OUTPUT, p_item_res->content_num, 0);
+							eLIBs_fclose(p_disp);
+						}
+						gscene_bgd_refresh();
+						setting_general_paint( msg);
 					}
 					break;
 
