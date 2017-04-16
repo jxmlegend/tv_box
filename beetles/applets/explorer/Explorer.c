@@ -568,19 +568,19 @@ static H_LYR explorer_8bpp_layer_create(void)
 	explorer_get_screen_rect(&LayerRect);
 	dsk_display_get_size(&screen_width, &screen_height);
 	
-    fb.size.width		= LayerRect.width;            
-    fb.size.height		= LayerRect.height;	        
+    fb.size.width		= screen_width;            
+    fb.size.height		= screen_height;	        
     fb.fmt.fmt.rgb.pixelfmt = PIXEL_MONO_8BPP; //PIXEL_COLOR_ARGB8888;
 	
-	lstlyr.src_win.x  		= LayerRect.x;
-	lstlyr.src_win.y  		= LayerRect.y;
-	lstlyr.src_win.width 	= LayerRect.width;
-	lstlyr.src_win.height 	= LayerRect.height;
+	lstlyr.src_win.x  		= 0;
+	lstlyr.src_win.y  		= 0;
+	lstlyr.src_win.width 	= screen_width;
+	lstlyr.src_win.height 	= screen_height;
 	
-	lstlyr.scn_win.x		= LayerRect.x + (screen_width - 720)/2;
-	lstlyr.scn_win.y		= LayerRect.y + (screen_height - 576)/2;
-	lstlyr.scn_win.width  	= LayerRect.width;
-	lstlyr.scn_win.height 	= LayerRect.height;
+	lstlyr.scn_win.x		= 0;
+	lstlyr.scn_win.y		= 0;
+	lstlyr.scn_win.width  	= screen_width;
+	lstlyr.scn_win.height 	= screen_height;
 	
 	lstlyr.pipe = 0;
 	lstlyr.fb = &fb;
@@ -710,7 +710,15 @@ static __s32 explorer_draw_bg(explorer_ctrl_t	*explr_ctrl)
         __s32 bg_id;
         reg_system_para_t* para;
         HTHEME hdl;
+		__s32 screen_width, screen_height;
 
+		dsk_display_get_size(&screen_width, &screen_height);
+		if (screen_width == 1280 && screen_height == 768) {
+			bg_id = ID_EXPLORER_BG_1280_768_BMP;
+		} else {
+			bg_id = ID_EXPLORER_BG_1024_768_BMP;
+		}
+/*
         para = dsk_reg_get_para_by_app(REG_APP_SYSTEM);
         if(para)
         {
@@ -723,7 +731,6 @@ static __s32 explorer_draw_bg(explorer_ctrl_t	*explr_ctrl)
 
 	 bg_id = ID_EXPLORER_BG0_BMP;
 
-/*
         switch(index)
         {
             case 0:
