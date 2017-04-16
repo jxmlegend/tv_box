@@ -954,6 +954,48 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 						}
 					}
 					break;
+					case GUI_MSG_KEY_ZOOM_UP:
+					{
+		                ES_FILE      * p_disp;
+		                static __s32 aux = 0;
+		                __s32 screen_width, screen_height;
+		                static __u8 saved_tv_menuID;
+
+						com_video_in_close();
+
+						saved_tv_menuID = dsk_tv_rcv->tv_menuID;
+						__TvOSD_si(msg);
+		                
+		                dsk_display_get_size(&screen_width, &screen_height);
+						if (screen_width == 1280 && screen_height == 768) {
+							aux = 1;
+						} else {
+							aux = 2;
+						}
+		                p_disp = eLIBs_fopen("b:\\DISP\\DISPLAY", "r+");
+		                if(!p_disp)
+		                {
+		                    break;
+		                }
+		                eLIBs_fioctrl(p_disp, DISP_CMD_LCD_SWITCH_OUTPUT, aux, 0);
+		                eLIBs_fclose(p_disp);
+		                if(dsk_tv_rcv->sourceInput==0)
+						{
+							if(dsk_tv_rcv->ub_PN_sys==0)
+								com_video_in_open(1,1,0,0);
+							else
+								com_video_in_open(1,1,0,1);
+						}	
+						else
+						{
+							if(dsk_tv_rcv->ub_PN_sys==0)
+								com_video_in_open(1,0,0,0);
+							else
+								com_video_in_open(1,0,0,1);
+						}					
+						__TvOSD_OPEN(msg,saved_tv_menuID);
+		                break;
+					}
 					default:
 						break;
 				}
