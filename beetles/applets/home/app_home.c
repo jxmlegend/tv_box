@@ -450,7 +450,13 @@ static __s32 app_home_proc(__gui_msg_t *msg)
 
             		__app_home_change_to_home_bg();
                        
+			if (home_para->lyr_mmenu)
+			{
+				GUI_LyrWinDelete(home_para->lyr_mmenu);
+			}
+			app_main_menu_create(home_para);
 			GUI_LyrWinSetSta(home_para->lyr_mmenu, GUI_LYRWIN_STA_ON);
+			GUI_LyrWinSetTop(home_para->lyr_mmenu);
 			GUI_LyrWinSetSta(home_para->lyr_smenu, GUI_LYRWIN_STA_ON);	
 			
 	             gscene_hbar_set_state(HBAR_ST_HIDE);		//csq
