@@ -1766,55 +1766,6 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 	return EPDK_OK;
 }
 
-
-/*
-	
-*/
-static void tv_main_menu_create(__gui_msg_t *msg)
-{
-	tv_menu_scene_t *smenu_attr;
-	tv_menu_scene_t *smenu_para;
-
-	tv_menu_scene_t *sence_para;	
-	tv_menu_uipara_t* ui_para;
-
-	smenu_para = (tv_menu_scene_t *)GUI_WinGetAttr(msg->h_deswin);
-
-	smenu_attr = (tv_menu_scene_t *)esMEMS_Balloc(sizeof(tv_menu_scene_t));
-    if(!smenu_attr)
-    {
-        return ;
-    }
-	eLIBs_memset((void *)smenu_attr, 0, sizeof(tv_menu_scene_t));    
-    
-	smenu_attr->scene_id = smenu_para->scene_id;
-	
-	smenu_attr->hlyr = smenu_para->hlyr;
-	smenu_attr->tvmenu_font = smenu_para->tvmenu_font;
-	smenu_attr->focus_txt_color = GUI_YELLOW;
-	smenu_attr->unfocus_txt_color = GUI_WHITE;
-    	smenu_attr->res_init = EPDK_FALSE;
-
-	tvmenu_init_res(smenu_attr);
-
-//	com_set_palette_by_id(ID_TV_TV_PAL_BMP);//设置调色板
-
-		    __msg("%$&*(**(*^&^%%^ \n");
-		__msg("scene_para->hlyr=%x\n", smenu_para->hlyr);
-		 __msg("%$&*(**(*^&^%%^ \n");
-		__msg("smenu_para->tvmenu_font=%x\n", smenu_attr->tvmenu_font);
-	
-	GUI_WinSetAddData(msg->h_deswin, (__u32)smenu_attr);
-
-	GUI_LyrWinSetTop(smenu_para->hlyr);
-	
-	//GUI_InvalidateRect(msg->h_deswin, 0, EPDK_TRUE);
-}
-
-/*
-
-*/
-
 static __s32 __tv_meun_ctrl_notify_parent(__gui_msg_t* msg, __s32 icon_id)
 {
 	switch(icon_id)
@@ -1881,10 +1832,12 @@ static __s32 _tv_main_menu_Proc(__gui_msg_t *msg)
 			scene_para->hfrm = msg->h_deswin;//必须在此初始化，因为窗口创建未返回，否则该值仍然是空
 
 			__tvmenu_install_hide_timmer(scene_para);
-			tv_main_menu_create(msg);
 
-//			tv_menu_paint( msg);
-			__msg("*********************************111111******************\n");
+			tvmenu_init_res(scene_para);
+
+		//	com_set_palette_by_id(ID_TV_TV_PAL_BMP);//设置调色板
+
+			GUI_LyrWinSetTop(scene_para->hlyr);
 		
 		}
 
@@ -2048,6 +2001,8 @@ void * tv_sub_menu_win_create(H_WIN h_parent, tv_menu_para_t *para)
 	smenu_para->scene_id = 1;
     	smenu_para->item = 0;
 	smenu_para->res_init = 0;
+	smenu_para->focus_txt_color = GUI_YELLOW;
+	smenu_para->unfocus_txt_color = GUI_WHITE;
 //	smenu_para->tv_sys_data = para->tv_sys_data;
 
 	tv_data.item = 0;
