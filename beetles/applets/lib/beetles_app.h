@@ -182,6 +182,7 @@ typedef enum
 	SETTING_SW_TO_PROMPT_DEFAULT,
 	EXPLR_SW_TO_UPGRADE,
 	SETTING_SW_TO_MULTIMEDIA,
+	SETTING_SW_TO_SETTING,
 }setting_sw_to_t;
 
 typedef enum

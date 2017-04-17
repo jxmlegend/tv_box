@@ -1119,6 +1119,16 @@ static __s32 app_root_command_proc(__gui_msg_t *msg)
 							
 						}
 						break;
+						case SETTING_SW_TO_SETTING:
+						{
+							__msg("**********setting reload**********\n");
+							GUI_ManWinDelete(root_ctrl->h_app_setting);
+						    root_ctrl->root_para->setting_opt = 0;//Í¨ÓÃÉèÖÃ
+							root_ctrl->root_para->h_parent= GUI_WinGetParent(root_ctrl->h_app_home);
+							root_ctrl->h_app_setting=  app_setting_create(root_para);
+							GUI_WinSetFocusChild(root_ctrl->h_app_setting);
+						}
+						break;
 					case SETTING_SW_TO_MULTIMEDIA:
 					{
 						

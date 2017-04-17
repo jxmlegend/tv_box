@@ -1022,7 +1022,7 @@ static __s32 _setting_general_Proc(__gui_msg_t *msg)
 							eLIBs_fclose(p_disp);
 						}
 						gscene_bgd_refresh();
-						setting_general_paint( msg);
+						main_cmd2parent(GUI_WinGetParent(msg->h_deswin), SWITCH_TO_OTHER_APP, SETTING_SW_TO_SETTING, 0);
 					}
 					break;
 
