@@ -2617,7 +2617,7 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
 					if (EPDK_FALSE == ret)                        				
 					{
 						__here__;
-						__movie_delete_subscene_by_id(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));    
+						__movie_delete_subscene_by_id(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_MUTE_ID));    
 
 						__here__;
 						__movie_spsc_scene_create(movie_ctrl);
@@ -2654,7 +2654,7 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
 	                   		//如果没有弹出菜单，则按enter暂停或开始播放
 	                    		__s32 ret;
 	                    
-	                    		ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));
+	                    		ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_MUTE_ID));
 					if(EPDK_FALSE == ret)//如果没有除字幕以外的子场景，则处理暂停、继续播放
 	                    		{
 	                        		__cedar_status_t fsm_sta;
@@ -2726,8 +2726,8 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
 				{
 	                    		__s32 ret;
 	                    
-	                    		ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));
-					if(EPDK_FALSE == ret)//如果没有除字幕以外的子场景，则处理暂停、继续播放
+	                    		//ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));
+					if(1)//如果没有除字幕以外的子场景，则处理暂停、继续播放
 	                    		{				
 			 			__msg("spsc_ctrl_scene_msg_rr\n");
 						{
@@ -2752,8 +2752,8 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
 				{
 	                    		__s32 ret;
 	                    
-	                    		ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));
-					if(EPDK_FALSE == ret)//如果没有除字幕以外的子场景，则处理暂停、继续播放
+	                    		//ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));
+					if(1)//如果没有除字幕以外的子场景，则处理暂停、继续播放
 	                    		{				
 						__msg("spsc_ctrl_scene_msg_ff\n");
 						{
@@ -2888,10 +2888,10 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
                      		__s32 ret;
 					__s32 ret2;
 
-					ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));		//csq
+					ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_MUTE_ID));		//csq
 					if(EPDK_FALSE == ret)//如果没有除字幕以外的子场景，则处理暂停、继续播放
 					{
-					
+						__movie_delete_subscene_by_id(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));
 						__movie_volume_scene_create(movie_ctrl);
 						__msg("__movie_volume_scene_create\n");
 								
@@ -2945,9 +2945,10 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
                     			__s32 ret;
 					__s32 ret2;	
 
-					ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));
+					ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_MUTE_ID));
 					if(EPDK_FALSE == ret)//如果没有除字幕以外的子场景，则处理暂停、继续播放
 					{
+						__movie_delete_subscene_by_id(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));
 						__movie_volume_scene_create(movie_ctrl);
 						__msg("__movie_volume_scene_create\n");
 								
@@ -2993,12 +2994,12 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
                 }
 				else if(GUI_MSG_KEY_UP == last_key) {
 					__s32 ret;
-                    ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_PLAYSTA_ID));
-				    if(EPDK_FALSE == ret)//如果没有除字幕和playpause以外的子场景，则处理上一个下一个
+                    //ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_PLAYSTA_ID));
+				    if(1)//如果没有除字幕和playpause以外的子场景，则处理上一个下一个
                     {
                         __cedar_status_t fsm_sta;
 
-                        __movie_delete_subscene_by_id(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));
+                        __movie_delete_subscene_by_id(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_MUTE_ID));
 				
         				fsm_sta = robin_get_fsm_status();
         				if (CEDAR_STAT_PLAY == fsm_sta
@@ -3018,12 +3019,12 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
 				}
 				else if(GUI_MSG_KEY_DOWN == last_key) {
 					__s32 ret;
-					ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_PLAYSTA_ID));
-					 if(EPDK_FALSE == ret)//如果没有除字幕和playpause以外的子场景，则处理上一个下一个
+					//ret = __movie_has_sub_scene(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_PLAYSTA_ID));
+					 if(1)//如果没有除字幕和playpause以外的子场景，则处理上一个下一个
 					 {
 						 __cedar_status_t fsm_sta;
 					
-						 __movie_delete_subscene_by_id(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));
+						 __movie_delete_subscene_by_id(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID)&(~MOVIE_MUTE_ID));
 					
 						 fsm_sta = robin_get_fsm_status();
 						 if (CEDAR_STAT_PLAY == fsm_sta
