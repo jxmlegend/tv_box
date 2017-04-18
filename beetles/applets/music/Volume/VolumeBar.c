@@ -606,7 +606,12 @@ __s32 VolumeBarOnKeyProc(__gui_msg_t* msg)
 		if(msg->dwAddData1 == This->Para.Event.VolExitKey)
 		{
 			//VolumeBarDelete(This);			//ÍË³ö
-		}			
+		}	
+		if(msg->dwAddData1 == GUI_MSG_IR_UP || msg->dwAddData1 == GUI_MSG_IR_DOWN || \
+			msg->dwAddData1 == GUI_MSG_KEY_UP || msg->dwAddData1 == GUI_MSG_KEY_DOWN || msg->dwAddData1 == GUI_MSG_KEY_MUTE)
+		{
+			VolumeBarDelete(This);			//ÍË³ö
+		}
 	}
 	else if(KEY_UP_ACTION == msg->dwAddData2)
 	{
