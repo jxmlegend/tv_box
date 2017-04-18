@@ -1436,7 +1436,7 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 				}	
 				case GUI_MSG_KEY_POWEROFF:
 					if(msg->dwAddData2 != KEY_UP_ACTION) {
-						msg->id = DSK_MSG_SCREEN_SWITCH;
+						msg->id = DSK_MSG_POWER_OFF;
 						GUI_SendNotifyMessage(msg);
 					}
 					break;
