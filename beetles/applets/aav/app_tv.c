@@ -700,7 +700,13 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 									__TvOSD_si(msg);
 									tvinputnum(msg->dwAddData1-GUI_MSG_KEY_NUM0);
 									__TvOSD_OPEN(msg,TVMENU_NUM);
-								}								
+								}
+								if(dsk_tv_rcv->tv_menuID==TVMENU_MAIN)
+								{
+									__TvOSD_si(msg);
+									tvinputnum(msg->dwAddData1-GUI_MSG_KEY_NUM0);
+									__TvOSD_OPEN(msg,TVMENU_NUM);
+								}
 							}
 						}	
 						break;
@@ -734,6 +740,14 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 						break;
 					case GUI_MSG_KEY_INTWO:
 						if(dsk_tv_rcv->tv_menuID==TVMENU_VOL)
+						{
+							dsk_tv_rcv->tv_barflag = 1;	
+							dsk_tv_rcv->tv_barflag_input=0;
+							dsk_tv_rcv->tv_barflag_inputval=0;
+							__TvOSD_si(msg);
+							__TvOSD_OPEN(msg,TVMENU_NUM);				
+						}
+						if(dsk_tv_rcv->tv_menuID==TVMENU_MAIN)
 						{
 							dsk_tv_rcv->tv_barflag = 1;	
 							dsk_tv_rcv->tv_barflag_input=0;
