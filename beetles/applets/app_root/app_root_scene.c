@@ -1432,7 +1432,8 @@ __s32 app_root_win_proc(__gui_msg_t *msg)
  		{			
 			root_para_t *root_para;
 			root_ctrl_t   *root_ctrl;				
-
+			reg_root_para_t *para;
+			
 			root_para = esMEMS_Balloc(sizeof(root_para_t));
             if(!root_para)
             {
@@ -1451,12 +1452,22 @@ __s32 app_root_win_proc(__gui_msg_t *msg)
 			root_para->h_parent		= msg->h_deswin;
 			root_para->font			= SWFFont;
 			root_para->root_type	= 0;
-//			root_ctrl->h_app_home	= app_home_create(root_para);		//csq
-			root_ctrl->h_app_fm	= app_tv_create(root_para);
-            		__msg("root_ctrl->h_app_home = %x\n", root_ctrl->h_app_home);
-            
-//			GUI_WinSetFocusChild(root_ctrl->h_app_home);
-			GUI_WinSetFocusChild(root_ctrl->h_app_fm);
+
+			para = dsk_reg_get_para_by_app(REG_APP_ROOT);
+		    if(para)
+		    {
+		    	if(eLIBs_strcmp(para->last_app_name, APP_TV) != 0)
+		    	{
+		    		root_ctrl->h_app_home= app_home_create(root_para);
+		    		GUI_WinSetFocusChild(root_ctrl->h_app_home);
+		    	} else {
+		    		root_ctrl->h_app_fm = app_tv_create(root_para);
+		    		GUI_WinSetFocusChild(root_ctrl->h_app_fm);
+		    	}
+		    } else {
+		    	root_ctrl->h_app_home = app_home_create(root_para);
+		    	GUI_WinSetFocusChild(root_ctrl->h_app_home);
+		    }
 			
 			root_ctrl->root_para = root_para;
 			GUI_WinSetAddData(msg->h_deswin, (__u32)root_ctrl);                       
@@ -1474,7 +1485,9 @@ __s32 app_root_win_proc(__gui_msg_t *msg)
  		{
 			root_para_t *root_para;
 			root_ctrl_t   *root_ctrl;
-			
+			reg_root_para_t *para;
+			H_WIN focus_win;
+
 			root_ctrl = (root_ctrl_t *)GUI_WinGetAddData(msg->h_deswin);
 			if (!root_ctrl)
 			{
@@ -1488,6 +1501,27 @@ __s32 app_root_win_proc(__gui_msg_t *msg)
 				__msg("******err****\n");
                 return EPDK_OK;
 			}
+
+			para = dsk_reg_get_para_by_app(REG_APP_ROOT);
+		    if(para)
+		    {
+		    	focus_win = GUI_WinGetFocusChild(msg->h_deswin);
+		    	if (focus_win == root_ctrl->h_app_home) {
+		    		eLIBs_strcpy(para->last_app_name, APP_HOME);
+		    	} else if (focus_win == root_ctrl->h_app_fm){
+		    		eLIBs_strcpy(para->last_app_name, APP_TV);
+		    	} else if (focus_win == root_ctrl->h_app_photo){
+		    		eLIBs_strcpy(para->last_app_name, APP_PHOTO);
+		    	} else if (focus_win == root_ctrl->h_app_music){
+		    		eLIBs_strcpy(para->last_app_name, APP_MUSIC);
+		    	} else if (focus_win == root_ctrl->h_app_movie){
+		    		eLIBs_strcpy(para->last_app_name, APP_MOVIE);
+		    	} else if (focus_win == root_ctrl->h_app_explorer){
+		    		eLIBs_strcpy(para->last_app_name, APP_EXPLORER);
+		    	} else if (focus_win == root_ctrl->h_app_setting){
+		    		eLIBs_strcpy(para->last_app_name, APP_SETTING);
+		    	}
+		    }
 
 			esMEMS_Bfree(root_para, sizeof(root_para_t));
 			esMEMS_Bfree(root_ctrl, sizeof(root_ctrl_t));	
