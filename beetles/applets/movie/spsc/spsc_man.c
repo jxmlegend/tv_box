@@ -675,13 +675,31 @@ static __s32 __spsc_ctrl_scene_cmd_proc(movie_spsc_scene_t * sence_para, __s32 m
 			__msg("spsc_ctrl_scene_msg_rr\n");
 			{
 				__cedar_status_t fsm_sta;
+				__s32 speed;
 				
 				fsm_sta = robin_get_fsm_status();
 				if (CEDAR_STAT_PLAY == fsm_sta)
 				{
 					__msg("before robin_set_cmd_rr\n");
+					speed = 4;
+					robin_set_ff_rr_speed(speed);
 					robin_set_cmd_rr();                    
 					__msg("after robin_set_cmd_rr\n");
+				}
+				else if (CEDAR_STAT_RR == fsm_sta)
+				{
+					speed = robin_get_ff_rr_speed();
+					if(speed >= 32) {
+						robin_set_cmd_play();
+					} else {
+						speed *= 2;
+						robin_set_ff_rr_speed(speed);
+						robin_set_cmd_rr();
+					}
+				}
+				else if (CEDAR_STAT_FF == fsm_sta)
+				{
+					robin_set_cmd_play();
 				}
 				else
 				{
@@ -697,13 +715,31 @@ static __s32 __spsc_ctrl_scene_cmd_proc(movie_spsc_scene_t * sence_para, __s32 m
 			__msg("spsc_ctrl_scene_msg_ff\n");
 			{
 				__cedar_status_t fsm_sta;
+				__s32 speed;
 				
 				fsm_sta = robin_get_fsm_status();
 				if (CEDAR_STAT_PLAY == fsm_sta)
 				{
 					__msg("before robin_set_cmd_ff\n");
+					speed = 4;
+					robin_set_ff_rr_speed(speed);
 					robin_set_cmd_ff();
 					__msg("after robin_set_cmd_ff\n");
+				}
+				else if (CEDAR_STAT_FF == fsm_sta)
+				{
+					speed = robin_get_ff_rr_speed();
+					if(speed >= 32) {
+						robin_set_cmd_play();
+					} else {
+						speed *= 2;
+						robin_set_ff_rr_speed(speed);
+						robin_set_cmd_ff();
+					}
+				}
+				else if (CEDAR_STAT_RR == fsm_sta)
+				{
+					robin_set_cmd_play();
 				}
 				else
 				{
