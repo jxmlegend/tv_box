@@ -768,13 +768,13 @@ static __s32  setting_general_key_proc(__gui_msg_t *msg)
 		case GUI_MSG_KEY_LEFT:		//映射为up
 		case GUI_MSG_KEY_LONGLEFT:
 			{
-				main_cmd2parent(msg->h_deswin, ID_OP_UP, general_attr->new_focus, 0);
+				main_cmd2parent(msg->h_deswin, ID_OP_LEFT, general_attr->new_focus, 0);
 			}
 			break;
 		case GUI_MSG_KEY_RIGHT:		//映射为down
 		case GUI_MSG_KEY_LONGRIGHT:
 			{
-				main_cmd2parent(msg->h_deswin, ID_OP_DOWN, general_attr->new_focus, 0);
+				main_cmd2parent(msg->h_deswin, ID_OP_RIGHT, general_attr->new_focus, 0);
 			}
 			break;
 		case GUI_MSG_KEY_UP:
@@ -917,29 +917,114 @@ static __s32 _setting_general_Proc(__gui_msg_t *msg)
 	case MSG_OP_LEFT:
 		{
 			setting_general_attr_t *general_attr;
+			setting_item_res_t  *p_item_res;
+			
 			general_attr = (setting_general_attr_t *)GUI_WinGetAddData(msg->h_deswin);
-			general_attr->old_focus = general_attr->new_focus;
-			if (general_attr->new_focus <= 0)
-				general_attr->new_focus = general_attr->item_nr-1;
-			else
-				general_attr->new_focus--;
-			setting_general_item_paint( msg);
+			switch (general_attr->new_focus)
+			{
+				case 0:
+				{
+					p_item_res = &general_attr->res_language;
+					if (p_item_res->content_num <= 0)
+						p_item_res->content_num = p_item_res->content_nr-1;
+					else
+						p_item_res->content_num--;
+
+					if(setting_reg_para)
+					{
+						if(p_item_res->content_num == 0)
+							setting_reg_para->language = EPDK_LANGUAGE_ENM_CHINESES;
+						else if(p_item_res->content_num == 1)
+							setting_reg_para->language = EPDK_LANGUAGE_ENM_ENGLISH;
+						else
+							setting_reg_para->language = EPDK_LANGUAGE_ENM_CHINESES;
+						dsk_langres_set_type(setting_reg_para->language);
+						setting_general_paint(msg);
+					}
+				}
+					break;
+				case 1:
+					{
+						p_item_res = &general_attr->res_topic;
+						if (p_item_res->content_num <= 0)
+							p_item_res->content_num = p_item_res->content_nr-1;
+						else
+							p_item_res->content_num--;
+
+						setting_general_content_paint( msg);
+
+						if(setting_reg_para)
+						{
+							__s32	bg_index;
+							bg_index = gscene_bgd_get_default_bg_index();
+
+							if(bg_index!=p_item_res->content_num)
+								gscene_bgd_set_default_bg_index(p_item_res->content_num);
+
+							setting_reg_para->style = p_item_res->content_num;
+						}
+						
+					}
+					break;
+				case 2:
+					{
+						main_cmd2parent(msg->h_deswin,ID_SWITCH_TO_TIPS,TIPS_PRODUCT_INFO,0);
+					}
+					break;
+				case 3:				//恢复出厂设置
+					{
+						main_cmd2parent(msg->h_deswin,ID_SWITCH_TO_TIPS,TIPS_FACTORY_DEFAULT,0);
+					}
+					break;	
+				
+				case 4:
+					{
+						p_item_res = &general_attr->res_resolution;
+						if (p_item_res->content_num <= 1)
+							p_item_res->content_num = p_item_res->content_nr-2;
+						else
+							p_item_res->content_num--;
+							
+						{
+							ES_FILE 	 * p_disp;
+							p_disp = eLIBs_fopen("b:\\DISP\\DISPLAY", "r+");
+							if(!p_disp)
+							{
+								break;
+							}
+							eLIBs_fioctrl(p_disp, DISP_CMD_LCD_SWITCH_OUTPUT, p_item_res->content_num, 0);
+							eLIBs_fclose(p_disp);
+						}
+						gscene_bgd_refresh();
+						main_cmd2parent(GUI_WinGetParent(msg->h_deswin), SWITCH_TO_OTHER_APP, SETTING_SW_TO_SETTING, 0);
+					}
+					break;
+
+				case 5:
+					{
+						p_item_res = &general_attr->res_keytone;
+						if (p_item_res->content_num <= 0)
+							p_item_res->content_num = p_item_res->content_nr-1;
+						else
+							p_item_res->content_num--;
+
+						setting_general_content_paint( msg);
+
+						if(setting_reg_para)
+							setting_reg_para->keytone = p_item_res->content_num+1;
+						
+						dsk_keytone_set_state((__set_keytone_t)(p_item_res->content_num+1));//desktop模块里面1 表示on,2 表示off
+						dsk_keytone_on();
+					}
+					break;
+				
+				default:
+					break;
+			}
+							
 		}
 		return EPDK_OK;
 	case MSG_OP_RIGHT:
-		{
-			setting_general_attr_t *general_attr;
-			general_attr = (setting_general_attr_t *)GUI_WinGetAddData(msg->h_deswin);
-
-			general_attr->old_focus = general_attr->new_focus;
-			if (general_attr->new_focus >= general_attr->item_nr-1)
-				general_attr->new_focus = 0;
-			else
-				general_attr->new_focus++;
-			setting_general_item_paint( msg);
-		}
-		return EPDK_OK;
-		
 	case MSG_OP_ENTER:	
 		{
 			setting_general_attr_t *general_attr;
