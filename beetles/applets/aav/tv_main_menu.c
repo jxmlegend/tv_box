@@ -349,6 +349,13 @@ __s32 tv_menu_scene_delete(void* handle)
 			
 	__msg("scene_para->hfrm=%x\n", scene_para->hfrm);
 	__msg("scene_para->hlyr=%x\n", scene_para->hlyr);
+
+	if(tv_data.serch_cnt <3)
+	{
+		dsk_tv_rcv->manual_search_way = 0;
+		dsk_tv_rcv->auto_maual_mode = 0xee;
+		tv_data.serch_ing = 0;
+	}		
 	
 	if (NULL == handle)
 	{
@@ -371,8 +378,8 @@ __s32 tv_menu_scene_delete(void* handle)
 	GUI_LyrWinDelete(scene_para->hlyr);
 
 	__here__;
-//	eLIBs_memset(scene_para, 0, sizeof(tv_menu_scene_t));//∑¿÷π÷ÿ∏¥ Õ∑≈
-//	esMEMS_Bfree(scene_para, sizeof(tv_menu_scene_t));
+	eLIBs_memset(scene_para, 0, sizeof(tv_menu_scene_t));//∑¿÷π÷ÿ∏¥ Õ∑≈
+	esMEMS_Bfree(scene_para, sizeof(tv_menu_scene_t));
 
 
 	__msg("=============Delete TV_menu==============\n");
@@ -1316,6 +1323,7 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 				case GUI_MSG_KEY_RIGHT:
 				case GUI_MSG_KEY_LEFT:
 				case GUI_MSG_KEY_MENU:
+				case GUI_MSG_KEY_ESCAPE:
 					if(tv_data.serch_cnt <3)
 					{
 						dsk_tv_rcv->manual_search_way = 0;
