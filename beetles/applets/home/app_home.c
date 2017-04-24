@@ -51,8 +51,6 @@ static int long_key = 0;
 ************************************************************************************************************/
 static H_LYR home_8bpp_layer_create(RECT *rect, __s32 pipe)
 {
-	__s32           screen_width;
-    __s32 			screen_height;
 	H_LYR layer = NULL;
 	FB  fb =
 	{
@@ -82,7 +80,6 @@ static H_LYR home_8bpp_layer_create(RECT *rect, __s32 pipe)
 	    GUI_LYRWIN_STA_SUSPEND,
 	    GUI_LYRWIN_NORMAL
 	};
-	dsk_display_get_size(&screen_width, &screen_height);
 	
 	fb.size.width		= rect->width;
 	fb.size.height		= rect->height;	
@@ -92,8 +89,8 @@ static H_LYR home_8bpp_layer_create(RECT *rect, __s32 pipe)
 	lstlyr.src_win.width 	= rect->width;
 	lstlyr.src_win.height 	= rect->height;
 	
-	lstlyr.scn_win.x		= rect->x + (screen_width - 720)/2;
-	lstlyr.scn_win.y		= rect->y + (screen_height - 576)/2;
+	lstlyr.scn_win.x		= rect->x;
+	lstlyr.scn_win.y		= rect->y;
 	lstlyr.scn_win.width  	= rect->width;
 	lstlyr.scn_win.height 	= rect->height;
 	
@@ -224,7 +221,9 @@ static void app_sub_menu_create(home_para_t *home_para)
         return ;
     }
 		
-	rect.x = (home_para->focus_id-home_para->first_item)*home_ui_para->item_width;
+	rect.x = home_ui_para->lyr_sub_item.x \
+			+ (home_para->focus_id-home_para->first_item)*home_ui_para->item_width \
+			+ (home_ui_para->item_width - home_ui_para->bmp_item_width)/2;
 	rect.y = home_ui_para->lyr_sub_item.y;
 	rect.width = home_ui_para->lyr_sub_item.w;
 	rect.height = home_ui_para->lyr_sub_item.h;
@@ -301,7 +300,7 @@ static __s32 app_home_proc(__gui_msg_t *msg)
 			home_para->focus_id = 2;			// 		
 			home_para->first_item = 0;
 		
-			com_set_palette_by_id(ID_HOME_MAIN_PAT_BMP);//ID_HOME_PAL_BMP
+			//com_set_palette_by_id(ID_HOME_MAIN_PAT_BMP);//ID_HOME_PAL_BMP
 
             		//background
             		gscene_bgd_set_state(BGD_STATUS_SHOW);           //	BGD_STATUS_SHOW
@@ -446,7 +445,7 @@ static __s32 app_home_proc(__gui_msg_t *msg)
 
 			home_para = (home_para_t *)GUI_WinGetAddData(msg->h_deswin);
 
-            		com_set_palette_by_id(ID_HOME_MAIN_PAT_BMP);  //ID_HOME_PAL_BMP
+            		//com_set_palette_by_id(ID_HOME_MAIN_PAT_BMP);  //ID_HOME_PAL_BMP
 
             		__app_home_change_to_home_bg();
                        

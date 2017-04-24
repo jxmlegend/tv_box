@@ -59,27 +59,16 @@ typedef struct tag_mmenu_attr
 }mmenu_attr_t;
 
 
-static mm_res_id_t uipara_400_240[] =
+static mm_res_id_t home_uipara_1024_768[] =
 {//
-	{STRING_HOME_TV, ID_HOME_MAIN_TV_NORMAL_BMP, ID_HOME_MAIN_TV_FOCUS_BMP},	
-	{STRING_HOME_PHOTO, ID_HOME_MAIN_IMAGE_NORMAL_BMP, ID_HOME_MAIN_IMAGE_FOCUS_BMP},		
-	{STRING_HOME_MUSIC, ID_HOME_MAIN_MUSIC_NORMAL_BMP, ID_HOME_MAIN_MUSIC_FOCUS_BMP},		
-	{STRING_HOME_MOVIE, ID_HOME_MAIN_VIDEO_NORMAL_BMP, ID_HOME_MAIN_VIDEO_FOCUS_BMP},		
-	{STRING_HOME_EXPLORER,ID_HOME_MAIN_FILE_NORMAL_BMP , ID_HOME_MAIN_FILE_FOCUS_BMP},	
-	{STRING_HOME_SETTING, ID_HOME_MAIN_SET_NORMAL_BMP, ID_HOME_MAIN_SET_FOCUS_BMP},
+	{STRING_HOME_TV, ID_HOME_TV_NORMAL_BMP, ID_HOME_TV_FOCUS_BMP},	
+	{STRING_HOME_PHOTO, ID_HOME_PHOTO_NORMAL_BMP, ID_HOME_PHOTO_FOCUS_BMP},		
+	{STRING_HOME_MUSIC, ID_HOME_MUSIC_NORMAL_BMP, ID_HOME_MUSIC_FOCUS_BMP},		
+	{STRING_HOME_MOVIE, ID_HOME_VIDEO_NORMAL_BMP, ID_HOME_VIDEO_FOCUS_BMP},		
+	{STRING_HOME_EXPLORER,ID_HOME_FILE_NORMAL_BMP , ID_HOME_FILE_FOCUS_BMP},	
+	{STRING_HOME_SETTING, ID_HOME_SET_NORMAL_BMP, ID_HOME_SET_FOCUS_BMP},
 //	{STRING_HOME_EBOOK, ID_HOME_MAIN_EBOOK_NORMAL_BMP, ID_HOME_MAIN_EBOOK_FOCUS_BMP},	
 //	{STRING_HOME_OTHERS, ID_HOME_MAIN_SET_NORMAL_BMP, ID_HOME_MAIN_SET_FOCUS_BMP},			
-};
-
-static mm_res_id_t uipara_480_272[] =
-{
-	{STRING_HOME_FM, ID_HOME_MAIN_FM_LOSE_BMP, ID_HOME_MAIN_FM_FOCUS_BMP},	
-	{STRING_HOME_RECORD, ID_HOME_MAIN_RECORD_LOSE_BMP, ID_HOME_MAIN_RECORD_FOCUS_BMP},	
-	{STRING_HOME_MOVIE, ID_HOME_MAIN_MOVIE_LOSE_BMP, ID_HOME_MAIN_MOVIE_FOCUS_BMP},		
-	{STRING_HOME_PHOTO, ID_HOME_MAIN_PHOTO_LOSE_BMP, ID_HOME_MAIN_PHOTO_FOCUS_BMP},	
-	{STRING_HOME_MUSIC, ID_HOME_MAIN_MUSIC_LOSE_BMP, ID_HOME_MAIN_MUSIC_FOCUS_BMP},		
-//	{STRING_HOME_EBOOK, ID_HOME_MAIN_EBOOK_LOSE_BMP, ID_HOME_MAIN_EBOOK_FOCUS_BMP},	
-//	{STRING_HOME_OTHERS, ID_HOME_MAIN_OTHERS_LOSE_BMP, ID_HOME_MAIN_OTHERS_FOCUS_BMP},			
 };
 
 static mm_res_id_t* main_get_ui_para(__s32 rotate)
@@ -89,6 +78,7 @@ static mm_res_id_t* main_get_ui_para(__s32 rotate)
 	
 	/* get lcd size*/
 	dsk_display_get_size(&screen_width, &screen_height);
+/*
 	switch(rotate)
 	{
 	case GUI_SCNDIR_NORMAL:
@@ -104,9 +94,9 @@ static mm_res_id_t* main_get_ui_para(__s32 rotate)
 	case GUI_SCNDIR_ROTATE270:
 		
 		break;
-	}	
+	}	*/
 
-	return uipara_400_240;	
+	return home_uipara_1024_768;	
 }
 
 
@@ -434,9 +424,8 @@ static void paint_mmain_item_ex(mmenu_attr_t *mmenu_attr, __s32 index
         return ;
     }
 
-    //clear bg rect
-    gui_rect.x0 = (mmenu_attr->item_w-5) * (index-mmenu_attr->first_item)
-           +(mmenu_attr->item_w- home_ui_para->max_main_bmp_width)/2+10;
+    gui_rect.x0 = mmenu_attr->item_w * (index-mmenu_attr->first_item) \
+			+(mmenu_attr->item_w - home_ui_para->max_main_bmp_width)/2;
     gui_rect.y0 = 0;
     gui_rect.x1 = gui_rect.x0+home_ui_para->max_main_bmp_width;
     gui_rect.y1 = gui_rect.y0+home_ui_para->max_main_bmp_height;
@@ -456,11 +445,10 @@ static void paint_mmain_item_ex(mmenu_attr_t *mmenu_attr, __s32 index
     {
         GUI_SetColor(mmenu_attr->unfocus_txt_color);
     }    
-    gui_rect.x0 = (mmenu_attr->item_w-5) * (index-mmenu_attr->first_item)
-           +(home_ui_para->item_width- home_ui_para->max_main_bmp_width)/2+10;
+
     gui_rect.y0 = home_ui_para->max_main_bmp_height;
     gui_rect.x1 = gui_rect.x0+home_ui_para->max_main_bmp_width;
-    gui_rect.y1 = gui_rect.y0+ 16;    
+    gui_rect.y1 = gui_rect.y0 + 22;    
     GUI_ClearRectEx(&gui_rect);
 	dsk_langres_get_menu_text(main_ui_para[index].lang_id, mmenu_attr->item_str[index], GUI_TITLE_MAX);
     GUI_DispStringInRect(mmenu_attr->item_str[index], &gui_rect, GUI_TA_HCENTER|GUI_TA_VCENTER);    
