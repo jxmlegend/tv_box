@@ -61,37 +61,38 @@ static tv_volume_uipara_t uipara_720_576 =
 {
 	1,
 	{
-		0, 536, 720, 40
+		0, 578, 1024, 72
 	},
 	{
-		0, 0, 720, 40
+		0, 0, 1024, 72
 	},
 	{
-		0, 0, 720, 40,
-		ID_MOVIE_VOLUME_BG_BMP
+		0, 0, 1024, 72,
+		ID_COMMON_VOLUME_BG_BMP
 	},
 	{
 		{
-			62, 14, 20, 20,
-			ID_MOVIE_LVOLUME_F_BMP,
-			ID_MOVIE_LVOLUME_UF_BMP,
+			54, 21, 38, 28,
+			ID_COMMON_VOLUME_LEFT_BMP,
+			ID_COMMON_VOLUME_MUTE_BMP,
 		},
 		{
-			644, 14, 30, 20,
-			ID_MOVIE_RVOLUME_F_BMP,
-			ID_MOVIE_RVOLUME_UF_BMP
+			884, 21, 38, 28,
+			ID_COMMON_VOLUME_RIGHT_BMP,
+			ID_COMMON_VOLUME_MUTE_BMP
 		},
 		{
-			88, 20, 550, 8,
-			ID_MOVIE_VOLUME_PROG_BG_UF_BMP
+			101, 31, 778, 8,
+			ID_COMMON_VOLUME_PROG_BG_BMP
 		},
 		{
-			88, 20, 2, 8,
-			ID_MOVIE_VOLUME_PROG_CURSOR_UF_BMP
+			101, 31, 5, 8,
+			ID_COMMON_VOLUME_CURSOR_BMP
 		}
 	},
 	{		
-		684, 14, 20, 20		//336			
+		932, 21, 22, 22,		//336			
+		ID_COMMON_VOLUME_NUMBER_BG_BMP
 	}
 };
 

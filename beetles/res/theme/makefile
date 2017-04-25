@@ -39,6 +39,7 @@ buildtheme:
 	$(ESTUDIOROOT)/Softwares/Face200/MakeScript/MakeScript.exe ./record     11001   12000
 	$(ESTUDIOROOT)/Softwares/Face200/MakeScript/MakeScript.exe ./dv     		12001   13000
 	$(ESTUDIOROOT)/Softwares/Face200/MakeScript/MakeScript.exe ./tv     		13001   14000
+	$(ESTUDIOROOT)/Softwares/Face200/MakeScript/MakeScript.exe ./common     	14001   15000
     
 	# create theme for the whole case
 	-rm touchtheme.script
@@ -57,6 +58,7 @@ buildtheme:
 		./record/record.script            \
 		./dv/dv.script            \
 		./tv/tv.script            \
+		./common/common.script            \
         >> touchtheme.script
 
 	# build the theme
@@ -86,3 +88,4 @@ clean:
 	-rm ./record/record.script
 	-rm ./dv/dv.script
 	-rm ./tv/tv.script
+	-rm ./common/common.script
