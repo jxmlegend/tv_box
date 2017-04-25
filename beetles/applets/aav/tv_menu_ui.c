@@ -58,16 +58,16 @@ static tv_menu_uipara_t uipara_720_480 =
 	    	{446+5,312,5,4},							//进度条point,从head之后，因此加5   	
 	    	{446+146-5,312,5,4},						//进度条tail		
 */	 
-	    	{224,310,4,3},									//进度条head
-	    	{224,310,272,3},								//进度条body    146
-	    	{224+272-5,310,4,3},							//进度条tail
-	    	{224+5,310,4,3},								//进度条point,从head之后，因此加5   	
+	    	{224,310,5,4},									//进度条head
+	    	{224,310,255,4},								//进度条body    146
+	    	{224+255-5,310,5,4},							//进度条tail
+	    	{224+5,310,5,4},								//进度条point,从head之后，因此加5   	
 	    		
 	},	
 	{
 		ID_TV_TV_BG_BMP,
-		ID_TV_PAGE_SEL_BMP,
-		ID_TV_PAGE_SEL_FOCUS_BMP,	
+		ID_TV_COMMON_MENU_SHASHA_BMP,
+		ID_TV_COMMON_MENU_SHASHA_BMP,	
 		ID_TV_COMMON_MENU_SHASHA_BMP,
 	},
 	{

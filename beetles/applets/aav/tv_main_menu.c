@@ -439,22 +439,22 @@ static __s32 tv_menu_paint_item(__gui_msg_t *msg,__s32 item,__s32 color)
 		{
 			case 1:
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_fs[0+color]), 157, 247-118 );
-				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[0+color]), 351, 256-118 );
-				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[2+color]), 531, 256-118 );
+				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[0+color]), 361, 256-118 );
+				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[2+color]), 521, 256-118 );
 				dsk_langres_get_menu_text(ui_para->uipara_bright_text[item-1].res_id, smenu_attr->item_str[item-1], GUI_TITLE_MAX);	
 	 			GUI_DispStringAt(smenu_attr->item_str[item-1], 250, 256-118);				
 				break;
 			case 2:
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_fs[2+color]), 157, 301-118);
-				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[0+color]), 351, 310-118 );
-				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[2+color]), 531, 310-118 );
+				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[0+color]), 361, 310-118 );
+				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[2+color]), 521, 310-118 );
 				dsk_langres_get_menu_text(ui_para->uipara_bright_text[item-1].res_id, smenu_attr->item_str[item-1], GUI_TITLE_MAX);  
 	 			GUI_DispStringAt(smenu_attr->item_str[item-1], 250, 310-118);					
 				break;
 			case 3:
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_fs[4+color]), 157, 354-118);
-				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[0+color]), 351, 363-118 );
-				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[2+color]), 531, 363-118 );
+				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[0+color]), 361, 363-118 );
+				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[2+color]), 521, 363-118 );
 				dsk_langres_get_menu_text(ui_para->uipara_bright_text[item-1].res_id, smenu_attr->item_str[item-1], GUI_TITLE_MAX);  
 	 			GUI_DispStringAt(smenu_attr->item_str[item-1], 250, 363-118);					
 				break;
@@ -826,7 +826,7 @@ __s32 DrawTvProgressBarPoint(__gui_msg_t *msg,__u32 total, __u32 cur_value)
 			X = ui_para->uipara_bar[0].x;
 			Y = ui_para->uipara_bar[0].y;
 //			pic_buf = music_get_icon_res(ID_MUSIC_PROCESS_BAR_HEAD_ICON);
-			if(pic_buf != NULL)
+//			if(pic_buf != NULL)
 			{
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_bar[0]), X, Y);
 			}
