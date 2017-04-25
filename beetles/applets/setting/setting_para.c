@@ -42,69 +42,69 @@ static tips_uipara_t setting_tips_uipara_400_240=
 
 static set_general_para setting_general_uipara_800_480=
 {    
-		{0,203,400,37},   //toolbar_rect
-		{11,30},		  //bmp_big_setting_pos
-		{10,219,30,16}, // bmp_prompt_rect;
-		{45,217},		//  string_prompt_pos;
-		{11,155,126,25},		//RECT  string_detail_prompt_rect;
-		{11,175,126,25},		//RECT  string_detail_prompt_rect_ex;
+		{8,668,1009,99},   //toolbar_rect
+		{40,151},		  //bmp_big_setting_pos
+		{24,705,24,22}, // bmp_prompt_rect;
+		{59,705},		//  string_prompt_pos;
+		{60,460,126,25},		//RECT  string_detail_prompt_rect;
+		{60,500,126,25},		//RECT  string_detail_prompt_rect_ex;
 		{
 			{           //item0;
-				{150,15},		// bmp_focus_pos;
-				{150,15},		// bmp_unfocus_pos;
-				{270,15},		//bmp_left_pos;
-				{360,15},		//bmp_right_pos;
-				{155,16},		//string_title_pos;
-				{290,15,70,25} //string_content_rect;
+				{413,84},		// bmp_focus_pos;
+				{413,84},		// bmp_unfocus_pos;
+				{740,100},		//bmp_left_pos;
+				{933,100},		//bmp_right_pos;
+				{477,100},		//string_title_pos;
+				{760,84,170,63} //string_content_rect;
 			},
 			{           //item1;
-				{150,45},		// bmp_focus_pos;
-				{150,45},		// bmp_unfocus_pos;
-				{270,45},		//bmp_left_pos;
-				{360,46},		//bmp_right_pos;
-				{155,45},		//string_title_pos;
-				{290,45,70,25} //string_content_rect;
+				{413,154},		// bmp_focus_pos;
+				{413,154},		// bmp_unfocus_pos;
+				{740,170},		//bmp_left_pos;
+				{933,170},		//bmp_right_pos;
+				{477,170},		//string_title_pos;
+				{760,154,170,63} //string_content_rect;
 			},
 			{           //item2;
-				{150,75},		// bmp_focus_pos;
-				{150,75},		// bmp_unfocus_pos;
-				{270,75},		//bmp_left_pos;
-				{360,75},		//bmp_right_pos;
-				{155,76},		//string_title_pos;
-				{290,75,70,25} //string_content_rect;
+				{413,224},		// bmp_focus_pos;
+				{413,224},		// bmp_unfocus_pos;
+				{740,240},		//bmp_left_pos;
+				{933,240},		//bmp_right_pos;
+				{477,240},		//string_title_pos;
+				{760,224,170,63} //string_content_rect;
 			},
 			{           //item3;
-				{150,105},		// bmp_focus_pos;
-				{150,105},		// bmp_unfocus_pos;
-				{270,105},		//bmp_left_pos;
-				{360,105},		//bmp_right_pos;
-				{155,106},		//string_title_pos;
-				{290,105,70,25} //string_content_rect;
+				{413,294},		// bmp_focus_pos;
+				{413,294},		// bmp_unfocus_pos;
+				{740,310},		//bmp_left_pos;
+				{933,310},		//bmp_right_pos;
+				{477,310},		//string_title_pos;
+				{760,294,170,63} //string_content_rect;
 			},
 			
 			{           //item4;
-				{150,135},		// bmp_focus_pos;
-				{150,135},		// bmp_unfocus_pos;
-				{270,135},		//bmp_left_pos;
-				{360,135},		//bmp_right_pos;
-				{155,136},		//string_title_pos;
-				{290,135,70,25} //string_content_rect;
+				{413,364},		// bmp_focus_pos;
+				{413,364},		// bmp_unfocus_pos;
+				{740,380},		//bmp_left_pos;
+				{933,380},		//bmp_right_pos;
+				{477,380},		//string_title_pos;
+				{760,364,170,63} //string_content_rect;
 			},
 			{           //item5;
-				{150,165},		// bmp_focus_pos;
-				{150,165},		// bmp_unfocus_pos;
-				{270,165},		//bmp_left_pos;
-				{360,165},		//bmp_right_pos;
-				{155,166},		//string_title_pos;
-				{290,165,70,25} //string_content_rect;
+				{413,434},		// bmp_focus_pos;
+				{413,434},		// bmp_unfocus_pos;
+				{740,450},		//bmp_left_pos;
+				{933,450},		//bmp_right_pos;
+				{477,450},		//string_title_pos;
+				{760,434,170,63} //string_content_rect;
 			},
 			{           //item6;
-				{150,195},		// bmp_focus_pos;
-				{150,195},		// bmp_unfocus_pos;
-				{270,195},		//bmp_left_pos;
-				{360,195},		//bmp_right_pos;
-				{155,196},		//string_title_pos;
-				{290,195,70,25} //string_content_rect;
+				{413,504},		// bmp_focus_pos;
+				{413,504},		// bmp_unfocus_pos;
+				{740,520},		//bmp_left_pos;
+				{933,520},		//bmp_right_pos;
+				{477,520},		//string_title_pos;
+				{760,504,170,63} //string_content_rect;
 			}
 		}
 };

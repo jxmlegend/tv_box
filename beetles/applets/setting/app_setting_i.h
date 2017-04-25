@@ -22,13 +22,13 @@
 
 #define SET_ITEM_START_X 150
 #define SET_ITEM_START_Y  30
-#define SET_ITEM_H  24
-#define SET_ITEM_W 240
+#define SET_ITEM_H  63
+#define SET_ITEM_W 604
 
 #define SET_CONT_START_X 290
 #define SET_CONT_START_Y  30
-#define SET_CONT_H  24
-#define SET_CONT_W 70
+#define SET_CONT_H  63
+#define SET_CONT_W 173
 #define SET_TIPS_W  191
 #define SET_TIPS_H  101
 

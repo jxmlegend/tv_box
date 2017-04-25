@@ -67,8 +67,8 @@ static H_LYR setting_layer_palette_create(RECT *rect)
 	lstlyr.src_win.width 	= rect->width;
 	lstlyr.src_win.height 	= rect->height;
 	
-	lstlyr.scn_win.x		= rect->x + (screen_width - 400)/2;
-	lstlyr.scn_win.y		= rect->y + (screen_height - 240)/2;
+	lstlyr.scn_win.x		= rect->x + (screen_width - 1024)/2;
+	lstlyr.scn_win.y		= rect->y + (screen_height - 768)/2;
 	lstlyr.scn_win.width  	= rect->width;
 	lstlyr.scn_win.height 	= rect->height;
 	
