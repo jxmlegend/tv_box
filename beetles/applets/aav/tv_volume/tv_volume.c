@@ -562,9 +562,9 @@ static __s32 __tv_volume_proc(__gui_msg_t* msg)
 			
 			__volume_init_ui();
 
-			__volume_draw_bg(scene_para);
+			//__volume_draw_bg(scene_para);
 
-			__tv_volume_update_volume_ui(scene_para);
+			//__tv_volume_update_volume_ui(scene_para);
 
 			__volume_install_hide_timmer(scene_para);
 
@@ -724,7 +724,8 @@ static __s32 __tv_volume_proc(__gui_msg_t* msg)
 
 			__volume_draw_bg(scene_para);
 			
-			__tv_volume_update_volume_ui(scene_para);
+			//__tv_volume_update_volume_ui(scene_para);
+			__tv_volume_update_vol(scene_para);
 
 			__msg("__volume_proc GUI_MSG_PAINT begin\n");
 
