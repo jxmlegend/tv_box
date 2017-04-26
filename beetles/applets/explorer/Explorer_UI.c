@@ -18,14 +18,14 @@
 #define	C_DEL_FILE_PECENT_AREA_H	(60)
 
 
-static explorer_viewer_ui_t  explr_viewer_ui_400_240 =
+static explorer_viewer_ui_t  explr_viewer_ui_1024_768 =
 {    
     //layer window
     { 
         PIXEL_COLOR_ARGB8888,       //fmt 
-        { 720, 576 },               //fb size
-        { 0, 0, 720, 576 },         //src rect
-        { 0, 0, 720, 576 },         //scn rect
+        { 1024, 768 },               //fb size
+        { 0, 0, 1024, 768 },         //src rect
+        { 0, 0, 1024, 768 },         //scn rect
         { 0 },                      //reserved
     },
         
@@ -41,9 +41,9 @@ static explorer_viewer_ui_t  explr_viewer_ui_400_240 =
     	{ 650,	74,	8,	392},      		 //scroll rect
       	4, 	4, 	4,                        //scroll head/body/tail height
 */
-	{ 700,	50,	8,	446},			//scroll bg rect
-    	{ 700,	64,	8,	416},      		 //scroll rect
-      	 6, 	1, 	6,                        //scroll head/body/tail height
+	{ 1000,	72,	14,	592},			//scroll bg rect
+    	{ 1000,	90,	14,	552},      		 //scroll rect
+      	 10, 	4, 	10,                        //scroll head/body/tail height
 
 /*
     { 391,	8,	7,	224},            //scroll bg rect
@@ -55,27 +55,27 @@ static explorer_viewer_ui_t  explr_viewer_ui_400_240 =
     
     //list item attribute，以下坐标为点对于listbar rectangle的相对坐标   
     { 
-    	{ 250, 70, 530, 416},				//all item rect     		//整个列表的显视区域           	
-        { 250, 0, 500, 52 },       			//item rect                	//一行的的大小
+    	{ 344, 75, 636, 616},				//all item rect     		//整个列表的显视区域           	
+        { 344, 0, 606, 77 },       			//item rect                	//一行的的大小
         { 0 , 20, 254, 2 },        			//item_top_line;
         { 0 , 0, 254, 2 },        			//item_bottom_line;
         { 0 , 10, 2, 38},       				//item_dividing_line;
         
  //       { 24, 4, 15, 15 },        			//icon rect 
- 	    { 0, 0, 15, 15 },        			//icon rect 		// 小图标的位置
+ 	    { 10, 0, 15, 15 },        			//icon rect 		// 小图标的位置
         { 40, 0, 50, 30 },       			//miniature rect, 缩略图 UI 参数
         
 //        { 24+35, 0, 254 -24 -35 - 2 - 7, 30 },  //text rect
-		{ 66, 0, 390 -24 -35 - 2 - 7, 52 },  //text rect  		//文件的名字
+		{ 96, 0, 488, 62 },  //text rect  		//文件的名字
           
 //        { 7, 2, 254, 30 },      			//focus icon rect(select picture)
         { 0, 0, 500, 52 }, 				//选择背景
 //        { 24, 53, 88, 110},					//媒体类型图标位置(显示在左边区域的大图标) 
-            { 34, 132, 170, 160},
+            { 40, 151, 260, 270},
             
-        {34, 84, 170, 28 },      			//title rect, only for file manager
-        {34, 296,170, 20},      		//file size rect 
-        {34, 316,170, 20},      		//file create time rect
+        {40, 72, 260, 22 },      			//title rect, only for file manager
+        {40, 425,260, 22},      		//file size rect 
+        {40, 458,260, 22},      		//file create time rect
         {0, 0, 150, 34 },      				//number rect                
     },
     
@@ -116,8 +116,8 @@ static explorer_viewer_ui_t  explr_viewer_ui_400_240 =
         { ID_EXPLORER_FOLDER_ICON_FOCUSED_BMP,   NULL,  		 NULL }, 	//                                                       				        
 
         { ID_EXPLORER_UNKNOWN_FILE_BMP,      	NULL,  			 NULL }, 	//  video文件标志                                                     				
-        { ID_EXPLORER_UNKNOWN_FILE_UNFOCUSED_BMP, NULL,  		 NULL }, 	// video文件icon图标,与文件名一起的                                                      				
-        { ID_EXPLORER_UNKNOWN_FILE_FOCUSED_BMP,   NULL,  		 NULL }, 	//                                                       				        
+        { ID_EXPLORER_UNKNOWN_ICON_UNFOCUSED_BMP, NULL,  		 NULL }, 	// video文件icon图标,与文件名一起的                                                      				
+        { ID_EXPLORER_UNKNOWN_ICON_FOCUSED_BMP,   NULL,  		 NULL }, 	//                                                       				        
 
         { ID_EXPLORER_VIDEO_FILE_BMP,      		NULL,  				 NULL }, 	//  video文件标志                                                     				
         { ID_EXPLORER_VIDEO_ICON_UNFOCUSED_BMP, NULL,  				 NULL }, 	// video文件icon图标,与文件名一起的                                                      				
@@ -132,13 +132,13 @@ static explorer_viewer_ui_t  explr_viewer_ui_400_240 =
 		{ ID_EXPLORER_PHOTO_ICON_FOCUSED_BMP, 	NULL,  				 NULL }, 	// picture文件icon图标,与文件名一起的                                                      				        				
 
         { ID_EXPLORER_UNKNOWN_FILE_BMP,      		NULL,  				 NULL }, 	// Ebook文件标志                                                     				
-		{ ID_EXPLORER_UNKNOWN_FILE_UNFOCUSED_BMP, NULL,  				 NULL }, 	// Ebook文件icon图标,与文件名一起的                                                      				        
-		{ ID_EXPLORER_UNKNOWN_FILE_FOCUSED_BMP, 	NULL,  				 NULL }, 	// Ebook文件icon图标,与文件名一起的                                                      				        				
+		{ ID_EXPLORER_UNKNOWN_ICON_UNFOCUSED_BMP, NULL,  				 NULL }, 	// Ebook文件icon图标,与文件名一起的                                                      				        
+		{ ID_EXPLORER_UNKNOWN_ICON_FOCUSED_BMP, 	NULL,  				 NULL }, 	// Ebook文件icon图标,与文件名一起的                                                      				        				
 		
 		{ ID_EXPLORER_DELETE_ICON_UNFOCUSED_BMP,NULL,  			 	 NULL }, 	// 删除文件icon图标,
 		{ ID_EXPLORER_DELETE_ICON_FOCUSED_BMP, 	NULL,  				 NULL }, 	// 删除文件icon图标,
 
-        { ID_EXPLORER_LIST_ITEM_FOCUS_BG_BMP,   NULL,  				 NULL }, 	// 条目焦点背景框图
+        { ID_EXPLORER_LIST_ITEM_FOCUSED_BG_BMP,   NULL,  				 NULL }, 	// 条目焦点背景框图
         { NULL,      	NULL,  				 NULL }, 	//缩略图焦点框图,目前暂时未用
         
         { ID_EXPLORER_LIST_SCROLL_BG_BMP,       NULL,  				 NULL }, 	// scroll bar 背景图
@@ -152,32 +152,185 @@ static explorer_viewer_ui_t  explr_viewer_ui_400_240 =
     },                                                 				
 };
 
+static explorer_viewer_ui_t  explr_viewer_ui_1280_768 =
+{    
+    //layer window
+    { 
+        PIXEL_COLOR_ARGB8888,       //fmt 
+        { 1280, 768 },               //fb size
+        { 0, 0, 1280, 768 },         //src rect
+        { 0, 0, 1280, 768 },         //scn rect
+        { 0 },                      //reserved
+    },
+        
+    //menuview attribute  
+    { 0, 0, 720, 576 },             //menuview(frame window)    
+    { 0, 0, 720, 576 },             //browser bg
+    { 0, 0, 720, 20  },              //browser bg top
+    { 0, 0, 0, 	0 },                 //browser bg bottom
+    { 0, 0, 0,  0 },              //browser bg left
+
+/*
+	{ 650,	70,	8,	420},			//scroll bg rect
+    	{ 650,	74,	8,	392},      		 //scroll rect
+      	4, 	4, 	4,                        //scroll head/body/tail height
+*/
+	{ 1254,	72,	14,	592},			//scroll bg rect
+    	{ 1254,	90,	14,	552},      		 //scroll rect
+      	 10, 	4, 	10,                        //scroll head/body/tail height
+
+/*
+    { 391,	8,	7,	224},            //scroll bg rect
+    { 393,	22,	3,	194},      		 //scroll rect
+      6, 	1, 	6,                        //scroll head/body/tail height
+*/
+
+    { 0, 8, 660, 530},        //(the whole listbar rectangle)
+    
+    //list item attribute，以下坐标为点对于listbar rectangle的相对坐标   
+    { 
+    	{ 484, 75, 636, 616},				//all item rect     		//整个列表的显视区域           	
+        { 484, 0, 606, 77 },       			//item rect                	//一行的的大小
+        { 0 , 20, 254, 2 },        			//item_top_line;
+        { 0 , 0, 254, 2 },        			//item_bottom_line;
+        { 0 , 10, 2, 38},       				//item_dividing_line;
+        
+ //       { 24, 4, 15, 15 },        			//icon rect 
+ 	    { 10, 0, 15, 15 },        			//icon rect 		// 小图标的位置
+        { 40, 0, 50, 30 },       			//miniature rect, 缩略图 UI 参数
+        
+//        { 24+35, 0, 254 -24 -35 - 2 - 7, 30 },  //text rect
+		{ 96, 0, 488, 62 },  //text rect  		//文件的名字
+          
+//        { 7, 2, 254, 30 },      			//focus icon rect(select picture)
+        { 0, 0, 500, 52 }, 				//选择背景
+//        { 24, 53, 88, 110},					//媒体类型图标位置(显示在左边区域的大图标) 
+            { 80, 151, 260, 270},
+            
+        {80, 72, 260, 22 },      			//title rect, only for file manager
+        {80, 425,260, 22},      		//file size rect 
+        {80, 458,260, 22},      		//file create time rect
+        {0, 0, 150, 34 },      				//number rect                
+    },
+    
+    //square item attribute，以下坐标为点对于menu的相对坐标  
+    {
+	//    { 0, 8, 390, 200},        			//(the whole listbar rectangle)
+    //    { 0, 0, 130, 80 },       			//item rect in listbar
+    //    { 8, 0, 112, 71 },      			//focus rect
+    //    { 55, 20, 106, 65 },       			//icon rect
+   //     { 11, 3, 106, 65 },       			//miniature rect
+   //     { 13, 3 + 71 - 35, 100, 30},      	//title rect
+        	    { 0, 8, 660, 530},        			//(the whole listbar rectangle)
+        { 0, 4, 130, 76 },       			//item rect in listbar
+//        { 8, 0, 114, 76 },      			//focus rect
+	{ 58, 4, 114, 76 },      			//focus rect
+        { 11, 7, 108, 55 },       			//icon rect
+        { 11, 7, 108, 55 },       			//miniature rect
+        { 15, 3+55 + 1 , 100, 16},      	//title rect
+    },        
+    
+    //icon table    
+    {				//ID															res	handle,    	res buffer
+    
+		{ NULL,           NULL,  				 NULL },    //调色板
+        { NULL,           NULL,  				 NULL },    //背景图
+
+        { ID_EXPLORER_USB_BMP,      			NULL,  			 NULL }, 	// USB                                                 				
+        { ID_EXPLORER_USB_ICON_UNFOCUSED_BMP, 	NULL,  			 NULL }, 	// USB
+        { ID_EXPLORER_USB_ICON_FOCUSED_BMP,   	NULL,  			 NULL }, 	//                                                       				        
+
+        { ID_EXPLORER_SD_BMP,      				NULL,  			 NULL }, 	// SD 
+        { ID_EXPLORER_SD_ICON_UNFOCUSED_BMP, 	NULL,  			 NULL }, 	// 
+        { ID_EXPLORER_SD_ICON_FOCUSED_BMP,   	NULL,  			 NULL }, 	//                                                       				        
 
 
+        { ID_EXPLORER_FOLDER_BMP,      			 NULL,  		 NULL }, 	//  
+        { ID_EXPLORER_FOLDER_ICON_UNFOCUSED_BMP, NULL,  		 NULL }, 	// video文件icon图标,与文件名一起的                                                      				
+        { ID_EXPLORER_FOLDER_ICON_FOCUSED_BMP,   NULL,  		 NULL }, 	//                                                       				        
 
+        { ID_EXPLORER_UNKNOWN_FILE_BMP,      	NULL,  			 NULL }, 	//  video文件标志                                                     				
+        { ID_EXPLORER_UNKNOWN_ICON_UNFOCUSED_BMP, NULL,  		 NULL }, 	// video文件icon图标,与文件名一起的                                                      				
+        { ID_EXPLORER_UNKNOWN_ICON_FOCUSED_BMP,   NULL,  		 NULL }, 	//                                                       				        
 
+        { ID_EXPLORER_VIDEO_FILE_BMP,      		NULL,  				 NULL }, 	//  video文件标志                                                     				
+        { ID_EXPLORER_VIDEO_ICON_UNFOCUSED_BMP, NULL,  				 NULL }, 	// video文件icon图标,与文件名一起的                                                      				
+        { ID_EXPLORER_VIDEO_ICON_FOCUSED_BMP,   NULL,  				 NULL }, 	//                                                       				        
+
+        { ID_EXPLORER_MUSIC_FILE_BMP,      		NULL,  				 NULL }, 	// music文件标志                                                     				
+		{ ID_EXPLORER_MUSIC_ICON_UNFOCUSED_BMP, NULL,  				 NULL }, 	// music文件icon图标,与文件名一起的                                                      				        
+		{ ID_EXPLORER_MUSIC_ICON_FOCUSED_BMP, 	NULL,  				 NULL }, 	// music文件icon图标,与文件名一起的                                                      				        		
+
+        { ID_EXPLORER_PHOTO_FILE_BMP,      		NULL,  				 NULL }, 	// picture文件标志                                                     				
+		{ ID_EXPLORER_PHOTO_ICON_UNFOCUSED_BMP, NULL,  				 NULL }, 	// picture文件icon图标,与文件名一起的                                                      				        
+		{ ID_EXPLORER_PHOTO_ICON_FOCUSED_BMP, 	NULL,  				 NULL }, 	// picture文件icon图标,与文件名一起的                                                      				        				
+
+        { ID_EXPLORER_UNKNOWN_FILE_BMP,      		NULL,  				 NULL }, 	// Ebook文件标志                                                     				
+		{ ID_EXPLORER_UNKNOWN_ICON_UNFOCUSED_BMP, NULL,  				 NULL }, 	// Ebook文件icon图标,与文件名一起的                                                      				        
+		{ ID_EXPLORER_UNKNOWN_ICON_FOCUSED_BMP, 	NULL,  				 NULL }, 	// Ebook文件icon图标,与文件名一起的                                                      				        				
+		
+		{ ID_EXPLORER_DELETE_ICON_UNFOCUSED_BMP,NULL,  			 	 NULL }, 	// 删除文件icon图标,
+		{ ID_EXPLORER_DELETE_ICON_FOCUSED_BMP, 	NULL,  				 NULL }, 	// 删除文件icon图标,
+
+        { ID_EXPLORER_LIST_ITEM_FOCUSED_BG_BMP,   NULL,  				 NULL }, 	// 条目焦点背景框图
+        { NULL,      	NULL,  				 NULL }, 	//缩略图焦点框图,目前暂时未用
+        
+        { ID_EXPLORER_LIST_SCROLL_BG_BMP,       NULL,  				 NULL }, 	// scroll bar 背景图
+        { ID_EXPLORER_LIST_SCROLL_HEAD_BMP,     NULL,  				 NULL }, 	// scroll bar 头部icon
+        { ID_EXPLORER_LIST_SCROLL_BODY_BMP,     NULL,  				 NULL }, 	// scroll bar , 滑块，高度必须为1
+        { ID_EXPLORER_LIST_SCROLL_TAIL_BMP,     NULL,  				 NULL }, 	// scroll bar , 滑块，高度必须为1        
+
+		{ ID_EXPLORER_LONG_STR_SCROLL_BG_BMP,     NULL,  				 NULL }, 	// 长字符串滚动背景//ID_EXPLORER_LONG_STR_SCROLL_BG_BMP
+		{ID_EXPLORER_ERROR_BMP ,				 NULL,				 NULL } ,
+        { 0,                                    NULL,  				 NULL }      //browser_icon_max
+    },                                                 				
+};
 
 //获得整个explorer AP设计的UI参数
 explorer_viewer_ui_t* explorer_get_viewer_ui_param(void)
 {	
-		return &(explr_viewer_ui_400_240);
+	__s32 screen_width, screen_height;
+
+	dsk_display_get_size(&screen_width, &screen_height);
+	if(screen_width == 1280 && screen_height == 768)
+		return &(explr_viewer_ui_1280_768);
+	else
+		return &(explr_viewer_ui_1024_768);
 }
 
 RECT* explorer_get_listview_ui_param(void)
 {	
-		return &(explr_viewer_ui_400_240.listview);
+	__s32 screen_width, screen_height;
+
+	dsk_display_get_size(&screen_width, &screen_height);
+	if(screen_width == 1280 && screen_height == 768)
+		return &(explr_viewer_ui_1280_768.listview);
+	else
+		return &(explr_viewer_ui_1024_768.listview);
 }
 
 //获得list 中 item 设计的UI参数
 explorer_list_item_ui_param_t * explorer_get_list_item_ui_param(void)
 {	
-		return &(explr_viewer_ui_400_240.list_item_ui_param);	
+	__s32 screen_width, screen_height;
+
+	dsk_display_get_size(&screen_width, &screen_height);
+	if(screen_width == 1280 && screen_height == 768)
+		return &(explr_viewer_ui_1280_768.list_item_ui_param);	
+	else
+		return &(explr_viewer_ui_1024_768.list_item_ui_param);
 }
 
 //获得list 中 square 设计的UI参数
 explorer_square_item_ui_param_t * explorer_get_square_item_ui_param(void)
-{	
-		return &(explr_viewer_ui_400_240.square_item_ui_param);	
+{
+	__s32 screen_width, screen_height;
+
+	dsk_display_get_size(&screen_width, &screen_height);
+	if(screen_width == 1280 && screen_height == 768)
+		return &(explr_viewer_ui_1280_768.square_item_ui_param);	
+	else
+		return &(explr_viewer_ui_1024_768.square_item_ui_param);	
 }
 
 
@@ -233,7 +386,7 @@ void* explorer_get_listview_icon_res(__u32 index)
     explorer_icon_data_t *icon_table = NULL;
     
     
-    icon_table = explr_viewer_ui_400_240.icon_table;
+    icon_table = explr_viewer_ui_1024_768.icon_table;
         
     //__msg("----icon_id: %d, res_id: %d\n", index, icon_table[index].res_id);
     if(icon_table == NULL)
@@ -285,7 +438,7 @@ __s32 explorer_free_listview_icon_res(void)
 {    
     __s32 i = 0;
     explorer_icon_data_t *icon_table = NULL;
-    icon_table = explr_viewer_ui_400_240.icon_table;
+    icon_table = explr_viewer_ui_1024_768.icon_table;
     
     if(icon_table == NULL)
     {
@@ -493,7 +646,9 @@ __s32 explorer_draw_FileTypeIcon(explr_list_para_t *list_para, rat_media_type_t 
 	//picH =  GUI_BMP_GetYSize(pic_buf);										//获得图片高度		
 	if(pic_buf != NULL)
 	{
-		GUI_ClearRect(picX,picY, picX+170, picY+160);
+		GUI_ClearRect(picX,picY, \
+					picX+ui_param->list_item_ui_param.media_type_rect.width, \
+					picY+ui_param->list_item_ui_param.media_type_rect.height);
 		GUI_BMP_Draw(pic_buf, picX, picY);	
 	}	
 	return EPDK_OK;
