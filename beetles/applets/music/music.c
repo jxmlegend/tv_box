@@ -683,8 +683,8 @@ static H_LYR music_8bpp_layer_create(__u8 pipe)
 	lstlyr.src_win.width 	= LayerRect.width;
 	lstlyr.src_win.height 	= LayerRect.height;
 	
-	lstlyr.scn_win.x		= LayerRect.x + (screen_width - 720)/2;
-	lstlyr.scn_win.y		= LayerRect.y + (screen_height - 576)/2;
+	lstlyr.scn_win.x		= LayerRect.x + (screen_width - 1024)/2;
+	lstlyr.scn_win.y		= LayerRect.y + (screen_height - 768)/2;
 	lstlyr.scn_win.width  	= LayerRect.width;
 	lstlyr.scn_win.height 	= LayerRect.height;
 	
@@ -765,8 +765,8 @@ static H_LYR music_32bpp_layer_create(__u8 pipe)
 	lstlyr.src_win.width 	= LayerRect.width;
 	lstlyr.src_win.height 	= LayerRect.height;
 	
-	lstlyr.scn_win.x		= LayerRect.x + (screen_width - 720)/2;
-	lstlyr.scn_win.y		= LayerRect.y + (screen_height - 576)/2;
+	lstlyr.scn_win.x		= LayerRect.x + (screen_width - 1024)/2;
+	lstlyr.scn_win.y		= LayerRect.y + (screen_height - 768)/2;
 	lstlyr.scn_win.width  	= LayerRect.width;
 	lstlyr.scn_win.height 	= LayerRect.height;
 	

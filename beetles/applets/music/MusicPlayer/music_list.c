@@ -405,7 +405,7 @@ static __s32 _music_listbar_on_draw(__lbar_draw_para_t *draw_param)
 		case LBAR_MODE_FOCUS:
 			__msg("\n~~~~draw focus item in listbar!~~~~");
 			music_list_focus_item_on_draw(draw_param);
-			//music_list_long_string_start_roll(list_ctrl);
+			music_list_long_string_start_roll(list_ctrl);
 			break;
 		case LBAR_MODE_INVALID:
 			__msg("\n~~~~draw invalid item in listbar!~~~~");		
@@ -1114,9 +1114,10 @@ __s32 music_list_long_string_start_roll(music_list_ctrl_t *this)
 	    show_info.string = string;
 	    show_info.encode_id = encode;
 	    
-	    show_info.fontColor = GUI_BLACK;
+	    show_info.fontColor = GUI_WHITE;
 	    show_info.align = GUI_TA_LEFT | GUI_TA_VCENTER;
 
+		show_info.bmp = music_get_icon_res(ID_MUSIC_LONG_STR_SCROLL);
 	    show_info.bmp_pos.x = 0;
 	    show_info.bmp_pos.y = 0;
 	    

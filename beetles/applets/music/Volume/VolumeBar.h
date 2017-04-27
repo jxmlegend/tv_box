@@ -43,7 +43,7 @@ typedef struct VolumeBarUI_s
 	__u32 MS_bmp_id;		//静音图标id号码
 	
 	RECT VolNumber;			//音量数值					
-																//for volume bar private, user doesn't have to initial.				
+	__u32 NM_bmp_id;															//for volume bar private, user doesn't have to initial.				
 }VolumeBarUI_t;
 
 //VolumeBar控制变量参数
@@ -110,7 +110,10 @@ typedef struct VolumeBar_s
 	void*   RS_bmp;						//右边喇叭图片地址
 	
 	HTHEME 	MS_Handle;					//mute speaker icon 句柄
-	void*   MS_bmp;						//静音图标地址					
+	void*   MS_bmp;						//静音图标地址	
+
+	HTHEME 	NM_Handle;					//音量数值句柄
+	void*   NM_bmp;						//音量数值图片
 }VolumeBar_t;
 
 #define C_VOLUMEBAR_FRAMEWIN_ID			(APP_MUSIC_ID + 20)

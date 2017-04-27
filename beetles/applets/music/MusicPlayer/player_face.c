@@ -937,7 +937,7 @@ __s32 DrawMusicPlayingTime(__u32 time)
 	
 	time2str_by_format(time, time_text, TIME_AUTO_HMS);
 	
-	GUI_DispStringInRect(time_text, &text_rect, GUI_TA_VCENTER);			
+	GUI_DispStringInRect(time_text, &text_rect, GUI_TA_LEFT | GUI_TA_VCENTER);			
 
 	    __msg("time=%s ,x0=%d,y0=%d,x1=%d,y1=%d\n",time_text,text_rect.x0,text_rect.y0,text_rect.x1,text_rect.y1);
 		
@@ -982,7 +982,7 @@ __s32 DrawMusicTotalTime(__u32 time)
 	//time2str(time, time_text);	
 	time2str_by_format(time, time_text, TIME_AUTO_HMS);
 	
-	GUI_DispStringInRect(time_text, &text_rect, GUI_TA_VCENTER);
+	GUI_DispStringInRect(time_text, &text_rect, GUI_TA_RIGHT | GUI_TA_VCENTER);
 	
 	return EPDK_OK;
 }
@@ -1465,7 +1465,7 @@ __s32 draw_music_player_background(music_player_ctrl_t *player_ctrl)
 	GUI_UC_SetEncodeUTF8();
 	GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);		
 		
-	ret = com_set_palette_by_id(ID_MUSIC_PALETTE_BMP);	
+	//ret = com_set_palette_by_id(ID_MUSIC_PALETTE_BMP);	
 	__msg("set palette return value = %d", ret);	
 
 	pic_buf = music_get_icon_res(ID_MUSIC_BACKGROUND);			//draw select border	

@@ -66,8 +66,8 @@ static H_LYR VolumeBar32bppLayerCreate(RECT *rect, __s32 pipe)
 	lstlyr.src_win.width 	= rect->width;
 	lstlyr.src_win.height   = rect->height;
 	
-	lstlyr.scn_win.x		= rect->x + (screen_width - 720)/2;
-	lstlyr.scn_win.y		= rect->y + (screen_height - 576)/2;
+	lstlyr.scn_win.x		= rect->x + (screen_width - 1024)/2;
+	lstlyr.scn_win.y		= rect->y + (screen_height - 768)/2;
 	lstlyr.scn_win.width  = rect->width;
 	lstlyr.scn_win.height = rect->height;
 	
@@ -196,7 +196,23 @@ __s32 VolumeBarOpenPicture(VolumeBar_t *This)
 			__wrn("open mute speaker icon for vloume bar failed\n");
 		}		
 	}	
-	
+
+	if(This->Para.UI.NM_bmp_id != 0)
+	{
+		This->NM_Handle = theme_open(This->Para.UI.NM_bmp_id);
+		if(This->NM_Handle != NULL)
+		{
+			This->NM_bmp = theme_hdl2buf(This->NM_Handle);
+			if(This->NM_bmp == NULL)
+			{
+				__wrn("open vol number icon for vloume bar failed\n");
+			}			
+		}
+		else 
+		{
+			__wrn("open vol number icon for vloume bar failed\n");
+		}		
+	}	
 	return EPDK_OK;	
 }
 
@@ -237,7 +253,13 @@ __s32 VolumeBarClosePicture(VolumeBar_t *This)
 		theme_close(This->MS_Handle);
 		This->MS_Handle = NULL;
 		This->MS_bmp = NULL;
-	}		
+	}	
+	if(This->NM_Handle != NULL)
+	{
+		theme_close(This->NM_Handle);
+		This->NM_Handle = NULL;
+		This->NM_bmp = NULL;
+	}	
 	return EPDK_OK;	
 }
 
@@ -376,7 +398,12 @@ __s32 DrawVolumeBarVolNumber(VolumeBar_t *This, __s32 vol_value)
 	vol_rect.y0 = This->Para.UI.VolNumber.y;
 	vol_rect.x1 = vol_rect.x0 + This->Para.UI.VolNumber.width;
 	vol_rect.y1 = vol_rect.y0 + This->Para.UI.VolNumber.height;
-	GUI_ClearRect(vol_rect.x0, vol_rect.y0, vol_rect.x1,vol_rect.y1);
+
+	if(This->NM_bmp != NULL)
+	{
+		GUI_BMP_Draw(This->NM_bmp, vol_rect.x0, vol_rect.y0);	
+	}
+	//GUI_ClearRect(vol_rect.x0, vol_rect.y0, vol_rect.x1,vol_rect.y1);
 
 	GUI_DispStringInRect(vol_text, &vol_rect, GUI_TA_VCENTER);
 	

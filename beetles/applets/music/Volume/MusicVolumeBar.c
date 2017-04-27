@@ -26,25 +26,26 @@
 #define C_MUSIC_VB_HEIGHT			21
 
 const VolumeBarUI_t MusicVolBarUI = {
-		{0,538,720,40},					//Background rect
-		ID_MUSIC_VOL_BAR_BG_BMP,			//BG bmp id
+		{35,638,954,72},					//Background rect
+		ID_COMMON_VOL_BG_BMP,			//BG bmp id
 		
-		{52,9,20,20},						//Leftspeaker
-		ID_MUSIC_VOL_SPEAKER_LEFT_BMP,		//leftespeaker icon id
+		{54-35,659-638,38,28},						//Leftspeaker
+		ID_COMMON_VOL_LEFT_BMP,		//leftespeaker icon id
 		
-		{80,16,550,8},					//BarBody rect
-		ID_MUSIC_VOL_BAR_BODY_BMP,			//BarBody icon id
+		{101-35,669-638,778,8},					//BarBody rect
+		ID_COMMON_VOL_PROG_BG_BMP,			//BarBody icon id
 		
-		{80,16,2,8},						//Point rect
-		ID_MUSIC_VOL_BAR_POINT_BMP,			//point icon id
+		{101-35,669-638,2,8},						//Point rect
+		ID_COMMON_VOL_CURSOR_MIDDLE_BMP,			//point icon id
 		
-		{634,9,30,20},				//Rightspeaker
-		ID_MUSIC_VOL_SPEAKER_RIGHT_BMP,		//Rightespeaker icon id
+		{884-35,659-638,38,28},				//Rightspeaker
+		ID_COMMON_VOL_RIGHT_BMP,		//Rightespeaker icon id
 		
-		{0,0,30,20},						//Mutespeaker
-		ID_MUSIC_VOL_SHUT_DOWN_BMP,			//Mutespeaker icon id	
+		{0,0,38,28},						//Mutespeaker
+		ID_COMMON_VOL_MUTE_BMP,			//Mutespeaker icon id	
 
-		{688, 12, 20, 16}		//volume number
+		{932-35, 659-638, 22, 22},		//volume number
+		ID_COMMON_VOL_NUM_BG_BMP,
 };
 
 

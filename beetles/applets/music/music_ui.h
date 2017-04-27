@@ -249,9 +249,9 @@ typedef struct music_ui_s
 #define		C_LAYER_CACHE_AREA_H		160
 */
 
-#define		C_LAYER_CACHE_AREA_X 	430
-#define		C_LAYER_CACHE_AREA_Y		270
-#define		C_LAYER_CACHE_AREA_W	310
+#define		C_LAYER_CACHE_AREA_X 	560
+#define		C_LAYER_CACHE_AREA_Y		560
+#define		C_LAYER_CACHE_AREA_W	450
 #define		C_LAYER_CACHE_AREA_H		70
 
 extern music_ui_t* music_get_ui_param(void);					//获得UI参数

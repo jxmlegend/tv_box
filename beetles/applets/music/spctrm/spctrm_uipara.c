@@ -22,11 +22,11 @@ static __spctrm_uipara_t spectrum_uipara_400_240 =
 {
     {    	
  //   	230,	40,	160,	80			//frame win
- 		420,100,700-420,350-100
+ 		590,200,390,240
     },
     {
     	//0, 0, (16+16/3)*NUM_SPCTRM, 60			//160 61
-    	0, 0, 200, 81
+    	0, 0, 390, 240
     },    
 	ID_MUSIC_PARTICLE_BMP,	//height of  particle is 60, ID_MUSIC_PARTICLE_UF_800X480_BMP	
 	ID_MUSIC_BOUY_BMP//ID_MUSIC_BALL_UF_800X480_BMP

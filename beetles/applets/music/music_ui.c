@@ -11,9 +11,9 @@ static music_ui_t  music_ui_400_240 =
     //layer window
     { 
         PIXEL_COLOR_ARGB8888,       //fmt 
-        { 720, 576 },               //fb size
-        { 0, 0, 720, 576 },         //src rect
-        { 0, 0, 720, 576 },         //scn rect
+        { 1024, 768 },               //fb size
+        { 0, 0, 1024, 768 },         //src rect
+        { 0, 0, 1024, 768 },         //scn rect
         { 0 },                      //reserved
     },
     
@@ -28,11 +28,11 @@ static music_ui_t  music_ui_400_240 =
 */
     //list window, 浏览文件
     {
-    		{6, 42, 360, 462},						//listbar area
-    		{0, 0, 360, 42},						//item rectangle
-    		{0, 0, 360, 42},						//focus icon(select border)
+    		{8+8, 69, 514, 620},						//listbar area
+    		{0, 0, 514, 62},						//item rectangle
+    		{0, 0, 514, 62},						//focus icon(select border)
     		{30,0,15, 15 },						//file icon 
-    		{38,0, 310, 42},		//text rectangle
+    		{54+8,0, 450, 62},		//text rectangle
     },
     
     //scroll bar ui
@@ -45,22 +45,22 @@ static music_ui_t  music_ui_400_240 =
     },
  */   
     	{
-    		{368,	40,	8,	456},					//scroll bar background
-    		{368,	54,	8,	426},					//scroll 
-    		6,										//head
-    		1,										//body
-    		6,										//tail
+    		{527+16,	69,	14,	628},					//scroll bar background
+    		{527+16,	87,14,	588},					//scroll 
+    		10,										//head
+    		4,										//body
+    		10,										//tail
     	},
 			
     //head bar ui   
     {
     	{370,80,700-370,250-80},					//headbar background
     	#if BEETLES_RTC_EXIST
-    	{400,42,26,16},								//播放模式状态图标
-    	{494,42,50,16},								//EQ模式状态图标		
+    	{592,81,26,16},								//播放模式状态图标
+    	{715,81,50,16},								//EQ模式状态图标		
     	{426,10,26,16},								//背光关闭时间图标
-    	{642,42,26,16},								//音量图标
-    	{686,46,18,16},								//音量text
+    	{923,81,26,16},								//音量图标
+    	{963,87,18,16},								//音量text
     	{526,12,31,12},								//电池图标
     	{559,6,40,16},								//时间显示区域
     	#else
@@ -89,39 +89,39 @@ static music_ui_t  music_ui_400_240 =
     	{540,135,26,16},							//快进按钮   
 */  
 
-	{390,100,700-400,250-100},					//控制按钮背景区域()与频谱共用
-    	{440,220,150,16},							//按键提示字符区域
-    	{474,138,26,16},								//播放模式按钮  
-    	{526,138,26,16},								//EQ模式按钮               
+		{590,200,392,250},					//控制按钮背景区域()与频谱共用
+    	{710,373,150,16},							//按键提示字符区域
+    	{681,261,26,16},								//播放模式按钮  
+    	{840,261,26,16},								//EQ模式按钮               
     	{544,138,26,16},								// 背光时间控制按钮             
     	
-    	{438,165,26,16},							//上一首按钮                
-    	{471,165,26,16},							//下一首按钮                
-    	{504,165,26,16},							//播放暂停按钮              
-    	{545,165,26,16},							//快退按钮                  
-    	{580,165,26,16},							//快进按钮  
+    	{600,310,26,16},							//上一首按钮                
+    	{681,310,26,16},							//下一首按钮                
+    	{760,310,26,16},							//播放暂停按钮              
+    	{840,310,26,16},							//快退按钮                  
+    	{920,310,26,16},							//快进按钮  
 
-    	{425,307,26,20},							//播放状态图标(暂停或播放)	
+    	{559,560,26,20},							//播放状态图标(暂停或播放)	
 
 	
-    	{443,322,70,20},	              		//当前播放时间              
-    	{560 ,322,60,20},				//总时间显示区域
+    	{597,580,84,22},	              		//当前播放时间              
+    	{927,580,84,22},				//总时间显示区域
     	
-    	{446,312,5,4},								//进度条head
-    	{446,312,146,4},							//进度条body    	
-    	{446+5,312,5,4},							//进度条point,从head之后，因此加5   	
-    	{446+146-5,312,5,4},						//进度条tail
+    	{597,569,4,8},								//进度条head
+    	{597,569,412,8},							//进度条body    	
+    	{597+4,569,2,8},							//进度条point,从head之后，因此加5   	
+    	{597+412-4,569,4,8},						//进度条tail
 
     	    	
-    	{416,386,26,16},						//演唱者图标
-    	{416+26,	386,70,16},						//演唱者名称
-    	{550,386,26,16},						//文件大小图标
-    	{550+26,	386,70,16},						//文件大小显示
+    	{596,618,22,24},						//演唱者图标
+    	{596+26,	618,160,24},						//演唱者名称
+    	{848,618,22,24},						//文件大小图标
+    	{848+26,	618,160,24},						//文件大小显示
     	
-    	{414,412,26,16},						//专辑名称图标
-    	{414+26,	412,70,16},						//专辑名称
-    	{550,412,26,16},						//bitrate图标
-    	{550+26,	412,70,16},						//bitrate大小显示
+    	{596,655,22,24},						//专辑名称图标
+    	{596+26,	655,160,24},						//专辑名称
+    	{848,655,22,24},						//bitrate图标
+    	{848+26,	655,160,24},						//bitrate大小显示
     },
     
     //volume bar ui
@@ -134,17 +134,17 @@ static music_ui_t  music_ui_400_240 =
 
 	//spectrum
     {
-    	{420,150,700-420,200-80}
+    	{592,404,700-420,200-80}
     },
     //icon table    
     {				//ID															res	handle,    	res buffer    
   		//音乐浏览器
-		{ ID_MUSIC_PALETTE_BMP,           			NULL,  				 NULL },    //
+		{ NULL,           			NULL,  				 NULL },    //
         { NULL,           	NULL,  				 NULL },    //
-        { ID_MUSIC_FILE_UNFOCUSED_BMP,      		NULL,  				 NULL }, 	//                                                       				
-        { ID_MUSIC_FILE_UNFOCUSED_BMP,      		NULL,  				 NULL }, 	//文件图标，未被选中时
-        { ID_MUSIC_FILE_FOCUSED_BMP,      			NULL,  				 NULL }, 	//文件图标，被选中时                                                     				                                                				        
-        { ID_MUSIC_LIST_ITEM_FOCUS_BMP,    			NULL,  				 NULL }, 	//选择框                                                         				        
+        { NULL,      		NULL,  				 NULL }, 	//                                                       				
+        { NULL,      		NULL,  				 NULL }, 	//文件图标，未被选中时
+        { NULL,      			NULL,  				 NULL }, 	//文件图标，被选中时                                                     				                                                				        
+        { ID_MUSIC_LIST_ITEM_FOCUSED_BMP,    			NULL,  				 NULL }, 	//选择框                                                         				        
 	    { ID_MUSIC_LONG_STR_SCROLL_BMP,				NULL,  			 	 NULL },     //长文件名滚动背景条         
         //header bar
         				//play mode
@@ -162,29 +162,29 @@ static music_ui_t  music_ui_400_240 =
         { ID_MUSIC_EQ_POP_BMP,    					NULL,  				 NULL }, 	//	EQ POP
         
         				//BL Time
-        { ID_MUSIC_BL_ON_BMP,    					NULL,  				 NULL }, 	//	Backlight never off
-        { ID_MUSIC_BL_10S_BMP,    					NULL,  				 NULL }, 	//last 10 second
-        { ID_MUSIC_BL_30S_BMP,    					NULL,  				 NULL }, 	//
-        { ID_MUSIC_BL_60S_BMP,    					NULL,  				 NULL }, 	//
-        { ID_MUSIC_BL_90S_BMP,    					NULL,  				 NULL }, 	//
+        { NULL,    					NULL,  				 NULL }, 	//	Backlight never off
+        { NULL,    					NULL,  				 NULL }, 	//last 10 second
+        { NULL,    					NULL,  				 NULL }, 	//
+        { NULL,    					NULL,  				 NULL }, 	//
+        { NULL,    					NULL,  				 NULL }, 	//
                 				
         				//volume
-        { ID_MUSIC_VOLUME_STATUS_BMP,    			NULL,  				 NULL }, 	//
+        { NULL,    			NULL,  				 NULL }, 	//
         			
         				//bettery
-        { ID_MUSIC_BETTERY0_BMP,    				NULL,  				 NULL }, 	//
-        { ID_MUSIC_BETTERY1_BMP,    				NULL,  				 NULL }, 	//
-        { ID_MUSIC_BETTERY2_BMP,    				NULL,  				 NULL }, 	//
-        { ID_MUSIC_BETTERY3_BMP,    				NULL,  				 NULL }, 	//
-        { ID_MUSIC_BETTERY4_BMP,    				NULL,  				 NULL }, 	//
-        { ID_MUSIC_BETTERY5_BMP,    				NULL,  				 NULL }, 	//
+        { NULL,    				NULL,  				 NULL }, 	//
+        { NULL,    				NULL,  				 NULL }, 	//
+        { NULL,    				NULL,  				 NULL }, 	//
+        { NULL,    				NULL,  				 NULL }, 	//
+        { NULL,    				NULL,  				 NULL }, 	//
+        { NULL,    				NULL,  				 NULL }, 	//
         						
-        { ID_MUSIC_CHARGE_BETTERY0_BMP,    				NULL,  				 NULL }, 	//
-        { ID_MUSIC_CHARGE_BETTERY1_BMP,    				NULL,  				 NULL }, 	//
-        { ID_MUSIC_CHARGE_BETTERY2_BMP,    				NULL,  				 NULL }, 	//
-        { ID_MUSIC_CHARGE_BETTERY3_BMP,    				NULL,  				 NULL }, 	//
-        { ID_MUSIC_CHARGE_BETTERY4_BMP,    				NULL,  				 NULL }, 	//
-        { ID_MUSIC_CHARGE_BETTERY5_BMP,    				NULL,  				 NULL }, 	//
+        { NULL,    				NULL,  				 NULL }, 	//
+        { NULL,    				NULL,  				 NULL }, 	//
+        { NULL,    				NULL,  				 NULL }, 	//
+        { NULL,    				NULL,  				 NULL }, 	//
+        { NULL,    				NULL,  				 NULL }, 	//
+        { NULL,    				NULL,  				 NULL }, 	//
         						
         //播放器
         				//play mode button
@@ -214,9 +214,9 @@ static music_ui_t  music_ui_400_240 =
         { ID_MUSIC_EQ_MODE_BTN_PRESSED_BMP,			NULL,  				 NULL }, 		//pressed
  
  								//BL time button
-        { ID_MUSIC_BL_TIME_BTN_UNFOCUSED_BMP,		NULL,  				 NULL }, 		//EQ mode button, unfocused
-        { ID_MUSIC_BL_TIME_BTN_FOCUSED_BMP,			NULL,  				 NULL }, 		//focused
-        { ID_MUSIC_BL_TIME_BTN_PRESSED_BMP,			NULL,  				 NULL }, 		//pressed
+        { NULL,		NULL,  				 NULL }, 		//EQ mode button, unfocused
+        { NULL,			NULL,  				 NULL }, 		//focused
+        { NULL,			NULL,  				 NULL }, 		//pressed
         				
         				//play previous button
         { ID_MUSIC_PLAY_PRE_BTN_UNFOCUSED_BMP,		NULL,  				 NULL }, 	//播放上一曲, unfocused
@@ -244,8 +244,8 @@ static music_ui_t  music_ui_400_240 =
         				//play status button,
        { ID_MUSIC_PLAYING_STATUS_BMP,				NULL,				NULL }, 								//正在播放状态
        { ID_MUSIC_PAUSE_STATUS_BMP,					NULL,  				NULL }, 								//暂停状态
-       { ID_MUSIC_PREVIOUS_STATUS_BMP,				NULL,  		 		NULL }, 								//上一曲状态
-       { ID_MUSIC_NEXT_STATUS_BMP,					NULL,  				NULL }, 								//下一曲状态
+       { NULL,				NULL,  		 		NULL }, 								//上一曲状态
+       { NULL,					NULL,  				NULL }, 								//下一曲状态
 
         				//process bar 
        { ID_MUSIC_PROCESS_BAR_HEAD_BMP,				NULL,  			 	NULL }, 								//process bar 头部
@@ -264,13 +264,13 @@ static music_ui_t  music_ui_400_240 =
        { ID_MUSIC_BOUY_BMP,							NULL,  			 	NULL },        
 
 		//浏览器，滚动条
-       { ID_EXPLORER_LIST_SCROLL_BG_BMP,				NULL,  			 	NULL }, 
-       { ID_EXPLORER_LIST_SCROLL_HEAD_BMP,				NULL,  			 	NULL },        
-       { ID_EXPLORER_LIST_SCROLL_BODY_BMP,				NULL,  			 	NULL },        
-       { ID_EXPLORER_LIST_SCROLL_TAIL_BMP,				NULL,  			 	NULL }, 
+       { ID_MUSIC_LIST_SCROLL_BG_BMP,				NULL,  			 	NULL }, 
+       { ID_MUSIC_LIST_SCROLL_HEAD_BMP,				NULL,  			 	NULL },        
+       { ID_MUSIC_LIST_SCROLL_BODY_BMP,				NULL,  			 	NULL },        
+       { ID_MUSIC_LIST_SCROLL_TAIL_BMP,				NULL,  			 	NULL }, 
 
-     	{ ID_MUSIC_SPEAKER_BMP,				NULL,				NULL }, 								//正在播放状态
-       { ID_MUSIC_MUTE_BMP,					NULL,  				NULL }, 								//暂停状态
+     	{ ID_MUSIC_MUSIC_VOICE_BMP,				NULL,				NULL }, 								//正在播放状态
+       { ID_MUSIC_MUSIC_MUTE_BMP,					NULL,  				NULL }, 								//暂停状态
 
 	{ 0,                                    		NULL,  				NULL }      	//browser_icon_max
     },                                                 				
