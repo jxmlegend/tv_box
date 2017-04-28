@@ -78,7 +78,7 @@ static __s32 __tvmenu_install_hide_timmer(tv_menu_scene_t* scene_para)
 	if (!GUI_IsTimerInstalled(scene_para->hfrm, scene_para->hide_timmer_id))
 	{
 		item_ree = GUI_SetTimer(scene_para->hfrm, scene_para->hide_timmer_id
-			, 400*2, NULL);//3취		
+			, 400*6, NULL);//3취		
 			
 	}
 	else
@@ -101,7 +101,7 @@ static __s32 __tvmenu_reset_hide_timmer(tv_menu_scene_t* scene_para)
 	if (GUI_IsTimerInstalled(scene_para->hfrm, scene_para->hide_timmer_id))
 	{
 		GUI_ResetTimer(scene_para->hfrm, scene_para->hide_timmer_id
-			, 400*2, NULL);//3취
+			, 400*6, NULL);//3취
 	}			
 	
 	return EPDK_OK;
@@ -439,22 +439,22 @@ static __s32 tv_menu_paint_item(__gui_msg_t *msg,__s32 item,__s32 color)
 		{
 			case 1:
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_fs[0+color]), 157, 247-118 );
-				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[0+color]), 361, 256-118 );
-				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[2+color]), 521, 256-118 );
+				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[0+color]), 380, 256-118 );
+				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[2+color]), 502, 256-118 );
 				dsk_langres_get_menu_text(ui_para->uipara_bright_text[item-1].res_id, smenu_attr->item_str[item-1], GUI_TITLE_MAX);	
 	 			GUI_DispStringAt(smenu_attr->item_str[item-1], 250, 256-118);				
 				break;
 			case 2:
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_fs[2+color]), 157, 301-118);
-				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[0+color]), 361, 310-118 );
-				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[2+color]), 521, 310-118 );
+				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[0+color]), 380, 310-118 );
+				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[2+color]), 502, 310-118 );
 				dsk_langres_get_menu_text(ui_para->uipara_bright_text[item-1].res_id, smenu_attr->item_str[item-1], GUI_TITLE_MAX);  
 	 			GUI_DispStringAt(smenu_attr->item_str[item-1], 250, 310-118);					
 				break;
 			case 3:
 				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_fs[4+color]), 157, 354-118);
-				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[0+color]), 361, 363-118 );
-				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[2+color]), 521, 363-118 );
+				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[0+color]), 380, 363-118 );
+				GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->icon_selt[2+color]), 502, 363-118 );
 				dsk_langres_get_menu_text(ui_para->uipara_bright_text[item-1].res_id, smenu_attr->item_str[item-1], GUI_TITLE_MAX);  
 	 			GUI_DispStringAt(smenu_attr->item_str[item-1], 250, 363-118);					
 				break;
@@ -595,25 +595,31 @@ static __s32 tv_menu_paint_protel(__gui_msg_t *msg,__s32 item,__s32 color)
 			switch (item)
 			{
 				case 1:
-					gui_rect.x0 = 441;
-					gui_rect.y0 = 256-118;
+					gui_rect.x0 = 408;
+					gui_rect.y0 = 256-125;
+					gui_rect.x1 = gui_rect.x0 + 78;
+					gui_rect.y1 = gui_rect.y0 + 30;
 					GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->bmp_bg[3]), gui_rect.x0, gui_rect.y0 );
 					uint2str(dsk_tv_rcv->bright, str);
-					GUI_DispStringAt(str, gui_rect.x0 , gui_rect.y0);		
+					GUI_DispStringInRect(str, &gui_rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
 					break;
 				case 2:
-					gui_rect.x0 = 441;
-					gui_rect.y0 = 311-118;
+					gui_rect.x0 = 408;
+					gui_rect.y0 = 311-125;
+					gui_rect.x1 = gui_rect.x0 + 78;
+					gui_rect.y1 = gui_rect.y0 + 30;
 					GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->bmp_bg[3]), gui_rect.x0, gui_rect.y0 );
 					uint2str(dsk_tv_rcv->contrast, str);	
-					GUI_DispStringAt(str, gui_rect.x0 , gui_rect.y0);		
+					GUI_DispStringInRect(str, &gui_rect, GUI_TA_HCENTER | GUI_TA_VCENTER);	
 					break;
 				case 3:
-					gui_rect.x0 = 441;
-					gui_rect.y0 = 363-118;
+					gui_rect.x0 = 408;
+					gui_rect.y0 = 363-125;
+					gui_rect.x1 = gui_rect.x0 + 78;
+					gui_rect.y1 = gui_rect.y0 + 30;
 					GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->bmp_bg[3]), gui_rect.x0, gui_rect.y0 );
 					uint2str(dsk_tv_rcv->color, str);	
-					GUI_DispStringAt(str, gui_rect.x0 , gui_rect.y0);		
+					GUI_DispStringInRect(str, &gui_rect, GUI_TA_HCENTER | GUI_TA_VCENTER);	
 					break;					
 
 /*
@@ -651,16 +657,11 @@ static __s32 tv_menu_paint_protel(__gui_msg_t *msg,__s32 item,__s32 color)
 					gui_rect.y0 = 310-118;
 					GUI_BMP_Draw(dsk_theme_hdl2buf(smenu_attr->bmp_bg[3]), gui_rect.x0, gui_rect.y0 );
 					if(dsk_tv_rcv->sourceInput==0)
-					{
-						if((dsk_tv_rcv->ucSoundSys==2)||(dsk_tv_rcv->ucSoundSys==5))
-							gui_rect.x0 += 10;
-						if(dsk_tv_rcv->ucSoundSys==4)
-							gui_rect.x0 += 16;						
+					{					
 						dsk_langres_get_menu_text(TVsys[dsk_tv_rcv->ucSoundSys], protel_str, GUI_TITLE_MAX);  
 					}	
 					else
 					{
-						gui_rect.x0 += 18;
 						dsk_langres_get_menu_text(TVsys[0], protel_str, GUI_TITLE_MAX); 
 					}	
 		 			GUI_DispStringAt(protel_str, gui_rect.x0 , gui_rect.y0);						
