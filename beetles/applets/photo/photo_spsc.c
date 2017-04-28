@@ -659,8 +659,8 @@ static __s32 photo_spsc_key_proc(__gui_msg_t *msg)
 			case GUI_MSG_KEY_UP:
 			case GUI_MSG_KEY_LONGUP:
 			{
-				if (spsc_ctrl->spsc_para->play_status ==  PHOTO_STAT_PLAY)
-					break;
+				//if (spsc_ctrl->spsc_para->play_status ==  PHOTO_STAT_PLAY)
+					//break;
 				if(spsc_ctrl->spsc_para->cur_no <=0)
 					spsc_ctrl->spsc_para->cur_no = spsc_ctrl->spsc_para->total_no-1;
 				else
@@ -674,8 +674,8 @@ static __s32 photo_spsc_key_proc(__gui_msg_t *msg)
 			case GUI_MSG_KEY_DOWN:
 			case GUI_MSG_KEY_LONGDOWN:
 			{
-				if (spsc_ctrl->spsc_para->play_status ==  PHOTO_STAT_PLAY)
-					break;
+				//if (spsc_ctrl->spsc_para->play_status ==  PHOTO_STAT_PLAY)
+					//break;
 				
 				if(spsc_ctrl->spsc_para->cur_no >= spsc_ctrl->spsc_para->total_no-1)
 					spsc_ctrl->spsc_para->cur_no = 0;
