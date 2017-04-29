@@ -224,6 +224,6 @@ movie_prog_uipara_t* movie_prog_get_uipara(__s32 rotate)
 		break;
 	}	
 	
-	return &uipara_400_240;		
+	return &uipara_720_576;		
 }
 

@@ -102,5 +102,5 @@ movie_sub_show_uipara_t* movie_sub_show_get_uipara(__s32 rotate)
 		break;
 	}	
 
-	return &uipara_400_240;			
+	return &uipara_720_576;			
 }

@@ -95,5 +95,5 @@ movie_playsta_uipara_t* movie_playsta_get_uipara(__s32 rotate)
 		break;
 	}	
 	
-	return &uipara_400_240;		
+	return &uipara_720_576;		
 }

@@ -19,11 +19,11 @@
 
 #include "movie_mute_ui.h"
 
-static movie_mute_uipara_t uipara_720_576 = 
+static movie_mute_uipara_t uipara_1024_768 = 
 {
 	1,
 	{
-		530, 60, 150, 28		
+		860, 80, 150, 28		
 	},
 	{
 		0, 0, 150, 28		
@@ -47,5 +47,5 @@ movie_mute_uipara_t* movie_mute_get_uipara(__s32 rotate)
 	/* get lcd size*/
 	dsk_display_get_size(&screen_width, &screen_height);
 
-	return &uipara_720_576;		
+	return &uipara_1024_768;		
 }
