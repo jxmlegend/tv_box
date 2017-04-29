@@ -57,19 +57,19 @@
 
 #endif
 //////////////////////////////////////////////////////////////////////////
-#define BTN_Y_END_OFFSET          36
+#define BTN_Y_END_OFFSET          44
 #define BTN_X_OFFSET              100
-#define TITLE_X_OFFSET            100
-#define TITLE_Y_OFFSET            22
+#define TITLE_X_OFFSET            0
+#define TITLE_Y_OFFSET            28
 //#define TITLE_WIDTH               60
-#define TITLE_HEIGHT              20
-#define ICON_CONTENT_X_OFFSET     4
-#define CONTENT_X_OFFSET          5
+#define TITLE_HEIGHT              22
+#define ICON_CONTENT_X_OFFSET     20
+#define CONTENT_X_OFFSET          100
 #define CONTENT_X_END_OFFSET      5//CONTENT_X_OFFSET
-#define CONTENT_Y_OFFSET          8
-#define CONTENT_Y_END_OFFSET      5
-#define ICON_X_OFFSET             60
-#define ICON_Y_OFFSET             62
+#define CONTENT_Y_END_OFFSET      31
+#define ICON_X_OFFSET             120
+#define ICON_Y_OFFSET             84
+#define CONTENT_Y_OFFSET          ICON_Y_OFFSET
 
 #define IsDialogTimerValid(_v)    ((_v) > 0)
 #define ID_TIMER_DIALOG_TIMEOUT   100
@@ -278,7 +278,7 @@ static __s32 app_dialog_ui_init(dialog_wnd_t *wnd_para, GUI_RECT *dialog_rt)
 	}
 
 	ui->pos.content.x       = res->icon_enable ? (ui->pos.icon.x + ui->size.icon.width + ICON_CONTENT_X_OFFSET ) : CONTENT_X_OFFSET;
-	ui->pos.content.y       = ui->pos.title.y + ui->size.title.height + CONTENT_Y_OFFSET;
+	ui->pos.content.y       = CONTENT_Y_OFFSET;
 	ui->size.content.width  = ui->rt.width - ui->pos.content.x - CONTENT_X_END_OFFSET;
 	ui->size.content.height = ui->pos.btn_start.y - CONTENT_Y_END_OFFSET - ui->pos.content.y;
 
@@ -441,7 +441,11 @@ static void draw_dialog(APP_DIALOG_RES_T* res, APP_DIALOG_UI_T* ui)
 	//GUI_OpenAlphaBlend();
 
 	//标题
-	GUI_DispStringAt(res->str_title, ui->pos.title.x, ui->pos.title.y);
+	rect.x0 = ui->pos.title.x;
+	rect.y0 = ui->pos.title.y;
+	rect.x1 = rect.x0 + ui->size.title.width;
+	rect.y1 = rect.y0 + ui->size.title.height;
+	GUI_DispStringInRect(res->str_title, &rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
 
 	//内容
 	rect.x0 = ui->pos.content.x;
@@ -449,7 +453,7 @@ static void draw_dialog(APP_DIALOG_RES_T* res, APP_DIALOG_UI_T* ui)
 	rect.x1 = rect.x0 + ui->size.content.width;
 	rect.y1 = rect.y0 + ui->size.content.height;
 	//GUI_DispStringInRect(res->str_content, &rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
-	GUI_DispStringInRectWrap(res->str_content, &rect, GUI_TA_HCENTER | GUI_TA_VCENTER, GUI_WRAPMODE_WORD);
+	GUI_DispStringInRectWrap(res->str_content, &rect, GUI_TA_LEFT| GUI_TA_VCENTER, GUI_WRAPMODE_WORD);
 
 	//按钮
 	x = ui->pos.btn_start.x;
