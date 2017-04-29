@@ -460,7 +460,7 @@ static __s32 setting_general_item_paint(__gui_msg_t *msg)
 	GUI_UC_SetEncodeUTF8();
 	GUI_SetDrawMode(GUI_DRAWMODE_TRANS);
 	GUI_LyrWinCacheOn();
-	GUI_OpenAlphaBlend();
+	//GUI_OpenAlphaBlend();
 	GUI_LyrWinGetScnWindow(general_attr->layer, &rect);
 
 	_setting_general_focus_res_reset(general_attr);
@@ -525,7 +525,7 @@ static __s32 setting_general_item_paint(__gui_msg_t *msg)
 			GUI_DispStringInRect(p_item_res->string_content, &gui_rect, GUI_TA_VCENTER|GUI_TA_HCENTER);    
 		}
 	}
-	GUI_CloseAlphaBlend();
+	//GUI_CloseAlphaBlend();
 	GUI_LyrWinCacheOff();
 	return EPDK_OK;
 }
@@ -551,7 +551,7 @@ static __s32 setting_general_paint(__gui_msg_t *msg)
 	GUI_SetDrawMode(GUI_DRAWMODE_TRANS);
 	
 	GUI_LyrWinCacheOn();
-	GUI_OpenAlphaBlend();
+	//GUI_OpenAlphaBlend();
 
 	get_menu_text(STRING_SET_PROMPT_COMMON, general_attr->string_prompt, 128);//set_common(Í¨ÓÃÉèÖÃ)
 	get_menu_text(setting_general_res_id[general_attr->new_focus].id_string_detail_prompt, general_attr->string_detail_prompt, 128);
@@ -722,7 +722,7 @@ static __s32 setting_general_paint(__gui_msg_t *msg)
 		}
 
 	}
-	GUI_CloseAlphaBlend();
+	//GUI_CloseAlphaBlend();
 	GUI_LyrWinCacheOff();
 	return EPDK_OK;
 }
@@ -840,8 +840,8 @@ static __s32 _setting_general_Proc(__gui_msg_t *msg)
 			_setting_general_focus_res_reset(general_attr);
 			_setting_general_content_res_reset(general_attr);
 
-			general_attr->focus_txt_color = APP_COLOR_YELLOW;
-			general_attr->unfocus_txt_color = APP_COLOR_WHITE;
+			general_attr->focus_txt_color = GUI_YELLOW;
+			general_attr->unfocus_txt_color = GUI_WHITE;
 			general_attr->font = general_para->font;
 			general_attr->layer = general_para->layer;
 			

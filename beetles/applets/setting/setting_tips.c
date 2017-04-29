@@ -47,17 +47,18 @@ typedef struct tag_tips_ctrl
 ************************************************************************************************************/
 H_LYR setting_tips_layer_create(RECT *rect)
 {
+	__s32 screen_width, screen_height;
 	H_LYR layer = NULL;
 	FB  fb =
 	{
 	    {0, 0},                                   		/* size      */
 	    {0, 0, 0},                                      /* buffer    */
-	    {FB_TYPE_RGB, {PIXEL_MONO_8BPP, 0, (__rgb_seq_t)0}},    /* fmt       */
+	    {FB_TYPE_RGB, {PIXEL_COLOR_ARGB8888, 0, (__rgb_seq_t)0}},    /* fmt       */
 	};
 
 	__disp_layer_para_t lstlyr =
 	{
-	    DISP_LAYER_WORK_MODE_PALETTE,                    /* mode      */
+	    DISP_LAYER_WORK_MODE_NORMAL,                    /* mode      */
 	    0,                                              /* ck_mode   */
 	    0,                                              /* alpha_en  */
 	    0,                                              /* alpha_val */
@@ -76,6 +77,7 @@ H_LYR setting_tips_layer_create(RECT *rect)
 	    GUI_LYRWIN_STA_SUSPEND,
 	    GUI_LYRWIN_NORMAL
 	};
+	dsk_display_get_size(&screen_width, &screen_height);
 	
 	fb.size.width		= rect->width;
 	fb.size.height		= rect->height;	
@@ -85,8 +87,8 @@ H_LYR setting_tips_layer_create(RECT *rect)
 	lstlyr.src_win.width 	= rect->width;
 	lstlyr.src_win.height 	= rect->height;
 	
-	lstlyr.scn_win.x		= (400-SET_TIPS_W)/2;
-	lstlyr.scn_win.y		= (240-60-SET_TIPS_H)/2;//240为屏幕高度，60为底端高度
+	lstlyr.scn_win.x		= (screen_width-SET_TIPS_W)/2;
+	lstlyr.scn_win.y		= (screen_height-SET_TIPS_H)/2;
 	lstlyr.scn_win.width  	= rect->width;
 	lstlyr.scn_win.height 	= rect->height;
 	
@@ -349,8 +351,8 @@ static __s32 _setting_tips_proc(__gui_msg_t *msg)
 
 			tips_para = (setting_tip_para_t *)GUI_WinGetAttr(msg->h_deswin);
 
-			tips_ctrl->focus_txt_color = APP_COLOR_YELLOW;
-			tips_ctrl->unfocus_txt_color = APP_COLOR_WHITE;
+			tips_ctrl->focus_txt_color = GUI_YELLOW;
+			tips_ctrl->unfocus_txt_color = GUI_WHITE;
 			tips_ctrl->tips_para = tips_para;
 			GUI_WinSetAddData(msg->h_deswin, (__u32)tips_ctrl);
 			setting_tip_init(tips_ctrl);

@@ -33,12 +33,12 @@ static H_LYR setting_layer_palette_create(RECT *rect)
 	{
 	    {0, 0},                                   		/* size      */
 	    {0, 0, 0},                                      /* buffer    */
-	    {FB_TYPE_RGB, {PIXEL_MONO_8BPP, 0, (__rgb_seq_t)0}},    /* fmt       */
+	    {FB_TYPE_RGB, {PIXEL_COLOR_ARGB8888, 0, (__rgb_seq_t)0}},    /* fmt       */
 	};
 
 	__disp_layer_para_t lstlyr =
 	{
-	    DISP_LAYER_WORK_MODE_PALETTE,                    /* mode      */
+	    DISP_LAYER_WORK_MODE_NORMAL,                    /* mode      */
 	    0,                                              /* ck_mode   */
 	    0,                                              /* alpha_en  */
 	    0,                                              /* alpha_val */
@@ -130,7 +130,7 @@ static __s32 _app_setting_Proc(__gui_msg_t *msg)
 	{
 		case GUI_MSG_CREATE:
 		{
-			com_set_palette_by_id(ID_SETTING_WKM_BMP);
+			//com_set_palette_by_id(ID_SETTING_WKM_BMP);
 			setting_win_create(msg);
 		}
 		return EPDK_OK;
@@ -293,7 +293,7 @@ static __s32 _app_setting_Proc(__gui_msg_t *msg)
 						{
 							if(msg->dwAddData2 ==TIPS_FACTORY_DEFAULT)	//»Ö¸´³ö³§ÉèÖÃ
 							{
-								 __s32 lang_id[]={STRING_SET_CUE , STRING_SET_COMMON_RESTORE };
+								 __s32 lang_id[]={STRING_SET_WARNING , STRING_SET_COMMON_RESTORE };
            							 default_dialog(setting_ctrl->h_dialoag_win , msg->h_deswin , SETTING_TIPS_ID, ADLG_YESNO, lang_id);
 							}
 							else
