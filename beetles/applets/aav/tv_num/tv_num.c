@@ -206,6 +206,7 @@ static __s32 __tvnum_update_tvnum_ui(tv_num_scene_t* scene_para)
 		__u32 temp2;
 		__s32 focus;	
 		GUI_RECT gui_rect;
+		__s32 screen_width, screen_height;
 
 		if(dsk_tv_rcv->sourceInput==0)
 		{
@@ -482,7 +483,24 @@ static __s32 __tvnum_update_tvnum_ui(tv_num_scene_t* scene_para)
 				pbmp = dsk_theme_hdl2buf(ui_para->uipara_icon.res_hdl[11]);	
 				GUI_BMP_Draw(pbmp, gui_rect.x0, gui_rect.y0);
 		}
-		
+		gui_rect.x0 = ui_para->uipara_resolution.x;
+		gui_rect.y0 = ui_para->uipara_resolution.y;
+		gui_rect.x1 = gui_rect.x0+ui_para->uipara_resolution.w;
+		gui_rect.y1 = gui_rect.y0+ui_para->uipara_resolution.h;
+		GUI_ClearRectEx(&gui_rect); 
+		if(scene_para->res_flag)
+		{
+			dsk_display_get_size(&screen_width, &screen_height);
+			if (screen_width == 1024 && screen_height == 768) {
+				pbmp = dsk_theme_hdl2buf(ui_para->uipara_icon.res_hdl[12]); 
+			} else if (screen_width == 1280 && screen_height == 768) {
+				pbmp = dsk_theme_hdl2buf(ui_para->uipara_icon.res_hdl[13]); 
+			}  else {
+				pbmp = NULL;	
+			}
+			GUI_BMP_Draw(pbmp, gui_rect.x0, gui_rect.y0);
+			scene_para->res_flag = 0;
+		}
 	}	   
 
 //    GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
@@ -899,6 +917,7 @@ void* tv_num_scene_create(H_WIN h_parent,tv_num_create_para_t *create_para)
 	sence_para->max = create_para->max_val;
 	sence_para->min = create_para->min_val;
 	sence_para->value = create_para->cur_val;
+	sence_para->res_flag = create_para->res_flag;
 
 	ui_para = tv_num_get_uipara(GUI_GetScnDir());
 

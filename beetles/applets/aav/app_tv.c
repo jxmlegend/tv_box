@@ -48,6 +48,7 @@ typedef struct tag_tv_para
 	GUI_FONT *main_font;
 
 	__u32  scene_id;
+	__u8   res_flag;
 }tv_para_t;
 
 //static reg_tv_para_t* tv_reg_para;
@@ -293,6 +294,7 @@ static __s32 __tv_num_scene_create(tv_para_t* tv_para)
 		create_para.max_val = 249;
 		create_para.min_val = 1;
 		create_para.cur_val = dsk_volume_get();
+		create_para.res_flag = tv_para->res_flag;
 		tv_para->h_Channel = tv_num_scene_create(tv_para->tv_manager,&create_para);
 		if (NULL == tv_para->h_Channel)
 		{
@@ -719,6 +721,7 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 						}	
 						break;
 					case GUI_MSG_KEY_INFO:
+						tv_para->res_flag = 1;
 						if(dsk_tv_rcv->tv_menuID==TVMENU_NUM)
 						{
 							__TvOSD_si(msg);
@@ -737,6 +740,7 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 							__TvOSD_si(msg);
 							__TvOSD_OPEN(msg,TVMENU_NUM);
 						}
+						tv_para->res_flag = 0;
 						break;
 					case GUI_MSG_KEY_INTWO:
 						if(dsk_tv_rcv->tv_menuID==TVMENU_VOL)
@@ -973,11 +977,11 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 		                ES_FILE      * p_disp;
 		                static __s32 aux = 0;
 		                __s32 screen_width, screen_height;
-		                static __u8 saved_tv_menuID;
+		                //static __u8 saved_tv_menuID;
 
 						com_video_in_close();
 
-						saved_tv_menuID = dsk_tv_rcv->tv_menuID;
+						//saved_tv_menuID = dsk_tv_rcv->tv_menuID;
 						__TvOSD_si(msg);
 		                
 		                dsk_display_get_size(&screen_width, &screen_height);
@@ -1007,7 +1011,9 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 							else
 								com_video_in_open(1,0,0,1);
 						}					
-						__TvOSD_OPEN(msg,saved_tv_menuID);
+						tv_para->res_flag = 1;
+						__TvOSD_OPEN(msg,TVMENU_NUM);
+						tv_para->res_flag = 0;
 		                break;
 					}
 					default:
@@ -1167,8 +1173,10 @@ static __s32 app_tv_proc(__gui_msg_t *msg)
 			//background
 //			gscene_bgd_set_state(GUI_LYRWIN_STA_ON);//   BGD_STATUS_HIDE//GUI_LYRWIN_STA_ON
 			__tv_ctrl_para_init(msg);
-
+			
+			tv_para->res_flag = 1;
 			__tv_num_scene_create(tv_para);
+			tv_para->res_flag = 0;
 //			com_set_palette_by_id(ID_HOME_PAL_BMP);
 
 //			tv_reg_para = dsk_reg_get_para_by_app(REG_APP_TV);

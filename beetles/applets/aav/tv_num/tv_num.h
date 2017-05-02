@@ -49,6 +49,7 @@ typedef struct
 	__s32 min_val;
 	__s32 max_val;
 	__s32 cur_val;
+	__u8  res_flag;
 }tv_num_create_para_t;
 
 
@@ -57,6 +58,7 @@ typedef struct
 	//ÊäÈë²ÎÊı
 	H_WIN hparent;	
 	__s32 scene_id;
+	__u8  res_flag;
 	__s32 max;
 	__s32 min;
 	__s32 value;

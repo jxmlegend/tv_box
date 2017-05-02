@@ -22,7 +22,7 @@
 
 #include "beetles_app.h"
 
-#define TV_NUM_MAX_ICON_RES_NUM 12
+#define TV_NUM_MAX_ICON_RES_NUM 14
 
 typedef struct  
 {
@@ -43,6 +43,7 @@ typedef struct
 	tv_num_rect_t uipara_num0;
 	tv_num_rect_t uipara_num1;
 	tv_num_rect_t uipara_num2;
+	tv_num_rect_t uipara_resolution;
 	tv_num_rect_t uipara_icon;
 }tv_num_uipara_t;
 
