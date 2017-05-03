@@ -25,6 +25,7 @@
 #include "tv_volume.h"
 #include "tv_num.h"
 #include "tv_mute.h"
+#include "tv_image_mode.h"
 #include "tv_mannger.h"
 #include "app_tv_i.h"
 
@@ -35,11 +36,13 @@ typedef struct tag_tv_para
 	void*	h_tv_volume;
 	void*	h_Channel;
 	void*	h_mute;
+	void*	h_image_mode;
 
 	H_WIN	lyr_mmenu;
 	H_WIN	lyr_msound;
 	H_WIN	lyr_mchannel;	
 	H_WIN	lyr_mute;	
+	H_WIN	lyr_image_mode;	
 
 	H_WIN tv_manager;//	tvµÄmanwin
 
@@ -387,6 +390,52 @@ static __s32 __tv_mute_scene_delete(tv_para_t* tv_para)
 	return EPDK_OK;
 }
 
+static __s32 __tv_image_mode_scene_create(tv_para_t* tv_para)
+{
+	__s32 ret;	
+	
+	if (NULL == tv_para)
+	{
+		__err("invalid para...\n");
+		return EPDK_FAIL;
+	}
+
+//    if (NULL == tv_para->playsta_scene)
+	{
+		tv_image_mode_create_para_t create_para;
+		eLIBs_memset(&create_para, 0, sizeof(tv_image_mode_create_para_t));
+	 	create_para.hparent = tv_para->lyr_image_mode;
+		tv_para->h_image_mode = tv_image_mode_scene_create(tv_para->tv_manager,&create_para);
+		if (NULL == tv_para->h_image_mode)
+		{
+			__msg("tv_image_mode_scene_create fail...\n");
+			return EPDK_FAIL;
+		}
+		
+	}
+	dsk_tv_rcv->tv_menuID = TVMENU_MODE;
+	return EPDK_OK;
+}
+
+static __s32 __tv_image_mode_scene_delete(tv_para_t* tv_para)
+{
+	__s32 ret;	
+	
+	if (NULL == tv_para)
+	{
+		__err("invalid para...\n");
+		return EPDK_FAIL;
+	}
+	
+	if (tv_para->h_image_mode)
+	{
+		tv_image_mode_scene_delete(tv_para->h_image_mode);
+		tv_para->h_image_mode = NULL;
+	}
+	
+	dsk_tv_rcv->tv_menuID = TVMENU_NULL;
+	return EPDK_OK;
+}
 
 __s32 __TvOSD_si(__gui_msg_t *msg)
 {
@@ -417,6 +466,11 @@ __s32 __TvOSD_si(__gui_msg_t *msg)
 			__tv_mute_scene_delete(tv_para);
 		}
 		break;		
+		case TVMENU_MODE:
+		{
+			__tv_image_mode_scene_delete(tv_para);
+		}
+		break;	
 		default:
 			break;
 	}
@@ -453,6 +507,11 @@ __s32 __TvOSD_OPEN(__gui_msg_t *msg,__s32 num)
 			__tv_mute_scene_create(tv_para);
 		}
 		break;		
+		case TVMENU_MODE:
+		{
+			__tv_image_mode_scene_create(tv_para);
+		}
+		break;	
 		default:
 			break;
 	}
@@ -532,9 +591,7 @@ static __s32 __tv_ctrl_para_init(__gui_msg_t *msg)
 
 		dsk_tv_set_sourceInput(0);
 
-		 dsk_tv_set_cur_bright();
-		 dsk_tv_set_cur_contrast();
-		 dsk_tv_set_cur_color();	
+		dsk_tv_set_image_mode(dsk_tv_rcv->image_mode);
 		
 		return EPDK_OK;
 }
@@ -703,6 +760,12 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 									tvinputnum(msg->dwAddData1-GUI_MSG_KEY_NUM0);
 									__TvOSD_OPEN(msg,TVMENU_NUM);
 								}
+								if(dsk_tv_rcv->tv_menuID==TVMENU_MODE)
+								{
+									__TvOSD_si(msg);
+									tvinputnum(msg->dwAddData1-GUI_MSG_KEY_NUM0);
+									__TvOSD_OPEN(msg,TVMENU_NUM);
+								}
 								if(dsk_tv_rcv->tv_menuID==TVMENU_MAIN)
 								{
 									__TvOSD_si(msg);
@@ -736,6 +799,11 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 							__TvOSD_OPEN(msg,TVMENU_NUM);
 						}
 						else if(dsk_tv_rcv->tv_menuID==TVMENU_MUTE)
+						{
+							__TvOSD_si(msg);
+							__TvOSD_OPEN(msg,TVMENU_NUM);
+						}
+						else if(dsk_tv_rcv->tv_menuID==TVMENU_MODE)
 						{
 							__TvOSD_si(msg);
 							__TvOSD_OPEN(msg,TVMENU_NUM);
@@ -775,12 +843,23 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 							__TvOSD_OPEN(msg,TVMENU_NUM);
 						}
 						break;
+						if(dsk_tv_rcv->tv_menuID==TVMENU_MODE)
+						{
+							__TvOSD_si(msg);
+							dsk_tv_rcv->tv_menuID = 1;
+							dsk_tv_rcv->tv_barflag_input=0;
+							dsk_tv_rcv->tv_barflag_inputval=0;
+							__TvOSD_OPEN(msg,TVMENU_NUM);
+						}
+						break;
 					case GUI_MSG_KEY_RECALL:
 						if(dsk_tv_rcv->tv_menuID==TVMENU_NUM)
 						{
 							tv_set_recall();
 						}						
-						if((dsk_tv_rcv->tv_menuID==TVMENU_VOL)||(dsk_tv_rcv->tv_menuID==TVMENU_MUTE))
+						if((dsk_tv_rcv->tv_menuID==TVMENU_VOL) \
+							|| (dsk_tv_rcv->tv_menuID==TVMENU_MUTE) \
+							|| (dsk_tv_rcv->tv_menuID==TVMENU_MODE))
 						{
 							__TvOSD_si(msg);
 							tv_set_recall();
@@ -871,6 +950,12 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 									dsk_tv_rcv_pre_freq_play();
 								__TvOSD_OPEN(msg,TVMENU_NUM);
 								break;
+							case TVMENU_MODE:
+								__TvOSD_si(msg);
+								if(dsk_tv_rcv->sourceInput==0)
+									dsk_tv_rcv_pre_freq_play();
+								__TvOSD_OPEN(msg,TVMENU_NUM);
+								break;
 							default:
 								break;
 						}
@@ -919,6 +1004,12 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 									dsk_tv_rcv_next_freq_play();
 								__TvOSD_OPEN(msg,TVMENU_NUM);
 								break;
+							case TVMENU_MODE:
+								__TvOSD_si(msg);
+								if(dsk_tv_rcv->sourceInput==0)
+									dsk_tv_rcv_next_freq_play();
+								__TvOSD_OPEN(msg,TVMENU_NUM);
+								break;
 							default:
 								break;
 						}
@@ -953,6 +1044,12 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 								break;
 							case TVMENU_MUTE:
 
+								__TvOSD_si(msg);
+								if(dsk_tv_rcv->sourceInput==0)
+									dsk_tv_rcv_pre_freq_play();								
+								__TvOSD_OPEN(msg,TVMENU_NUM);								
+								break;
+							case TVMENU_MODE:
 								__TvOSD_si(msg);
 								if(dsk_tv_rcv->sourceInput==0)
 									dsk_tv_rcv_pre_freq_play();								
@@ -1016,6 +1113,15 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 						tv_para->res_flag = 0;
 		                break;
 					}
+					case GUI_MSG_KEY_MODE:
+					{
+						if(dsk_tv_rcv->tv_menuID!=TVMENU_MODE)
+						{
+							__TvOSD_si(msg);
+							__TvOSD_OPEN(msg,TVMENU_MODE);
+						}
+					}
+					break;
 					default:
 						break;
 				}
@@ -1120,6 +1226,7 @@ static void searchOver(__gui_msg_t *msg)
 #define TV_VOL_ID		(APP_TV_ID +2)
 #define TV_CHA_ID		(APP_TV_ID +3)	
 #define TV_MUTE_ID		(APP_TV_ID +4)
+#define TV_MODE_ID		(APP_TV_ID +5)
 
 static __s32 app_tv_proc(__gui_msg_t *msg)
 {
@@ -1289,6 +1396,20 @@ static __s32 app_tv_proc(__gui_msg_t *msg)
 					{
 						case 0:
 							__tv_num_scene_delete(tv_para_comman);	
+							if(movie_muteflag==1)
+								__TvOSD_OPEN(msg,TVMENU_MUTE);
+							break;
+						case 1:break;
+						case 2:break;
+						default:break;
+							
+					}						
+					break;
+				case TV_MODE_ID:
+					switch(HIWORD(msg->dwAddData1))
+					{
+						case 0:
+							__tv_image_mode_scene_delete(tv_para_comman);	
 							if(movie_muteflag==1)
 								__TvOSD_OPEN(msg,TVMENU_MUTE);
 							break;

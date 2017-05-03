@@ -629,6 +629,12 @@ static __s32 key_msg_cb(void *msg)
 					pmsg->id 	= GUI_MSG_KEY_POWEROFF;
 					break;
 				}
+				case KPAD_MODE:
+				{
+					pmsg->type 	= GUI_MSG_KEY;
+					pmsg->id 	= GUI_MSG_KEY_MODE;
+					break;
+				}
 				default:
 					break;
 			}			

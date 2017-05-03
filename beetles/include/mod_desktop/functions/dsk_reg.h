@@ -199,6 +199,7 @@ typedef struct
 	__u32	bright;
 	__u32	contrast;
 	__u32	color;	
+	__u32	image_mode;
 	__u32	sourceInput;
 	__u32	tv_channel[200];	//TVÆµ¶Î±£´æ
 	__u8	SoundSystable[200];

@@ -20,6 +20,7 @@
 #include "app_home_i.h"
 #include "Tv_menu_ui.h"
 #include "app_tv_i.h"
+#include "tv_mannger.h"
 
 typedef struct 
 {
@@ -1437,20 +1438,25 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 
 							tv_menu_paint_protel(msg,tv_data.item,1);
 							dsk_tv_set_cur_bright();
+							dsk_tv_rcv->image_mode_flag = 1;
 							break;
 						case 2:
 							if(dsk_tv_rcv->contrast < 100)
 								dsk_tv_rcv->contrast++;
 
 							tv_menu_paint_protel(msg,tv_data.item,1);
+							//dsk_tv_rcv->image_mode = TV_IMAGE_MODE_CUSTOM;
 							dsk_tv_set_cur_contrast();
+							dsk_tv_rcv->image_mode_flag = 1;
 							break;
 						case 3:					
 							if(dsk_tv_rcv->color < 100)
 								dsk_tv_rcv->color++;
 
 							tv_menu_paint_protel(msg,tv_data.item,1);
+							//dsk_tv_rcv->image_mode = TV_IMAGE_MODE_CUSTOM;
 							dsk_tv_set_cur_color();
+							dsk_tv_rcv->image_mode_flag = 1;
 							break;
 /*
 						case 5:
@@ -1574,21 +1580,27 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 								dsk_tv_rcv->bright--;
 
 							tv_menu_paint_protel(msg,tv_data.item,1);
+							//dsk_tv_rcv->image_mode = TV_IMAGE_MODE_CUSTOM;
 							dsk_tv_set_cur_bright();
+							dsk_tv_rcv->image_mode_flag = 1;
 							break;
 						case 2:
 							if(dsk_tv_rcv->contrast > 0)
 								dsk_tv_rcv->contrast--;
 
 							tv_menu_paint_protel(msg,tv_data.item,1);
+							//dsk_tv_rcv->image_mode = TV_IMAGE_MODE_CUSTOM;
 							dsk_tv_set_cur_contrast();
+							dsk_tv_rcv->image_mode_flag = 1;
 							break;
 						case 3:					
 							if(dsk_tv_rcv->color > 0)
 								dsk_tv_rcv->color--;
 
 							tv_menu_paint_protel(msg,tv_data.item,1);
+							//dsk_tv_rcv->image_mode = TV_IMAGE_MODE_CUSTOM;
 							dsk_tv_set_cur_color();
+							dsk_tv_rcv->image_mode_flag = 1;
 							break;
 							/*
 						case 5:
@@ -1864,6 +1876,8 @@ static __s32 _tv_main_menu_Proc(__gui_msg_t *msg)
             
 //			smenu_para = (tv_menu_para_t *)GUI_WinGetAttr(msg->h_deswin);
 			smenu_attr = (tv_menu_scene_t *)GUI_WinGetAttr(msg->h_deswin);
+			if(dsk_tv_rcv->image_mode_flag)
+				dsk_tv_rcv_save_image_mode();
 			__tvmenu_uninstall_hide_timmer(smenu_attr);
 			tvmenu_uninit_res(smenu_attr);
 		}

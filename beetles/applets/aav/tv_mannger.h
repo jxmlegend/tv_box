@@ -43,7 +43,21 @@ typedef int					  int32;
 typedef unsigned int		  u32;
 typedef unsigned int		  __u32;
 typedef unsigned int		  uint32;
-                              
+
+typedef enum
+{	
+	TV_IMAGE_MODE_CUSTOM,
+	TV_IMAGE_MODE_BRIGHT,
+	TV_IMAGE_MODE_STANDARD,
+	TV_IMAGE_MODE_MILD,
+}tv_image_mode_t;
+
+typedef struct {
+	__u32				bright;
+	__u32				contrast;
+	__u32				color;
+}tv_image_mode_data_t;
+	
 /*                            
 typedef unsigned long long	  u64;
 typedef unsigned long long	  __u64;
@@ -77,6 +91,7 @@ __s32 dsk_tv_rcv_save_search_result(void);
 __s32 dsk_tv_rcv_pre_freq_play(void);
 __s32 dsk_tv_rcv_next_freq_play(void);
 __s32 dsk_tv_rcv_save_search_result(void);
+__s32 dsk_tv_rcv_save_image_mode(void);
 __s32 dsk_tv_rcv_get_sd_data(void);
 __s32 dsk_tv_rcv_curchafornum_play(__u32 num);
 __s32 dsk_tv_rcv_cur_channelnum(void);
@@ -90,6 +105,7 @@ void dsk_tv_SetC500VideoSys(void);
 
 void dsk_tv_set_cur_contrast(void);
 void dsk_tv_set_cur_color(void);
+void dsk_tv_set_image_mode(tv_image_mode_t mode);
 void dsk_tv_finerFreq(__u32 flag);
 void Get2137PllData(void);
 #endif

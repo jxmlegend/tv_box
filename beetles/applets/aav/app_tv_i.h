@@ -33,6 +33,8 @@ typedef struct
 	__u32				bright;
 	__u32				contrast;
 	__u32				color;
+	__u32				image_mode;
+	__u8				image_mode_flag;
 	__u32				lang;
 	__u32				shemod;
 	__u32				sourceInput;	
@@ -57,6 +59,7 @@ typedef struct
 #define  TVMENU_VOL			2
 #define  TVMENU_NUM		3
 #define  TVMENU_MUTE		4
+#define  TVMENU_MODE		5
 
 extern  dsk_tv_rcv_t *dsk_tv_rcv;
 extern app_tv_data_t *app_tv_data;

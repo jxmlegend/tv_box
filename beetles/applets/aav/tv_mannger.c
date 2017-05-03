@@ -69,6 +69,13 @@ typedef struct
 
 dsk_tv_rcv_t *dsk_tv_rcv = NULL;
 
+static tv_image_mode_data_t image_mode_data[4] = 
+{
+	{50,50,50},
+	{75,70,65},
+	{65,55,60},
+	{70,45,70}
+};
 
 __s32  tvserch_cmd2tvmenu(H_WIN hwin, __s32 id, __s32 data2, __s32 reserved)
 {
@@ -478,15 +485,11 @@ __s32 dsk_tv_rcv_get_sd_data(void)
 
 	para = (reg_tv_para_t*)dsk_reg_get_para_by_app(REG_APP_TV);
 
-	dsk_tv_rcv->bright = para->bright;
-	if(dsk_tv_rcv->bright>100)
-		dsk_tv_rcv->bright = 50;
-	dsk_tv_rcv->contrast = para->contrast;	
-	if(dsk_tv_rcv->contrast>100)
-		dsk_tv_rcv->contrast = 50;
-	dsk_tv_rcv->color = para->color;		
-	if(dsk_tv_rcv->color>100)
-		dsk_tv_rcv->color = 50;	
+	image_mode_data[TV_IMAGE_MODE_CUSTOM].bright = para->bright;
+	image_mode_data[TV_IMAGE_MODE_CUSTOM].contrast = para->contrast;	
+	image_mode_data[TV_IMAGE_MODE_CUSTOM].color = para->color;		
+	dsk_tv_rcv->image_mode = para->image_mode;
+	
 	dsk_tv_rcv->sourceInput = para->sourceInput;
 	if(dsk_tv_rcv->sourceInput>1)
 		dsk_tv_rcv->sourceInput = 0;
@@ -535,9 +538,10 @@ __s32 dsk_tv_rcv_save_search_result(void)
 		para->tv_channel[i] = dsk_tv_rcv->channltable[i];
 		para->SoundSystable[i] = dsk_tv_rcv->SoundSystable[i];		
 	}
-	para->bright = dsk_tv_rcv->bright;
-	para->contrast= dsk_tv_rcv->contrast;
-	para->color= dsk_tv_rcv->color;
+	para->image_mode = dsk_tv_rcv->image_mode;
+	para->bright = image_mode_data[TV_IMAGE_MODE_CUSTOM].bright;
+	para->contrast = image_mode_data[TV_IMAGE_MODE_CUSTOM].contrast;
+	para->color = image_mode_data[TV_IMAGE_MODE_CUSTOM].color;
 	para->sourceInput = dsk_tv_rcv->sourceInput;
 	para->channel_id = dsk_tv_rcv->cur_channl;
 	para->Pre_channel_id = dsk_tv_rcv->pre_channl;
@@ -548,6 +552,34 @@ __s32 dsk_tv_rcv_save_search_result(void)
 	return EPDK_OK;
 }
 
+__s32 dsk_tv_rcv_save_image_mode(void)
+{
+	__u32 i;
+	reg_tv_para_t* para;
+	
+	if(dsk_tv_rcv == NULL)
+	{
+		__err("radio receive not open!\n");
+		return EPDK_FAIL;
+	}
+    __msg("save tv data!\n");
+	para = (reg_tv_para_t*)dsk_reg_get_para_by_app(REG_APP_TV);
+
+	dsk_tv_rcv->image_mode = TV_IMAGE_MODE_CUSTOM;
+	image_mode_data[TV_IMAGE_MODE_CUSTOM].bright = dsk_tv_rcv->bright;
+	image_mode_data[TV_IMAGE_MODE_CUSTOM].contrast= dsk_tv_rcv->contrast;
+	image_mode_data[TV_IMAGE_MODE_CUSTOM].color= dsk_tv_rcv->color;
+
+	para->image_mode = dsk_tv_rcv->image_mode;
+	para->bright = image_mode_data[TV_IMAGE_MODE_CUSTOM].bright;
+	para->contrast = image_mode_data[TV_IMAGE_MODE_CUSTOM].contrast;
+	para->color = image_mode_data[TV_IMAGE_MODE_CUSTOM].color;
+	
+	dsk_reg_flush();
+
+	dsk_tv_rcv->image_mode_flag = 0;
+	return EPDK_OK;
+}
 
 __s32 dsk_tv_rcv_close(void)
 {
@@ -882,8 +914,6 @@ void TvSearchChannel(__u32 tvsys)
 	SetColorDatato2137();
 }
 
-
-
 void dsk_tv_set_cur_bright(void)
 {
 	__u32 tmp_bright;
@@ -919,6 +949,16 @@ void dsk_tv_set_cur_color(void)
 		tmp_color = 64+tmp_color*2;
 	}
 	com_video_set_saturation(tmp_color);
+}
+
+void dsk_tv_set_image_mode(tv_image_mode_t mode)
+{
+	dsk_tv_rcv->bright = image_mode_data[mode].bright;
+	dsk_tv_rcv->contrast = image_mode_data[mode].contrast;
+	dsk_tv_rcv->color = image_mode_data[mode].color;
+	dsk_tv_set_cur_bright();
+	dsk_tv_set_cur_contrast();
+	dsk_tv_set_cur_color();
 }
 
 __s32 dsk_tv_rcv_cur_channelnum(void)
