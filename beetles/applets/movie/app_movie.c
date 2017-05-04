@@ -72,7 +72,7 @@ static __s32 __movie_playend_scene_create(movie_ctrl_t* movie_ctrl);
 
 
 __u32 movie_muteflag = 0;
-__u32 movie_volume = 0;
+//__u32 movie_volume = 0;
 
 
 static __s32 movie_set_mute(void)
@@ -80,13 +80,15 @@ static __s32 movie_set_mute(void)
 	if(movie_muteflag==1)
 	{
 		movie_muteflag = 0;
-		dsk_volume_set(movie_volume);
+		//dsk_volume_set(movie_volume);
+		dsk_volume_on();
 	}
 	else
 	{
 		movie_muteflag = 1;
-		movie_volume = dsk_volume_get();
-		dsk_volume_set(0);
+		//movie_volume = dsk_volume_get();
+		//dsk_volume_set(0);
+		dsk_volume_off();
 	}
 }
 /***********************************************************************************************************
@@ -985,7 +987,8 @@ static __s32 __movie_volume_scene_create(movie_ctrl_t* movie_ctrl)
 	if(movie_muteflag==1)
 	{
 		movie_muteflag = 0;
-		dsk_volume_set(movie_volume);		
+		//dsk_volume_set(movie_volume);	
+		dsk_volume_on();
 		__movie_mute_scene_delete(movie_ctrl);
 	}
 	
@@ -2926,7 +2929,8 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
 									if(movie_muteflag==1)
 									{
 										movie_muteflag = 0;
-										dsk_volume_set(movie_volume);		
+										//dsk_volume_set(movie_volume);	
+										dsk_volume_on();
 									}
 									
 									__movie_volume_scene_create(movie_ctrl);

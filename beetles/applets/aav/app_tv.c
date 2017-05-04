@@ -61,7 +61,7 @@ app_tv_data_t *app_tv_data = NULL;
 static reg_system_para_t* setting_reg_para;
 static int long_key = 0;
 extern __u32 movie_muteflag;
-extern __u32 movie_volume;
+//extern __u32 movie_volume;
 /***********************************************************************************************************
 	½¨Á¢Í¼²ã
 ************************************************************************************************************/
@@ -238,7 +238,8 @@ static __s32 __tv_volume_scene_create(tv_para_t *tv_para)
 		if(movie_muteflag == 1)
 		{
 			movie_muteflag = 0;
-			dsk_volume_set(movie_volume);
+			//dsk_volume_set(movie_volume);
+			dsk_volume_on();
 		}
 		create_para.cur_val = dsk_volume_get();	
 		
@@ -632,13 +633,15 @@ static __s32 tv_set_mute(void)
 	if(movie_muteflag==1)
 	{
 		movie_muteflag = 0;
-		dsk_volume_set(movie_volume);
+		//dsk_volume_set(movie_volume);
+		dsk_volume_on();
 	}
 	else
 	{
 		movie_muteflag = 1;
-		movie_volume = dsk_volume_get();
-		dsk_volume_set(0);
+		//movie_volume = dsk_volume_get();
+		//dsk_volume_set(0);
+		dsk_volume_off();
 	}
 }
 

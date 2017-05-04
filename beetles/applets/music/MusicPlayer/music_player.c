@@ -75,7 +75,7 @@ __s32 music_player_win_on_sys_timer(music_player_ctrl_t *this);
 __s32 music_restore_play_file_info(music_player_ctrl_t *this);
 
 extern __u32 movie_muteflag;
-extern __u32 movie_volume;
+//extern __u32 movie_volume;
 
 
  __s32 music_set_mute(void)
@@ -83,14 +83,16 @@ extern __u32 movie_volume;
 	if(movie_muteflag==1)
 	{
 		movie_muteflag = 0;
-		dsk_volume_set(movie_volume);
+		//dsk_volume_set(movie_volume);
+		dsk_volume_on();
 		DrawMusicVolStatusButton(0);
 	}
 	else
 	{
 		movie_muteflag = 1;
-		movie_volume = dsk_volume_get();
-		dsk_volume_set(0);
+		//movie_volume = dsk_volume_get();
+		//dsk_volume_set(0);
+		dsk_volume_off();
 		DrawMusicVolStatusButton(1);
 	}
 }
@@ -463,7 +465,8 @@ static __s32 music_explorer_key_proc(__gui_msg_t *msg)
 					if(movie_muteflag==1)
 					{
 						movie_muteflag = 0;
-						dsk_volume_set(movie_volume);		
+						//dsk_volume_set(movie_volume);		
+						dsk_volume_on();
 						DrawMusicVolStatusButton(movie_muteflag);
 					}	
 					MusicVolumeBarCreate(player_ctrl);
@@ -479,7 +482,8 @@ static __s32 music_explorer_key_proc(__gui_msg_t *msg)
 					if(movie_muteflag==1)
 					{
 						movie_muteflag = 0;
-						dsk_volume_set(movie_volume);		
+						//dsk_volume_set(movie_volume);	
+						dsk_volume_on();
 						DrawMusicVolStatusButton(movie_muteflag);
 					}					
 					MusicVolumeBarCreate(player_ctrl);	
@@ -561,7 +565,8 @@ static __s32 music_explorer_key_proc(__gui_msg_t *msg)
 					if(movie_muteflag==1)
 					{
 						movie_muteflag = 0;
-						dsk_volume_set(movie_volume);		
+						//dsk_volume_set(movie_volume);	
+						dsk_volume_on();
 					}						
 					MusicVolumeBarCreate(player_ctrl);
 				}

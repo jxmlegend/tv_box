@@ -1786,6 +1786,7 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 					esKSRV_Reset();		
 				}	
                 bfirst = 0;
+                dsk_volume_on();
                 vol= dsk_volume_get();
 				dsk_volume_set(30);
 				display_switch_to_pc();	
@@ -1875,6 +1876,7 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 			}
 			else
 			{		
+				dsk_volume_on();
 				vol= dsk_volume_get();
 				dsk_volume_set(30);
 				display_switch_to_pc();	
