@@ -522,7 +522,7 @@ static __s32 TVsys[] =
 	STRING_TV_SYS_PAL_I,
 	STRING_TV_SYS_PAL_BG,
 	STRING_TV_SYS_NTSC,
-	STRING_TV_SYS_SECAM
+	//STRING_TV_SYS_SECAM
 };
 
 static __s32 TVinput[] =
@@ -1507,7 +1507,7 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 						case 2:
 							if(dsk_tv_rcv->sourceInput==0)
 							{
-								if(dsk_tv_rcv->ucSoundSys<5)
+								if(dsk_tv_rcv->ucSoundSys<4)
 									dsk_tv_rcv->ucSoundSys++;
 								else
 									dsk_tv_rcv->ucSoundSys = 1;
