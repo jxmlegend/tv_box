@@ -1019,50 +1019,6 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 
 					}
 					break;
-					case GUI_MSG_KEY_ENTER:
-					case GUI_MSG_KEY_LONGENTER:
-					{
-						switch (dsk_tv_rcv->tv_menuID)
-						{
-							case TVMENU_NULL:
-							{				
-								if(dsk_tv_rcv->sourceInput==0)
-									dsk_tv_rcv_pre_freq_play();
-								__TvOSD_OPEN(msg,TVMENU_NUM);
-							}
-								break;
-							case TVMENU_VOL:	
-							{
-								__TvOSD_si(msg);
-								if(dsk_tv_rcv->sourceInput==0)
-									dsk_tv_rcv_pre_freq_play();								
-								__TvOSD_OPEN(msg,TVMENU_NUM);
-							}	
-								break;
-							case TVMENU_NUM:	
-							{
-								if(dsk_tv_rcv->sourceInput==0)
-									dsk_tv_rcv_pre_freq_play();
-							}	
-								break;
-							case TVMENU_MUTE:
-
-								__TvOSD_si(msg);
-								if(dsk_tv_rcv->sourceInput==0)
-									dsk_tv_rcv_pre_freq_play();								
-								__TvOSD_OPEN(msg,TVMENU_NUM);								
-								break;
-							case TVMENU_MODE:
-								__TvOSD_si(msg);
-								if(dsk_tv_rcv->sourceInput==0)
-									dsk_tv_rcv_pre_freq_play();								
-								__TvOSD_OPEN(msg,TVMENU_NUM);								
-								break;
-							default:
-								break;
-						}		
-					}
-					break;
 					case GUI_MSG_KEY_LONGMENU:
 					{
 						if(long_key++ >= 5) {
