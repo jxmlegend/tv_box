@@ -108,8 +108,8 @@ static __s32 photo_mset_paint(__gui_msg_t *msg, __s8 mode)
 {
 #define BMP_Y_OFFSET  6
 //#define BTN_SP        ((LCD_WIDTH / MSET_ITEM_PER_PAGE) - MENU_BTN_W)
-//#define BTN_SP        ((LCD_WIDTH / MSET_ITEM_PER_PAGE) - MENU_BTN_W)
-#define BTN_SP        ((LCD_WIDTH / 10) - MENU_BTN_W+6)
+#define BTN_SP        ((SSET_MAIN_LAYER_W / MSET_ITEM_PER_PAGE) - MENU_BTN_W)
+//#define BTN_SP        ((LCD_WIDTH / 10) - MENU_BTN_W+6)
 #define BMP_X_OFFSET  (BTN_SP / 2)
 #define STR_X_OFFSET  0
 	photo_mset_ctrl_t *mset_ctrl;
@@ -172,7 +172,7 @@ static __s32 photo_mset_paint(__gui_msg_t *msg, __s8 mode)
 
 				if (i < MSET_ITEM_PER_PAGE - 1)
 				{
-					GUI_BMP_RES_Draw(mset_ctrl->mset_line, MENU_BTN_SP_X_(i)+7*i, BMP_Y_OFFSET);
+					GUI_BMP_RES_Draw(mset_ctrl->mset_line, MENU_BTN_SP_X_(i), BMP_Y_OFFSET);
 				}
 				
  				 __msg("gui_rect.x1=%d,\n",MENU_BTN_SP_X_(i));				
@@ -390,8 +390,8 @@ static __s32 photo_mset_Proc(__gui_msg_t *msg)
 			ZeroTypeMem(mset_ctrl, photo_mset_ctrl_t);
 			mset_ctrl->mset_para= mset_para;
 			photo_mset_init(mset_ctrl);
-			mset_ctrl->unfcs_color = APP_COLOR_WHITE;
-			mset_ctrl->fcs_color = APP_COLOR_YELLOW;
+			mset_ctrl->unfcs_color = GUI_WHITE;
+			mset_ctrl->fcs_color = GUI_YELLOW;
 			mset_ctrl->focus_id = mset_para->focus;
 			mset_ctrl->page_first_id = mset_para->first;
 			mset_ctrl->lr_adjust_sset = 0;

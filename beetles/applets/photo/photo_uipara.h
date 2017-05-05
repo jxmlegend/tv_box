@@ -20,20 +20,20 @@
 
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////
-#define LCD_WIDTH                  720
-#define LCD_HEIGHT                 576
+#define LCD_WIDTH                  1024
+#define LCD_HEIGHT                 768
 
-#define SSET_MAIN_LAYER_W          LCD_WIDTH
-#define SSET_MAIN_LAYER_H          59
-#define SSET_MAIN_LAYER_Y          (LCD_HEIGHT - SSET_MAIN_LAYER_H)
+#define SSET_MAIN_LAYER_W          674
+#define SSET_MAIN_LAYER_H          112
+#define SSET_MAIN_LAYER_Y          606
 
-#define MENU_LIST_BTN_W            114//88
-#define MENU_LIST_BTN_H            24
-#define MENU_LIST_BTN_TOP          3
-#define MENU_LIST_BTN_BOTTOM       3
-#define MENU_LIST_BTN_PREV         5
-#define MENU_LIST_BTN_NEXT         5
-#define MENU_LIST_BOTTOM           450
+#define MENU_LIST_BTN_W            130//88
+#define MENU_LIST_BTN_H            38
+#define MENU_LIST_BTN_TOP          10
+#define MENU_LIST_BTN_BOTTOM       10
+#define MENU_LIST_BTN_PREV         10
+#define MENU_LIST_BTN_NEXT         10
+#define MENU_LIST_BOTTOM           SSET_MAIN_LAYER_Y
 
 #define SSET_LIST_ITEM_SP          3
 #define SSET_LIST_ITEM_SP_H        (MENU_LIST_BTN_H + SSET_LIST_ITEM_SP)
@@ -49,8 +49,8 @@
 #define SSET_ZOOM_LAYER_H          104
 #define SSET_ZOOM_LAYER_W          22
 
-#define SSET_ROTATE_LAYER_H        66
-#define SSET_ROTATE_LAYER_W        66
+#define SSET_ROTATE_LAYER_H        80
+#define SSET_ROTATE_LAYER_W        80
 
 #define SSET_BRIGHTNESS_LAYER_H    118
 #define SSET_BRIGHTNESS_LAYER_W    18
@@ -58,7 +58,7 @@
 #define SSET_SLIDESHOW_LAYER_H     SSET_LIST_LAYER_H_EX(6)
 #define SSET_SLIDESHOW_LAYER_W     MENU_LIST_BTN_W
 
-#define SSET_INTERVAL_LAYER_H      SSET_LIST_LAYER_H_(4)
+#define SSET_INTERVAL_LAYER_H      SSET_LIST_LAYER_H_(3)
 #define SSET_INTERVAL_LAYER_W      MENU_LIST_BTN_W
 
 #define SSET_SCALE_LAYER_H         SSET_LIST_LAYER_H_(4)
@@ -69,12 +69,12 @@
 
 #define MSET_ITEM_MAX		       5
 #define MSET_ITEM_PER_PAGE         5
-#define MENU_BTN_W                 43
-#define MENU_BTN_H                 41
+#define MENU_BTN_W                 60
+#define MENU_BTN_H                 60
 #define PHOTO_FONT_H               16
 #define PHOTO_FONT_BYTE_W          (PHOTO_FONT_H / 2)
-#define MENU_BTN_SP_W              (2)
-#define MENU_BTN_SP_X_(_i)         (((_i) + 1) * (LCD_WIDTH / 10) - (MENU_BTN_SP_W / 2))
+#define MENU_BTN_SP_W              (14)
+#define MENU_BTN_SP_X_(_i)         (((_i) + 1) * (SSET_MAIN_LAYER_W / MSET_ITEM_PER_PAGE) - (MENU_BTN_SP_W / 2))
 /////////////////////////////////////
 #define SSET_ZOOM_BG_X                  0//366
 #define SSET_ZOOM_BG_Y                  0//60
@@ -82,11 +82,13 @@
 #define SSET_ZOOM_BG_H                  104
 
 #define MENU_LIST_ITEM_W                MENU_LIST_BTN_W//88
-#define MENU_LIST_ITEM_H                24
-#define MENU_LIST_ITEM_TOP              2
+#define MENU_LIST_ITEM_H                38
+#define MENU_LIST_LONG_STR_W             100
+#define MENU_LIST_LONG_STR_H             MENU_LIST_ITEM_H
+#define MENU_LIST_ITEM_TOP              5
 #define MENU_LIST_ITEM_BOTTOM           MENU_LIST_ITEM_TOP
-#define MENU_LIST_STR_X_OFFSET          30//20
-#define MENU_LIST_STR_Y_OFFSET          4
+#define MENU_LIST_STR_X_OFFSET          24//20
+#define MENU_LIST_STR_Y_OFFSET          10
 #define MENU_LIST_ITEM_SP               3
 #define MENU_LIST_ITEM_UP               5
 #define MENU_LIST_ITEM_DOWN             MENU_LIST_ITEM_UP
@@ -100,7 +102,7 @@
 #define ID_ICON_BAR                     3
 #define ID_ICON_SEL_N                   4 //select normal
 #define ID_ICON_SEL_F                   5 //select focus
-#define ID_ICON_BG                      6
+#define ID_ICON_LONG_STR                6
 
 #define LIST_SLIDESHOW_ITEM_PAGE_COUNT  6     
 
@@ -168,6 +170,8 @@ typedef struct tag_photo_uipara
 	photo_rect_t  bmp_volume;
 	photo_rect_t  bmp_slide_bg;
 	photo_rect_t  bmp_slide_block;
+	photo_rect_t  bmp_slide_block_l;
+	photo_rect_t  bmp_slide_block_r;
 	photo_rect_t  bmp_slide_bar;
 }photo_uipara_t;
 

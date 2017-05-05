@@ -62,30 +62,30 @@ typedef struct tag_photo_spsc_ctrl
 }photo_spsc_ctrl_t;
 
 
-#define SPSC_PLAY_STATUS_X         299//600
-#define SPSC_PLAY_STATUS_Y         18//50
-#define SPSC_PLAY_STATUS_W         81//96
-#define SPSC_PLAY_STATUS_H         36//42
-#define SPSC_PLAY_STATUS_STR_W     50
+#define SPSC_PLAY_STATUS_X         816//600
+#define SPSC_PLAY_STATUS_Y         64//50
+#define SPSC_PLAY_STATUS_W         148//96
+#define SPSC_PLAY_STATUS_H         74//42
+#define SPSC_PLAY_STATUS_STR_W     94
 
 #define SPSC_INFO_MENU_X           40//200
 #define SPSC_INFO_MENU_Y           40//100
 
-#define SPSC_VOLUME_X              170//20
-#define SPSC_VOLUME_Y              500//30
+#define SPSC_VOLUME_X              35//20
+#define SPSC_VOLUME_Y              638//30
 
-#define SPSC_VOLUME_MUTE_X_OFFSET  (36-18)
-#define SPSC_VOLUME_MUTE_Y_OFFSET  (18-12)
-#define SPSC_VOLUME_MUTE_X_R_OFFSET 5
+#define SPSC_VOLUME_MUTE_X_OFFSET  19
+#define SPSC_VOLUME_MUTE_Y_OFFSET  21
+#define SPSC_VOLUME_MUTE_X_R_OFFSET 849
 
 #define SPSC_VOLUME_X_OFFSET        SPSC_VOLUME_MUTE_X_OFFSET
 #define SPSC_VOLUME_Y_OFFSET        SPSC_VOLUME_MUTE_Y_OFFSET
 
-#define SPSC_VOLUME_X_OFFSET_1      SPSC_VOLUME_X_OFFSET
-#define SPSC_VOLUME_Y_OFFSET_1      (SPSC_VOLUME_Y_OFFSET + 4)
+#define SPSC_VOLUME_X_OFFSET_1      66
+#define SPSC_VOLUME_Y_OFFSET_1      31
 
-#define SPSC_VOLUME_TXT_W           30
-#define SPSC_VOLUME_TXT_Y           (SPSC_VOLUME_Y + (SPSC_VOLUME_Y_OFFSET_1 / 2))
+#define SPSC_VOLUME_TXT_X           897
+#define SPSC_VOLUME_TXT_Y           21
 
 static __s8 Timer_SpscStaId = 0xff;
 #define DELAY_SPSCSTAID             DELAY_HIDE_MENU
@@ -110,21 +110,21 @@ static void  photo_spsc_init(photo_spsc_ctrl_t *spsc_ctrl)
 	
 	create_bmp_res(ID_PHOTO_NEXT_BMP, spsc_res->bmp_next);
 
-	create_bmp_res(ID_PHOTO_VOLUME_L_BMP, spsc_res->bmp_volume_l);
+	create_bmp_res(ID_COMMON_VOL_LEFT_BMP, spsc_res->bmp_volume_l);
 
-	create_bmp_res(ID_PHOTO_VOLUME_R_BMP, spsc_res->bmp_volume_r);
+	create_bmp_res(ID_COMMON_VOL_RIGHT_BMP, spsc_res->bmp_volume_r);
 
-	create_bmp_res(ID_PHOTO_MUTE_BMP, spsc_res->bmp_mute);
+	create_bmp_res(ID_COMMON_VOL_MUTE_BMP, spsc_res->bmp_mute);
 
-	create_bmp_res(ID_PHOTO_SLIDE_BG_BMP, spsc_res->bmp_slide_bg);
+	create_bmp_res(ID_COMMON_VOL_BG_BMP, spsc_res->bmp_slide_bg);
 
-	create_bmp_res(ID_PHOTO_SLIDE_BAR_BMP, spsc_res->bmp_slide_bar);
+	create_bmp_res(ID_COMMON_VOL_PROG_BG_BMP, spsc_res->bmp_slide_bar);
 
-	create_bmp_res(ID_PHOTO_SLIDE_BLOCK_BMP, spsc_res->bmp_slide_block);
+	create_bmp_res(ID_COMMON_VOL_CURSOR_MIDDLE_BMP, spsc_res->bmp_slide_block);
 	
-	create_bmp_res(ID_PHOTO_SLIDE_BLOCK_L_BMP, spsc_res->bmp_slide_block_l);
+	create_bmp_res(ID_COMMON_VOL_CURSOR_HEAD_BMP, spsc_res->bmp_slide_block_l);
 
-	create_bmp_res(ID_PHOTO_SLIDE_BLOCK_R_BMP, spsc_res->bmp_slide_block_r);
+	create_bmp_res(ID_COMMON_VOL_CURSOR_TAIL_BMP, spsc_res->bmp_slide_block_r);
 
 	create_bmp_res(ID_PHOTO_MAIN_BG_BMP, spsc_res->bmp_bg);
 
@@ -269,11 +269,11 @@ static void  phot_spsc_paint_play_status(photo_spsc_ctrl_t *spsc_ctrl)
 	gui_rect.y1 = SPSC_PLAY_STATUS_Y + SPSC_PLAY_STATUS_H / 2;
 	if (spsc_ctrl->spsc_para->play_status == PHOTO_STAT_NEXT)
 	{
-		GUI_DispStringInRect(buf, &gui_rect, GUI_TA_LEFT);
+		GUI_DispStringInRect(buf, &gui_rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
 	}
 	else
 	{
-		GUI_DispStringInRect(buf, &gui_rect, GUI_TA_RIGHT);
+		GUI_DispStringInRect(buf, &gui_rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
 	}
 	
 	__msg("now play[%d, %d]\n",  spsc_ctrl->spsc_para->cur_no, spsc_ctrl->spsc_para->total_no);
@@ -287,11 +287,11 @@ static void  phot_spsc_paint_play_status(photo_spsc_ctrl_t *spsc_ctrl)
 	gui_rect.y1 = SPSC_PLAY_STATUS_Y + SPSC_PLAY_STATUS_H - 2;
 	if (spsc_ctrl->spsc_para->play_status == PHOTO_STAT_NEXT)
 	{
-		GUI_DispStringInRect(buf, &gui_rect, GUI_TA_LEFT);
+		GUI_DispStringInRect(buf, &gui_rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
 	}
 	else
 	{
-		GUI_DispStringInRect(buf, &gui_rect, GUI_TA_RIGHT);
+		GUI_DispStringInRect(buf, &gui_rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
 	}
 	GUI_CloseAlphaBlend();
 #if _USE_MEMDEV_Handle_
@@ -339,6 +339,9 @@ static __s32 phot_spsc_paint_info(photo_spsc_ctrl_t *spsc_ctrl)
 	update_pic_info(ANOLE_GetCurPicIndex(), spsc_ctrl->spsc_para);
 	
 	GUI_LyrWinSel(spsc_ctrl->spsc_para->layer);
+
+	GUI_BMP_RES_Draw(spsc_ctrl->spsc_res.bmp_bg, 0, 0);
+	
 	GUI_UC_SetEncodeUTF8();
 	GUI_SetFont(SWFFont);
 	GUI_SetColor(spsc_ctrl->txt_color);
@@ -347,7 +350,7 @@ static __s32 phot_spsc_paint_info(photo_spsc_ctrl_t *spsc_ctrl)
 	y = SPSC_INFO_MENU_Y;
 	GUI_BMP_RES_Draw(spsc_ctrl->spsc_res.bmp_big_pause, x, y);
 
-	x += 40;//TODO:Macro
+	x += 60;//TODO:Macro
 	GUI_DispStringAt(spsc_ctrl->spsc_para->name, x, y);
 	y+= sp_h;
 	eLIBs_strcpy(buf, spsc_ctrl->spsc_res.taken_time);
@@ -432,34 +435,32 @@ static void photo_spsc_paint_volume(photo_spsc_ctrl_t *spsc_ctrl)
 	if (spsc_ctrl->spsc_para->volume == 0)
 	{
 		GUI_BMP_RES_Draw(spsc_res->bmp_mute, SPSC_VOLUME_X+SPSC_VOLUME_MUTE_X_OFFSET, SPSC_VOLUME_Y+SPSC_VOLUME_MUTE_Y_OFFSET);
-		GUI_BMP_RES_Draw(spsc_res->bmp_mute, SPSC_VOLUME_X+SPSC_VOLUME_MUTE_X_OFFSET+photo_uipara->bmp_volume.w+photo_uipara->bmp_slide_bar.w + SPSC_VOLUME_MUTE_X_R_OFFSET, SPSC_VOLUME_Y+SPSC_VOLUME_MUTE_Y_OFFSET);
+		GUI_BMP_RES_Draw(spsc_res->bmp_mute, SPSC_VOLUME_X + SPSC_VOLUME_MUTE_X_R_OFFSET, SPSC_VOLUME_Y+SPSC_VOLUME_MUTE_Y_OFFSET);
 	}
 	else
 	{
 		GUI_BMP_RES_Draw(spsc_res->bmp_volume_l,  SPSC_VOLUME_X+SPSC_VOLUME_X_OFFSET, SPSC_VOLUME_Y+SPSC_VOLUME_Y_OFFSET);
-		GUI_BMP_RES_Draw(spsc_res->bmp_volume_r, SPSC_VOLUME_X+SPSC_VOLUME_X_OFFSET+photo_uipara->bmp_volume.w+photo_uipara->bmp_slide_bar.w + SPSC_VOLUME_MUTE_X_R_OFFSET, SPSC_VOLUME_Y+SPSC_VOLUME_Y_OFFSET);
+		GUI_BMP_RES_Draw(spsc_res->bmp_volume_r, SPSC_VOLUME_X+ SPSC_VOLUME_MUTE_X_R_OFFSET, SPSC_VOLUME_Y+SPSC_VOLUME_Y_OFFSET);
 	}
 
 	//画进度背景
-	GUI_BMP_RES_Draw(spsc_res->bmp_slide_bar, SPSC_VOLUME_X+(SPSC_VOLUME_X_OFFSET_1)+photo_uipara->bmp_volume.w, SPSC_VOLUME_Y+(SPSC_VOLUME_Y_OFFSET_1));
+	GUI_BMP_RES_Draw(spsc_res->bmp_slide_bar, SPSC_VOLUME_X+SPSC_VOLUME_X_OFFSET_1, SPSC_VOLUME_Y+SPSC_VOLUME_Y_OFFSET_1);
 
 	//画进度
-	prog_start = SPSC_VOLUME_X+SPSC_VOLUME_X_OFFSET_1+photo_uipara->bmp_volume.w;
+	prog_start = SPSC_VOLUME_X+SPSC_VOLUME_X_OFFSET_1;
 	prog_end   = prog_start + spsc_ctrl->spsc_para->volume * photo_uipara->bmp_slide_bar.w / AUDIO_DEVICE_VOLUME_MAX;
 	if (prog_start < prog_end)
 	{
 		//目前的ui，头block，尾block和中间的block的宽是相等
 		block_w      = photo_uipara->bmp_slide_block.w;
-		block_head_w = block_w;
-		block_tail_w = block_w;
+		block_head_w = photo_uipara->bmp_slide_block_l.w;
+		block_tail_w = photo_uipara->bmp_slide_block_r.w;;
 		ASSERT(prog_start + block_head_w <= prog_end);
 		ASSERT(prog_start + block_tail_w <= prog_end);
 		//画进度头
 		GUI_BMP_RES_Draw(spsc_res->bmp_slide_block_l, prog_start, SPSC_VOLUME_Y+SPSC_VOLUME_Y_OFFSET_1);
 		prog_start += block_head_w;
-		//画进度尾
-		prog_end -= block_tail_w;
-		GUI_BMP_RES_Draw(spsc_res->bmp_slide_block_r, prog_end, SPSC_VOLUME_Y+SPSC_VOLUME_Y_OFFSET_1);
+
 		//填充中间部分
 		while (prog_start < prog_end)
 		{
@@ -467,11 +468,17 @@ static void photo_spsc_paint_volume(photo_spsc_ctrl_t *spsc_ctrl)
 			GUI_BMP_RES_Draw(spsc_res->bmp_slide_block, prog_start, SPSC_VOLUME_Y+SPSC_VOLUME_Y_OFFSET_1);
 			prog_start += block_w;
 		}
+		//画进度尾
+		if(spsc_ctrl->spsc_para->volume == AUDIO_DEVICE_VOLUME_MAX)
+		{
+			prog_end -= block_tail_w;
+			GUI_BMP_RES_Draw(spsc_res->bmp_slide_block_r, prog_end, SPSC_VOLUME_Y+SPSC_VOLUME_Y_OFFSET_1);
+		}
 	}
 
 	GUI_SetColor(spsc_ctrl->txt_color);
 	app_sprintf(buf, "%d", spsc_ctrl->spsc_para->volume);
-	GUI_DispStringAt(buf, SPSC_VOLUME_X+photo_uipara->bmp_slide_bg.w - SPSC_VOLUME_TXT_W, SPSC_VOLUME_TXT_Y);
+	GUI_DispStringAt(buf, SPSC_VOLUME_X + SPSC_VOLUME_TXT_X, SPSC_VOLUME_Y + SPSC_VOLUME_TXT_Y);
 
 
 // 	for (i=0; i<((spsc_ctrl->spsc_para->volume*photo_uipara->bmp_slide_bar.w)/((AUDIO_DEVICE_VOLUME_MAX + 1)*photo_uipara->bmp_slide_block.w)); i++)
@@ -772,7 +779,7 @@ static __s32 photo_spsc_Proc(__gui_msg_t *msg)
 			BallocType(spsc_ctrl, photo_spsc_ctrl_t);
 			spsc_ctrl->spsc_para = spsc_para;
 			photo_spsc_init(spsc_ctrl);
-			spsc_ctrl->txt_color = APP_COLOR_WHITE;
+			spsc_ctrl->txt_color = GUI_WHITE;
 
 			GUI_SetTimer(msg->h_deswin, Timer_SpscStaId, DELAY_SPSCSTAID, 0);
 			GUI_WinSetAddData(msg->h_deswin, (__u32)spsc_ctrl);

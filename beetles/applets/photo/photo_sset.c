@@ -84,11 +84,11 @@ static photo_sset_res_id_t sset_red_id[5] =
 			{MENU_LIST_ITEM_W, MENU_LIST_ITEM_H}, 
 			{MENU_LIST_ITEM_W, MENU_LIST_ITEM_H}, 
 			{MENU_LIST_ITEM_W, MENU_LIST_ITEM_H}, 
-			{0, 0}, {0, 0}
+			{MENU_LIST_LONG_STR_W, MENU_LIST_LONG_STR_H}, {0, 0}
 		},
 		{//Item res bmp ID
 			ID_PHOTO_BAR_TOP_BMP, ID_PHOTO_BAR_BOTTOM_BMP, ID_PHOTO_HORIZONTAL_LINE_BMP,
-			ID_PHOTO_BAR_BMP,  ID_PHOTO_BAR_SEL_N_BMP, ID_PHOTO_BAR_SEL_F_BMP,  0, 0
+			ID_PHOTO_BAR_BMP,  ID_PHOTO_BAR_SEL_N_BMP, ID_PHOTO_BAR_SEL_F_BMP,  ID_PHOTO_BAR_LONG_STR_BMP, 0
 		},
 		{//Item res string ID
 			STRING_PHOTO_OFF, STRING_PHOTO_ON, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -150,11 +150,11 @@ static photo_sset_res_id_t sset_red_id[5] =
 			{MENU_LIST_ITEM_W, MENU_LIST_ITEM_H}, 
 			{MENU_LIST_ITEM_W, MENU_LIST_ITEM_H}, 
 			{MENU_LIST_ITEM_W, MENU_LIST_ITEM_H}, 
-			{0, 0}, {0, 0}
+			{MENU_LIST_LONG_STR_W, MENU_LIST_LONG_STR_H}, {0, 0}
 		},	
 		{//Item res bmp ID
 			ID_PHOTO_BAR_UP_BMP, ID_PHOTO_BAR_DOWN_BMP, ID_PHOTO_HORIZONTAL_LINE_BMP, 
-			ID_PHOTO_BAR_BMP, ID_PHOTO_BAR_SEL_N_BMP, ID_PHOTO_BAR_SEL_F_BMP,  0, 0
+			ID_PHOTO_BAR_BMP, ID_PHOTO_BAR_SEL_N_BMP, ID_PHOTO_BAR_SEL_F_BMP,  ID_PHOTO_BAR_LONG_STR_BMP, 0
 		},
 		{//Item res string ID
 			STRING_PHOTO_DEFAULT, STRING_PHOTO_FADE_IN_FADE_OUT, STRING_PHOTO_PERSIAN_BLINDS_H, 
@@ -173,13 +173,13 @@ static photo_sset_res_id_t sset_red_id[5] =
 			{MENU_LIST_ITEM_W, MENU_LIST_ITEM_H},
 			{MENU_LIST_ITEM_W, MENU_LIST_ITEM_H}, 
 			{MENU_LIST_ITEM_W, MENU_LIST_ITEM_H}, 
-			{20, 20}, 
+			{MENU_LIST_LONG_STR_W, MENU_LIST_LONG_STR_H}, 
 			{0, 0}
 		},
 		{//Item res bmp ID
 			ID_PHOTO_BAR_TOP_BMP, ID_PHOTO_BAR_BOTTOM_BMP, ID_PHOTO_HORIZONTAL_LINE_BMP,
 			ID_PHOTO_BAR_BMP,  ID_PHOTO_BAR_SEL_N_BMP, ID_PHOTO_BAR_SEL_F_BMP,  
-			ID_PHOTO_GRAY_BLOCK_BMP, 0
+			ID_PHOTO_BAR_LONG_STR_BMP, 0
 		},
 		{//Item res string ID
 			STRING_PHOTO_FAST, STRING_PHOTO_MIDDLE, STRING_PHOTO_SLOW, 
@@ -195,12 +195,12 @@ static photo_sset_res_id_t sset_red_id[5] =
 			{MENU_LIST_ITEM_W, MENU_LIST_ITEM_H}, 
 			{MENU_LIST_ITEM_W, MENU_LIST_ITEM_H}, 
 			{MENU_LIST_ITEM_W, MENU_LIST_ITEM_H}, 
-			{0, 0}, {0, 0}
+			{MENU_LIST_LONG_STR_W, MENU_LIST_LONG_STR_H}, {0, 0}
 		},	
 		{//Item res bmp ID
 			ID_PHOTO_BAR_TOP_BMP, ID_PHOTO_BAR_BOTTOM_BMP, ID_PHOTO_HORIZONTAL_LINE_BMP,
 			ID_PHOTO_BAR_BMP, ID_PHOTO_BAR_SEL_N_BMP, ID_PHOTO_BAR_SEL_F_BMP,
-			0, 0
+			ID_PHOTO_BAR_LONG_STR_BMP, 0
 		},
 		{//Item res string ID
 			STRING_PHOTO_AUTO, STRING_PHOTO_ORIGINAL, STRING_PHOTO_CROP,
@@ -221,7 +221,7 @@ static void photo_sset_init(photo_sset_ctrl_t *sset_ctrl)
 		get_lang_res(sset_red_id[sset_ctrl->main_id].id_string[i],  sset_ctrl->sset_res.string[i]);
 	}
 
-	for (i=0; i<5; i++)
+	for (i=0; i<7; i++)
 	{
 		if (sset_red_id[sset_ctrl->main_id].id_icon[i] == 0)
 			continue;		
@@ -235,7 +235,7 @@ static void photo_sset_uninit(photo_sset_ctrl_t *sset_ctrl)
 
 	__s32 i;
 
-	for (i=0; i<5; i++)
+	for (i=0; i<7; i++)
 	{
 		if (sset_red_id[sset_ctrl->main_id].id_icon[i] == 0)
 			continue;
@@ -259,6 +259,7 @@ static void photo_sset_paint_list(/*H_LYR layer, */photo_sset_ctrl_t *sset_ctrl)
 	char buf[32];
 	char long_str[32] = {0};
 	RECT long_str_rt;
+	GUI_RECT rect;
 
 	DEBUG_photo("photo_sset_paint_list(%d, %d)\n", sset_ctrl->item_nr, sset_ctrl->focus_id);
 
@@ -273,7 +274,7 @@ static void photo_sset_paint_list(/*H_LYR layer, */photo_sset_ctrl_t *sset_ctrl)
 	draw_mem = GUI_MEMDEV_Create(0, 0, fb.size.width, fb.size.height);
 	GUI_MEMDEV_Select(draw_mem);
 #endif
-	GUI_SetBkColor(APP_COLOR_CLEAR);
+	//GUI_SetBkColor(APP_COLOR_CLEAR);
 	GUI_Clear();
 	x = 0;
 	y = 0;
@@ -291,7 +292,10 @@ static void photo_sset_paint_list(/*H_LYR layer, */photo_sset_ctrl_t *sset_ctrl)
 		else
 			GUI_BMP_RES_Draw(sset_res->icon[ID_ICON_BAR], x,  y);
 
-
+		rect.x0 = x + MENU_LIST_STR_X_OFFSET;
+		rect.y0 = y;
+		rect.x1 = rect.x0 + MENU_LIST_LONG_STR_W;
+		rect.y1 = rect.y0 + MENU_LIST_LONG_STR_H;
 		//draw string
 		GUI_OpenAlphaBlend();
 		if (i == sset_ctrl->focus_id)
@@ -319,8 +323,8 @@ static void photo_sset_paint_list(/*H_LYR layer, */photo_sset_ctrl_t *sset_ctrl)
 					rt_focus.x1 = rt_focus.x0 + PHOTO_FONT_BYTE_W;
 					rt_focus.y0 = y + 5;
 					rt_focus.y1 = rt_focus.y0 + PHOTO_FONT_H;
-					GUI_SetColor(COLOUR_TO_8BPP_INDEX_(1));
-					GUI_FillRect(rt_focus.x0, rt_focus.y0, rt_focus.x1, rt_focus.y1);
+					//GUI_SetColor(COLOUR_TO_8BPP_INDEX_(1));
+					//GUI_FillRect(rt_focus.x0, rt_focus.y0, rt_focus.x1, rt_focus.y1);
 					DEBUG_photo("rt_focus(%d, %d, %d, %d)\n", rt_focus.x0, rt_focus.y0, rt_focus.x1, rt_focus.y1);
 				} 
 				app_sprintf(buf,INTERVAL_TIME_STR_FORMAT, sset_ctrl->sset_para->interval_time / 10, 
@@ -331,7 +335,8 @@ static void photo_sset_paint_list(/*H_LYR layer, */photo_sset_ctrl_t *sset_ctrl)
 			}
 			else
 			{
-				GUI_DispStringAt(sset_res->string[i], x+MENU_LIST_STR_X_OFFSET, y+MENU_LIST_STR_Y_OFFSET);
+				//GUI_DispStringAt(sset_res->string[i], x+MENU_LIST_STR_X_OFFSET, y+MENU_LIST_STR_Y_OFFSET);
+				GUI_DispStringInRect(sset_res->string[i], &rect, GUI_TA_LEFT | GUI_TA_VCENTER);
 				eLIBs_strcpy(long_str, sset_res->string[i]);
 			}
 		}
@@ -345,7 +350,8 @@ static void photo_sset_paint_list(/*H_LYR layer, */photo_sset_ctrl_t *sset_ctrl)
 			}
 			else
 			{
-				GUI_DispStringAt(sset_res->string[i], x+MENU_LIST_STR_X_OFFSET, y+MENU_LIST_STR_Y_OFFSET);
+				//GUI_DispStringAt(sset_res->string[i], x+MENU_LIST_STR_X_OFFSET, y+MENU_LIST_STR_Y_OFFSET);
+				GUI_DispStringInRect(sset_res->string[i], &rect, GUI_TA_LEFT | GUI_TA_VCENTER);
 			}
 		}
 		GUI_CloseAlphaBlend();
@@ -355,17 +361,18 @@ static void photo_sset_paint_list(/*H_LYR layer, */photo_sset_ctrl_t *sset_ctrl)
 		if (i != sset_ctrl->item_nr-1)
 		{
 			GUI_BMP_RES_Draw(sset_res->icon[ID_ICON_SPLINE],  x,  y);
+			y += sset_red_id[sset_ctrl->main_id].res_size[2].height;
 		}
 
-		y += sset_red_id[sset_ctrl->main_id].res_size[2].height;
+		
 	}
 
 	//draw bottom
 	GUI_BMP_RES_Draw(sset_res->icon[ID_ICON_BOTTOM], x, y);
 
-	GUI_OpenAlphaBlend();
-	PhotoLongStrShow(sset_ctrl->sset_para->layer, &long_str_rt, long_str, sset_ctrl->fcs_color);
-	GUI_CloseAlphaBlend();
+	//GUI_OpenAlphaBlend();
+	//PhotoLongStrShow(sset_ctrl->sset_para->layer, &long_str_rt, long_str, sset_ctrl->fcs_color, ResHandle2Data(sset_res->icon[ID_ICON_LONG_STR]));
+	//GUI_CloseAlphaBlend();
 
 #if _USE_MEMDEV_Handle_
 	GUI_MEMDEV_CopyToLCD_Ex(draw_mem); 
@@ -476,6 +483,7 @@ static __s32 photo_sset_paint_slideshow(photo_sset_ctrl_t *sset_ctrl)
 	char long_str[16 * 3] = {0};
 	__s32 x, y, i;
 	RECT long_str_rt;
+	GUI_RECT rect;
 	
 	sset_res = &sset_ctrl->sset_res;
 	GUI_LyrWinGetFB(sset_ctrl->sset_para->layer, &fb);
@@ -486,7 +494,7 @@ static __s32 photo_sset_paint_slideshow(photo_sset_ctrl_t *sset_ctrl)
 	draw_mem = GUI_MEMDEV_Create(0, 0, fb.size.width, fb.size.height);
 	GUI_MEMDEV_Select(draw_mem);
 #endif
-	GUI_SetBkColor(APP_COLOR_CLEAR);
+	//GUI_SetBkColor(APP_COLOR_CLEAR);
 	GUI_Clear();
 	
 	x = 0;
@@ -510,37 +518,43 @@ static __s32 photo_sset_paint_slideshow(photo_sset_ctrl_t *sset_ctrl)
 			GUI_BMP_RES_Draw(sset_res->icon[ID_ICON_BAR], x,  y);
 
 		GUI_OpenAlphaBlend();
-		
+
+		rect.x0 = x + MENU_LIST_STR_X_OFFSET;
+		rect.y0 = y;
+		rect.x1 = rect.x0 + MENU_LIST_LONG_STR_W;
+		rect.y1 = rect.y0 + MENU_LIST_LONG_STR_H;
 		//Draw string
 		if (i == sset_ctrl->focus_id)
 		{
 			GUI_SetColor(sset_ctrl->fcs_color);
-			GUI_DispStringAt(sset_res->string[i], x+MENU_LIST_STR_X_OFFSET, y+MENU_LIST_STR_Y_OFFSET);
+			//GUI_DispStringAt(sset_res->string[i], x+MENU_LIST_STR_X_OFFSET, y+MENU_LIST_STR_Y_OFFSET);
+			GUI_DispStringInRect(sset_res->string[i], &rect, GUI_TA_LEFT | GUI_TA_VCENTER);
 			
 			long_str_rt.x = x + MENU_LIST_STR_X_OFFSET;
-			long_str_rt.y = y + MENU_LIST_STR_Y_OFFSET;
-			long_str_rt.width  =  MENU_LIST_ITEM_W - long_str_rt.x;
-			long_str_rt.height =  LONG_STR_H;
+			long_str_rt.y = y; //y + MENU_LIST_STR_Y_OFFSET;
+			long_str_rt.width  =  MENU_LIST_LONG_STR_W; //MENU_LIST_ITEM_W - long_str_rt.x;
+			long_str_rt.height =  MENU_LIST_LONG_STR_H; //LONG_STR_H;
 
 			eLIBs_strcpy(long_str, sset_res->string[i]);
 		}
 		else
 		{
 			GUI_SetColor(sset_ctrl->unfcs_color);
-			GUI_DispStringAt(sset_res->string[i], x+MENU_LIST_STR_X_OFFSET, y+MENU_LIST_STR_Y_OFFSET);
+			//GUI_DispStringAt(sset_res->string[i], x+MENU_LIST_STR_X_OFFSET, y+MENU_LIST_STR_Y_OFFSET);
+			GUI_DispStringInRect(sset_res->string[i], &rect, GUI_TA_LEFT | GUI_TA_VCENTER);
 		}
 		GUI_CloseAlphaBlend();
 
 		//Draw space line
-		if (i == sset_ctrl->end_item-1)
+		if (i != sset_ctrl->end_item-1)
 		GUI_BMP_RES_Draw(sset_res->icon[ID_ICON_SPLINE],  x,  y+sset_red_id[sset_ctrl->main_id].res_size[3].height);
 	}
 	
 	GUI_BMP_RES_Draw(sset_res->icon[ID_ICON_BOTTOM], x, y+(sset_red_id[sset_ctrl->main_id].res_size[3].height));	
 
-	GUI_OpenAlphaBlend();
-	PhotoLongStrShow(sset_ctrl->sset_para->layer, &long_str_rt, long_str, sset_ctrl->fcs_color);
-	GUI_CloseAlphaBlend();
+	//GUI_OpenAlphaBlend();
+	//PhotoLongStrShow(sset_ctrl->sset_para->layer, &long_str_rt, long_str, sset_ctrl->fcs_color, ResHandle2Data(sset_res->icon[ID_ICON_LONG_STR]));
+	//GUI_CloseAlphaBlend();
 
 #if _USE_MEMDEV_Handle_
 	GUI_MEMDEV_CopyToLCD_Ex(draw_mem); 
@@ -912,8 +926,8 @@ static __s32 photo_sset_Proc(__gui_msg_t *msg)
 			sset_ctrl->sset_para= sset_para;
 			sset_ctrl->main_id = sset_para->main_id;
 			photo_sset_init(sset_ctrl);
-			sset_ctrl->unfcs_color = APP_COLOR_WHITE;
-			sset_ctrl->fcs_color = APP_COLOR_YELLOW;
+			sset_ctrl->unfcs_color = GUI_WHITE;
+			sset_ctrl->fcs_color = GUI_YELLOW;
 /*			if (sset_ctrl->main_id == ID_PHOTO_MSET_ZOOM || sset_ctrl->main_id == ID_PHOTO_MSET_ROTATE 
 				||sset_ctrl->main_id == ID_PHOTO_MSET_BRIGHT
 				|| sset_ctrl->main_id == ID_PHOTO_MSET_BGMUSIC)

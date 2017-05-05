@@ -311,7 +311,7 @@ __s32 PHOTO_LoadData(__anole_para_t* anole_para)
 //////////////////////////////////////////////////////////////////////////
 static __hdle g_pMoveStr = NULL;
 
-__s32 PhotoLongStrShow(H_LYR hLayer, RECT* pRt, char *String, GUI_COLOR TxtClr)
+__s32 PhotoLongStrShow(H_LYR hLayer, RECT* pRt, char *String, GUI_COLOR TxtClr, void *bmp)
 {
 	__show_info_move_t  str_move;
 
@@ -328,10 +328,10 @@ __s32 PhotoLongStrShow(H_LYR hLayer, RECT* pRt, char *String, GUI_COLOR TxtClr)
 	str_move.encode_id       = EPDK_CHARSET_ENM_UTF8;
 	ASSERT(SWFFont);
 	str_move.pFont           = SWFFont;
-	str_move.bkColor         = APP_COLOR_CLEAR;
-	str_move.align           = GUI_TA_LEFT | GUI_TA_TOP;
-	str_move.bmp             = NULL;
-	str_move.alpha_en        = 1;
+	//str_move.bkColor         = APP_COLOR_CLEAR;
+	str_move.align           = GUI_TA_LEFT | GUI_TA_VCENTER;
+	str_move.bmp             = bmp;
+	str_move.alpha_en        = 0;
 
 	if (g_pMoveStr)
 	{

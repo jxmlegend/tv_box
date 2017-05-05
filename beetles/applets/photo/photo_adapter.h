@@ -173,7 +173,7 @@ __s32 photo_save_cur_play_info( rat_root_t root_type);
 
 
 //////////////////////////////////////////////////////////////////////////
-__s32 PhotoLongStrShow(H_LYR hLayer, RECT* pRt, char *String, GUI_COLOR TxtClr);
+__s32 PhotoLongStrShow(H_LYR hLayer, RECT* pRt, char *String, GUI_COLOR TxtClr, void* bmp);
 void LongStrDestroy(void);
 
 /////////////for anole

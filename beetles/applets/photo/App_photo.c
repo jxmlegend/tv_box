@@ -224,12 +224,12 @@ static H_LYR photo_layer_palette_create(RECT *rect)
 	{
 	    {0, 0},                                   		/* size      */
 	    {0, 0, 0},                                      /* buffer    */
-	    {FB_TYPE_RGB, {PIXEL_MONO_8BPP, 0, (__rgb_seq_t)0}},    /* fmt       */
+	    {FB_TYPE_RGB, {PIXEL_COLOR_ARGB8888, 0, (__rgb_seq_t)0}},    /* fmt       */
 	};
 
 	__disp_layer_para_t lstlyr =
 	{
-	    DISP_LAYER_WORK_MODE_PALETTE,                    /* mode      */
+	    DISP_LAYER_WORK_MODE_NORMAL,                    /* mode      */
 	    0,                                              /* ck_mode   */
 	    0,                                              /* alpha_en  */
 	    0,                                              /* alpha_val */
@@ -258,8 +258,8 @@ static H_LYR photo_layer_palette_create(RECT *rect)
 	lstlyr.src_win.width 	= rect->width;
 	lstlyr.src_win.height 	= rect->height;
 	
-	lstlyr.scn_win.x		= rect->x + (screen_width - 720)/2;
-	lstlyr.scn_win.y		= rect->y + (screen_height - 576)/2;
+	lstlyr.scn_win.x		= rect->x + (screen_width - 1024)/2;
+	lstlyr.scn_win.y		= rect->y + (screen_height - 768)/2;
 	lstlyr.scn_win.width  	= rect->width;
 	lstlyr.scn_win.height 	= rect->height;
 	
@@ -866,7 +866,7 @@ static __s32 _app_photo_Proc(__gui_msg_t  *msg)
 			gscene_bgd_set_state(BGD_STATUS_HIDE);
 			g_disable_close_scn();
 
-			com_set_palette_by_id(ID_PHOTO_COLOURTABLE_BMP);
+			//com_set_palette_by_id(ID_PHOTO_COLOURTABLE_BMP);
 			{
 				//±³¾°É«£¬ÎÄ×Ö±à¼­µ×É«
 				__u32 color[]={COLOUR_BG_8BPP, COLOUR_EDIT_BG_8BPP};

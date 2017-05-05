@@ -22,31 +22,31 @@ static photo_uipara_t photo_uipara =
 		0, 0, LCD_WIDTH, LCD_HEIGHT,
 	},
 	{//sset_main_layer
-		140, SSET_MAIN_LAYER_Y-50, SSET_MAIN_LAYER_W-140, SSET_MAIN_LAYER_H,
+		(LCD_WIDTH-SSET_MAIN_LAYER_W)/2, SSET_MAIN_LAYER_Y, SSET_MAIN_LAYER_W, SSET_MAIN_LAYER_H,
 	},
 	{//sset_origin_layer
 		4, (MENU_LIST_BOTTOM - SSET_ORIGIN_LAYER_H), SSET_ORIGIN_LAYER_W, SSET_ORIGIN_LAYER_H,
 	},
 	{//sset_bg_muisc_layer
-		140, (MENU_LIST_BOTTOM - SSET_BG_MUSIC_LAYER_H), SSET_BG_MUSIC_LAYER_W, SSET_BG_MUSIC_LAYER_H,
+		(LCD_WIDTH-SSET_MAIN_LAYER_W)/2, (MENU_LIST_BOTTOM - SSET_BG_MUSIC_LAYER_H), SSET_BG_MUSIC_LAYER_W, SSET_BG_MUSIC_LAYER_H,
 	},
 	{//sset_zoom_layer
 		346, 340, SSET_ZOOM_LAYER_W, SSET_ZOOM_LAYER_H,
 	},
 	{//sset_rotate_layer
-		316, 240, SSET_ROTATE_LAYER_W, SSET_ROTATE_LAYER_H,
+		(LCD_WIDTH-SSET_ROTATE_LAYER_W)/2, (SSET_MAIN_LAYER_Y-SSET_ROTATE_LAYER_H)/2, SSET_ROTATE_LAYER_W, SSET_ROTATE_LAYER_H,
 	},
 	{//sset_brightness_layer
 		416, 300, SSET_BRIGHTNESS_LAYER_W, SSET_BRIGHTNESS_LAYER_H,
 	},
 	{//sset_slideshow_layer
-		302, (MENU_LIST_BOTTOM - SSET_SLIDESHOW_LAYER_H), SSET_SLIDESHOW_LAYER_W, SSET_SLIDESHOW_LAYER_H,
+		(LCD_WIDTH-SSET_MAIN_LAYER_W)/2+ (SSET_MAIN_LAYER_W / MSET_ITEM_PER_PAGE)*2, (MENU_LIST_BOTTOM - SSET_SLIDESHOW_LAYER_H), SSET_SLIDESHOW_LAYER_W, SSET_SLIDESHOW_LAYER_H,
 	},
 	{//sset_interval_layer
-		352, (MENU_LIST_BOTTOM - SSET_INTERVAL_LAYER_H), SSET_INTERVAL_LAYER_W, SSET_INTERVAL_LAYER_H,
+		(LCD_WIDTH-SSET_MAIN_LAYER_W)/2+ (SSET_MAIN_LAYER_W / MSET_ITEM_PER_PAGE)*3, (MENU_LIST_BOTTOM - SSET_INTERVAL_LAYER_H), SSET_INTERVAL_LAYER_W, SSET_INTERVAL_LAYER_H,
 	},
 	{//sset_scale_layer
-		LCD_WIDTH - SSET_SCALE_LAYER_W -200, (MENU_LIST_BOTTOM - SSET_SCALE_LAYER_H), SSET_SCALE_LAYER_W, SSET_SCALE_LAYER_H,
+		(LCD_WIDTH-SSET_MAIN_LAYER_W)/2+ (SSET_MAIN_LAYER_W / MSET_ITEM_PER_PAGE)*4, (MENU_LIST_BOTTOM - SSET_SCALE_LAYER_H), SSET_SCALE_LAYER_W, SSET_SCALE_LAYER_H,
 	},
 	{//bmp_big_pause
 		0, 0, BMP_BIG_PAUSE_W, BMP_BIG_PAUSE_H,
@@ -61,10 +61,10 @@ static photo_uipara_t photo_uipara =
 		0, 0, MENU_BTN_W, MENU_BTN_H,
 	},
 	{//bmp_set_bar_top
-		0, 0, MENU_LIST_BTN_W, 3,
+		0, 0, MENU_LIST_BTN_W, 5,
 	},
 	{//bmp_set_bar_bottom
-		0, 0, MENU_LIST_BTN_W, 3,
+		0, 0, MENU_LIST_BTN_W, 5,
 	},
 	{//bmp_set_bar
 		0, 0, MENU_LIST_BTN_W, MENU_LIST_BTN_H,
@@ -76,7 +76,7 @@ static photo_uipara_t photo_uipara =
 		0, 0, MENU_LIST_BTN_W, 5,
 	},
 	{//bmp_set_line
-		0, 0, 0, 0 
+		0, 0, MENU_LIST_BTN_W, 3 
 	},
 	{//bmp_set_block
 		0, 0, 30, 30,//???
@@ -103,16 +103,22 @@ static photo_uipara_t photo_uipara =
 		0, 0, 11, 9,
 	},
 	{//bmp_volume
-		0, 0, 15, 13,
+		0, 0, 38, 28,
 	},
 	{//bmp_slide_bg
-		10, 10, 356, 24,//???
+		10, 10, 954, 72,//???
 	},
 	{//bmp_slide_block
-		0, 0, 5, 4,
+		0, 0, 2, 8,
+	},
+	{//bmp_slide_block_l
+		0, 0, 4, 8,
+	},
+	{//bmp_slide_block_r
+		0, 0, 4, 8,
 	},
 	{//bmp_slide_bar
-		0, 0, 255, 4,
+		0, 0, 778, 8,
 	}
 };
 
