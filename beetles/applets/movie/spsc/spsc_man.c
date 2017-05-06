@@ -55,12 +55,12 @@ static H_LYR __spsc_8bpp_layer_create(RECT *rect, __s32 pipe)
 	{
 	    {0, 0},                                   		/* size      */
 	    {0, 0, 0},                                      /* buffer    */
-	    {FB_TYPE_RGB, {PIXEL_MONO_8BPP, 0, (__rgb_seq_t)0}},    /* fmt       */
+	    {FB_TYPE_RGB, {PIXEL_COLOR_ARGB8888, 0, (__rgb_seq_t)0}},    /* fmt       */
 	};
 
 	__disp_layer_para_t lstlyr =
 	{
-	    DISP_LAYER_WORK_MODE_PALETTE,                    /* mode      */
+	    DISP_LAYER_WORK_MODE_NORMAL,                    /* mode      */
 	    0,                                              /* ck_mode   */
 	    0,                                              /* alpha_en  */
 	    0,                                              /* alpha_val */
@@ -89,8 +89,8 @@ static H_LYR __spsc_8bpp_layer_create(RECT *rect, __s32 pipe)
 	lstlyr.src_win.width 	= rect->width;
 	lstlyr.src_win.height 	= rect->height;
 	
-	lstlyr.scn_win.x		= rect->x + (screen_width - 720)/2;
-	lstlyr.scn_win.y		= rect->y + (screen_height - 576)/2;
+	lstlyr.scn_win.x		= rect->x + (screen_width - 1024)/2;
+	lstlyr.scn_win.y		= rect->y + (screen_height - 768)/2;
 	lstlyr.scn_win.width  	= rect->width;
 	lstlyr.scn_win.height 	= rect->height;
 	
@@ -644,7 +644,7 @@ static __s32 __spsc_ctrl_scene_cmd_proc(movie_spsc_scene_t * sence_para, __s32 m
 						return EPDK_FAIL;
 					}
 					msg.id = movie_spsc_prog_scene_set_sta;
-					msg.dwAddData1 = 0;
+					msg.dwAddData1 = 1;
 					GUI_SendMessage(&msg);
 				}
 			}
@@ -664,7 +664,7 @@ static __s32 __spsc_ctrl_scene_cmd_proc(movie_spsc_scene_t * sence_para, __s32 m
 						return EPDK_FAIL;
 					}
 					msg.id = movie_spsc_prog_scene_set_sta;
-					msg.dwAddData1 = 1;
+					msg.dwAddData1 = 0;
 					GUI_SendMessage(&msg);
 				}
 			}

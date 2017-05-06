@@ -40,15 +40,15 @@ static movie_playsta_uipara_t uipara_720_576 =
 {
 	1,
 	{
-		300, 225, 110, 110			//18,18	
+		422, 294, 180, 180			//18,18	
 	},
 	{
-		0, 0, 110, 110		
+		0, 0, 180, 180		
 	},
 	{
-		0, 0, 110, 110,		        
-		ID_MOVIE_MOVIE_PLAYSTA_BMP,//ID_MOVIE_PLAYSTA_BMP,
-		ID_MOVIE_MOVIE_PAUSESTA_BMP,//ID_MOVIE_PAUSESTA_BMP
+		0, 0, 180, 180,		        
+		ID_MOVIE_PLAYSTA_BMP,
+		ID_MOVIE_PAUSESTA_BMP,
 	}
 };
 

@@ -91,12 +91,12 @@ static H_LYR __spsc_prog_8bpp_layer_create(RECT *rect, __s32 pipe)
 	{
 	    {0, 0},                                   		/* size      */
 	    {0, 0, 0},                                      /* buffer    */
-	    {FB_TYPE_RGB, {PIXEL_MONO_8BPP, 0, (__rgb_seq_t)0}},    /* fmt       */
+	    {FB_TYPE_RGB, {PIXEL_COLOR_ARGB8888, 0, (__rgb_seq_t)0}},    /* fmt       */
 	};
 
 	__disp_layer_para_t lstlyr =
 	{
-	    DISP_LAYER_WORK_MODE_PALETTE,                    /* mode      */
+	    DISP_LAYER_WORK_MODE_NORMAL,                    /* mode      */
 	    0,                                              /* ck_mode   */
 	    0,                                              /* alpha_en  */
 	    0,                                              /* alpha_val */
@@ -255,7 +255,7 @@ static __s32 __spsc_prog_update_spsc_prog_ui(movie_spsc_prog_scene_t* scene_para
 	}
 	GUI_LyrWinSel(scene_para->hlyr);
 
-	com_memdev_create(scene_para->hlyr);
+	//com_memdev_create(scene_para->hlyr);
 
 	//»­Í¼±ê
 	__here__;
@@ -268,14 +268,14 @@ static __s32 __spsc_prog_update_spsc_prog_ui(movie_spsc_prog_scene_t* scene_para
 		if (!ui_para->uipara_icon[movie_spsc_prog_icon_playsta].res_hdl[scene_para->playsta])
 		{
 			__msg("ui_para->uipara_icon[movie_spsc_prog_icon_playsta].res_hdl[scene_para->playsta] is null...\n");			
-			com_memdev_delete();
+			//com_memdev_delete();
 			return EPDK_FAIL;				
 		}		
 		pbmp = dsk_theme_hdl2buf(ui_para->uipara_icon[movie_spsc_prog_icon_playsta].res_hdl[scene_para->playsta]);
 		if (!pbmp)
 		{
 			__msg("pbmp is null...\n");
-			com_memdev_delete();
+			//com_memdev_delete();
 			return EPDK_FAIL;
 		}		
 		GUI_BMP_Draw(pbmp, ui_para->uipara_icon[movie_spsc_prog_icon_playsta].x, ui_para->uipara_icon[movie_spsc_prog_icon_playsta].y);	
@@ -304,7 +304,7 @@ static __s32 __spsc_prog_update_spsc_prog_ui(movie_spsc_prog_scene_t* scene_para
 		else
 		{
 			__err("invalid para...\n");
-			com_memdev_delete();
+			//com_memdev_delete();
 			return EPDK_FAIL;			
 		}	
 
@@ -317,7 +317,7 @@ static __s32 __spsc_prog_update_spsc_prog_ui(movie_spsc_prog_scene_t* scene_para
 			GUI_SetFont(GUI_GetDefaultFont());
 		}
 		
-		GUI_SetColor(APP_COLOR_WHITE);
+		GUI_SetColor(GUI_WHITE);
         GUI_UC_SetEncodeUTF8();
 		
 		{
@@ -385,7 +385,7 @@ static __s32 __spsc_prog_update_spsc_prog_ui(movie_spsc_prog_scene_t* scene_para
 			GUI_SetFont(GUI_GetDefaultFont());
 		}
 		
-		GUI_SetColor(APP_COLOR_WHITE);
+		GUI_SetColor(GUI_WHITE);
 		GUI_SetBkColor(0xF0);
 		
 		{
@@ -431,14 +431,14 @@ static __s32 __spsc_prog_update_spsc_prog_ui(movie_spsc_prog_scene_t* scene_para
 			if (!ui_para->uipara_icon[movie_spsc_prog_icon_prog_bg].res_hdl[0])
 			{
 				__msg("ui_para->uipara_icon[movie_spsc_prog_icon_prog_bg].res_hdl[0] is null...\n");
-				com_memdev_delete();
+				//com_memdev_delete();
 				return EPDK_FAIL;				
 			}		
 			pbmp = dsk_theme_hdl2buf(ui_para->uipara_icon[movie_spsc_prog_icon_prog_bg].res_hdl[0]);
 			if (!pbmp)
 			{
 				__msg("pbmp is null...\n");
-				com_memdev_delete();
+				//com_memdev_delete();
 				return EPDK_FAIL;
 			}		
 			GUI_BMP_Draw(pbmp, ui_para->uipara_icon[movie_spsc_prog_icon_prog_bg].x, ui_para->uipara_icon[movie_spsc_prog_icon_prog_bg].y);
@@ -462,14 +462,14 @@ static __s32 __spsc_prog_update_spsc_prog_ui(movie_spsc_prog_scene_t* scene_para
 			if (!ui_para->uipara_icon[movie_spsc_prog_icon_prog_cursor].res_hdl[0])
 			{
 				__msg("ui_para->uipara_icon[movie_spsc_prog_icon_prog_cursor].res_hdl[0] is null...\n");
-				com_memdev_delete();
+				//com_memdev_delete();
 				return EPDK_FAIL;				
 			}		
 			pbmp = dsk_theme_hdl2buf(ui_para->uipara_icon[movie_spsc_prog_icon_prog_cursor].res_hdl[0]);
 			if (!pbmp)
 			{
 				__msg("pbmp is null...\n");
-				com_memdev_delete();
+				//com_memdev_delete();
 				return EPDK_FAIL;
 			}		
 			
@@ -505,7 +505,7 @@ static __s32 __spsc_prog_update_spsc_prog_ui(movie_spsc_prog_scene_t* scene_para
 	__here__;
 
     GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
-	com_memdev_delete();
+	//com_memdev_delete();
 	
 	return EPDK_OK;
 }

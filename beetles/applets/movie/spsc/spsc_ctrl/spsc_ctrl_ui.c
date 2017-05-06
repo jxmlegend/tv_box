@@ -22,37 +22,37 @@
 static movie_spsc_ctrl_uipara_t uipara_400_240 = 
 {
 	{
-		0, 0, 364, 94
+		0, 0, 672, 154
 	},
 	
 	4,
 	{
-		0, 0, 364, 94,
+		0, 0, 672, 154,
 		ID_MOVIE_SPSC_BG_BMP
 	},		
 	{
 		{
-			7, 14, 24, 18,			
+			24, 33, 44, 26,			
 			ID_MOVIE_SPSC_PREV_UF_BMP,
 			ID_MOVIE_SPSC_PREV_F_BMP
 		},
 		{
-			43, 14, 24, 18,			
+			87, 33, 44, 26,			
 			ID_MOVIE_SPSC_NEXT_UF_BMP,
 			ID_MOVIE_SPSC_NEXT_F_BMP,
 		},
 		{
-			79, 14, 24, 18,				
+			150, 33, 44, 26,				
 			ID_MOVIE_SPSC_RR_UF_BMP,
 			ID_MOVIE_SPSC_RR_F_BMP,
 		},
 		{
-			115, 14, 24, 18,				
+			213, 33, 44, 26,				
 			ID_MOVIE_SPSC_FF_UF_BMP,
 			ID_MOVIE_SPSC_FF_F_BMP,
 		},
 		{
-			151, 14, 24, 18,				
+			276, 33, 44, 26,				
 			ID_MOVIE_SPSC_PLAYPAUSE_UF_BMP,
 			ID_MOVIE_SPSC_PLAYPAUSE_F_BMP,
 		},
@@ -85,7 +85,7 @@ static movie_spsc_ctrl_uipara_t uipara_400_240 =
 */		
 		{
 //			151, 25, 24, 18,	
-			187, 14, 24, 18,
+			339, 33, 44, 26,
 			ID_MOVIE_SPSC_SCREENSET_UF_BMP,
 			ID_MOVIE_SPSC_SCREENSET_F_BMP,			
 		},
@@ -146,16 +146,16 @@ static movie_spsc_ctrl_uipara_t uipara_400_240 =
 		},
 */		
 		{
-			230, 10, 364-230, 16
+			445, 12, 190, 18
 		},
 		{
-			230, 32, 364-230, 16
+			445, 44, 190, 18
 		},
 		{
-			230, 54, 364-230, 16
+			445, 76, 190, 18
 		},
-        	{
-            		10, 45, 195, 18
+        {
+            33, 75, 350, 18
 		}
 	},
 /*	{

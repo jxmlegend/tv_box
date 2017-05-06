@@ -589,7 +589,7 @@ static __s32 __movie_spsc_ctrl_static_icon_draw(movie_spsc_ctrl_scene_t *scene_p
 					GUI_SetFont(GUI_GetDefaultFont());
 				}
 				
-				GUI_SetColor(APP_COLOR_WHITE);
+				GUI_SetColor(GUI_WHITE);
                 GUI_SetBkColor(0xF0);
                 GUI_UC_SetEncodeUTF8();
 
@@ -655,7 +655,7 @@ static __s32 __movie_spsc_ctrl_static_icon_draw(movie_spsc_ctrl_scene_t *scene_p
 					GUI_SetFont(GUI_GetDefaultFont());
 				}
 				
-				GUI_SetColor(APP_COLOR_WHITE);
+				GUI_SetColor(GUI_WHITE);
                 GUI_SetBkColor(0xF0);
                 GUI_UC_SetEncodeUTF8();
 				
@@ -721,7 +721,7 @@ static __s32 __movie_spsc_ctrl_static_icon_draw(movie_spsc_ctrl_scene_t *scene_p
 					GUI_SetFont(GUI_GetDefaultFont());
 				}
 				
-				GUI_SetColor(APP_COLOR_WHITE);
+				GUI_SetColor(GUI_WHITE);
                 GUI_SetBkColor(0xF0);
                 GUI_UC_SetEncodeUTF8();
 				
@@ -791,7 +791,7 @@ static __s32 __movie_spsc_ctrl_static_icon_draw(movie_spsc_ctrl_scene_t *scene_p
 			gui_rect.x1 = gui_rect.x0+ui_para->uipara_static_icon[movie_spsc_ctrl_static_icon_filename].w-1;
 			gui_rect.y1 = gui_rect.y0+ui_para->uipara_static_icon[movie_spsc_ctrl_static_icon_filename].h-1;
             GUI_SetFont(SWFFont);
-            GUI_SetColor(APP_COLOR_WHITE);
+            GUI_SetColor(GUI_WHITE);
             GUI_SetBkColor(0xF0);
             GUI_UC_SetEncodeUTF8();
             GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
@@ -918,7 +918,7 @@ static __s32 __movie_spsc_ctrl_long_string_init(movie_spsc_ctrl_scene_t *scene_p
 	    show_info.pFont = SWFFont;
 	    show_info.string = "";
         show_info.bkColor = 0xF0;
-        show_info.fontColor = APP_COLOR_WHITE;
+        show_info.fontColor = GUI_WHITE;
 	    show_info.encode_id = EPDK_CHARSET_ENM_UTF8;
         show_info.align = GUI_TA_HCENTER| GUI_TA_VCENTER;
         show_info.bmp = NULL;
@@ -1019,7 +1019,7 @@ static __s32 __movie_spsc_ctrl_long_string_start_roll(movie_spsc_ctrl_scene_t *s
         __here__;
         GUI_SetFont(SWFFont);
         __here__;
-        GUI_SetColor(APP_COLOR_WHITE);
+        GUI_SetColor(GUI_WHITE);
         __here__;
         GUI_SetBkColor(0xF0);
         __here__;
@@ -1048,7 +1048,7 @@ static __s32 __movie_spsc_ctrl_long_string_start_roll(movie_spsc_ctrl_scene_t *s
 	    show_info.pFont = SWFFont;
 	    show_info.string = pstr;
         show_info.bkColor = 0xF0;
-        show_info.fontColor = APP_COLOR_WHITE;
+        show_info.fontColor = GUI_WHITE;
 	    show_info.encode_id = EPDK_CHARSET_ENM_UTF8;
         show_info.align = GUI_TA_LEFT| GUI_TA_BOTTOM;
         show_info.bmp = NULL;
@@ -1280,7 +1280,7 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
 				{
 					__msg("draw unfocus icon..\n");
                     GUI_LyrWinSel(scene_para->hlyr);
-					com_memdev_create(scene_para->hlyr);
+					//com_memdev_create(scene_para->hlyr);
                     if(ui_para->focus_icon_index < 0 || ui_para->focus_icon_index >= movie_spsc_ctrl_icon_num)
                     {
                         ui_para->focus_icon_index = 0;
@@ -1295,13 +1295,13 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
 					__msg("draw focus icon..\n");
 					__movie_spsc_ctrl_icon_draw_item(scene_para, ui_para->focus_icon_index, 1);
                     GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
-					com_memdev_delete();
+					//com_memdev_delete();
 				}
 				else if (GUI_MSG_KEY_RIGHT == last_key)
 				{
 					__msg("draw unfocus icon..\n");
                     GUI_LyrWinSel(scene_para->hlyr);
-					com_memdev_create(scene_para->hlyr);
+					//com_memdev_create(scene_para->hlyr);
 
                     if(ui_para->focus_icon_index < 0 || ui_para->focus_icon_index >= movie_spsc_ctrl_icon_num)
                     {
@@ -1317,7 +1317,7 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
 					__msg("draw focus icon..\n");
 					__movie_spsc_ctrl_icon_draw_item(scene_para, ui_para->focus_icon_index, 1);
                     GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
-					com_memdev_delete();
+					//com_memdev_delete();
 				}
 				else if (GUI_MSG_KEY_ENTER == last_key)
 				{			
@@ -1327,10 +1327,10 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
                     }
 
                     GUI_LyrWinSel(scene_para->hlyr);
-					com_memdev_create(scene_para->hlyr);
+					//com_memdev_create(scene_para->hlyr);
 					__movie_spsc_ctrl_icon_draw_item(scene_para, ui_para->focus_icon_index, 1);
                     GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
-					com_memdev_delete();
+					//com_memdev_delete();
                      
 					__movie_spsc_ctrl_notify_parent(scene_para, msg, ui_para->focus_icon_index);					
 				}
@@ -1343,7 +1343,7 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
 					{
 						__msg("draw unfocus icon..\n");
                         GUI_LyrWinSel(scene_para->hlyr);
-						com_memdev_create(scene_para->hlyr);
+						//com_memdev_create(scene_para->hlyr);
 
                         if(ui_para->focus_icon_index < 0 || ui_para->focus_icon_index >= movie_spsc_ctrl_icon_num)
                         {
@@ -1359,7 +1359,7 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
 						__msg("draw focus icon..\n");
 						__movie_spsc_ctrl_icon_draw_item(scene_para, ui_para->focus_icon_index, 1);
                         GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
-						com_memdev_delete();
+						//com_memdev_delete();
 						
 						break;
 					}
@@ -1367,7 +1367,7 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
 					{
 						__msg("draw unfocus icon..\n");
                         GUI_LyrWinSel(scene_para->hlyr);
-						com_memdev_create(scene_para->hlyr);
+						//com_memdev_create(scene_para->hlyr);
 
                         if(ui_para->focus_icon_index < 0 || ui_para->focus_icon_index >= movie_spsc_ctrl_icon_num)
                         {
@@ -1383,7 +1383,7 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
 						__msg("draw focus icon..\n");
 						__movie_spsc_ctrl_icon_draw_item(scene_para, ui_para->focus_icon_index, 1);
                         GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
-						com_memdev_delete();
+						//com_memdev_delete();
 						
 						break;
 					}
@@ -1395,10 +1395,10 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
                         }
 
                         GUI_LyrWinSel(scene_para->hlyr);
-						com_memdev_create(scene_para->hlyr);
+						//com_memdev_create(scene_para->hlyr);
 						__movie_spsc_ctrl_icon_draw_item(scene_para, ui_para->focus_icon_index, 0);
                         GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
-						com_memdev_delete();
+						//com_memdev_delete();
 						
                         break;
                     }
@@ -1461,7 +1461,7 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
 			}	
 
             GUI_LyrWinSel(scene_para->hlyr);	
-		    com_memdev_create(scene_para->hlyr);
+		    //com_memdev_create(scene_para->hlyr);
 
 			__msg("before __movie_spsc_ctrl_bg_draw\n");
 			__movie_spsc_ctrl_bg_draw(scene_para);
@@ -1472,7 +1472,7 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
 			__msg("after __movie_spsc_ctrl_icon_draw_all\n");
 
             GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
-		    com_memdev_delete();
+		    //com_memdev_delete();
 			
             {
                 __gui_msg_t notify_msg;
@@ -1508,7 +1508,7 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
             eLIBs_memset(scene_para->str_audio_info, 0, sizeof(scene_para->str_audio_info));                       
 
             GUI_LyrWinSel(scene_para->hlyr);	
-		    com_memdev_create(scene_para->hlyr);
+		    //com_memdev_create(scene_para->hlyr);
         
             //__movie_spsc_ctrl_static_icon_draw(scene_para, movie_spsc_ctrl_static_icon_filename);//112357
             __here__;
@@ -1520,7 +1520,7 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
             __here__;
             
             GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
-		    com_memdev_delete();
+		    //com_memdev_delete();
 
             __msg("before __movie_spsc_ctrl_long_string_start_roll\n");
             __movie_spsc_ctrl_long_string_start_roll(scene_para);
@@ -1546,7 +1546,7 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
 			} 
 
             GUI_LyrWinSel(scene_para->hlyr);	
-		    com_memdev_create(scene_para->hlyr);
+		    //com_memdev_create(scene_para->hlyr);
 
             __msg("before __movie_spsc_ctrl_bg_draw\n");
 			//__movie_spsc_ctrl_bg_draw(scene_para);
@@ -1561,7 +1561,7 @@ static __s32 __movie_spsc_ctrl_proc(__gui_msg_t* msg)
 			__msg("after __movie_spsc_ctrl_static_icon_draw_all\n");
 
             GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
-		    com_memdev_delete();
+		    //com_memdev_delete();
 
             __msg("before __movie_spsc_ctrl_long_string_init\n");
             __movie_spsc_ctrl_long_string_init(scene_para);

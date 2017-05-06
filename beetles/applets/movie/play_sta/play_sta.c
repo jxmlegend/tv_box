@@ -77,8 +77,8 @@ static H_LYR __playsta_8bpp_layer_create(RECT *rect, __s32 pipe)
 	lstlyr.src_win.width 	= rect->width;
 	lstlyr.src_win.height 	= rect->height;
 	
-	lstlyr.scn_win.x		= rect->x + (screen_width - 720)/2;
-	lstlyr.scn_win.y		= rect->y + (screen_height - 576)/2;
+	lstlyr.scn_win.x		= rect->x + (screen_width - 1024)/2;
+	lstlyr.scn_win.y		= rect->y + (screen_height - 768)/2;
 	lstlyr.scn_win.width  	= rect->width;
 	lstlyr.scn_win.height 	= rect->height;
 	
