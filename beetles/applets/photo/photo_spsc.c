@@ -520,16 +520,19 @@ static __s32 photo_spsc_pait(__gui_msg_t * msg, PAINT_PHOTO_SPSC_T disp_type)
 	{
 		case PAINT_PHOTO_SPSC_INFO:
 		{
+			com_set_palette_by_id(ID_PHOTO_PLAY_STA_PAL_BMP);
 			phot_spsc_paint_info(spsc_ctrl);
 			break;
 		}
 		case PAINT_PHOTO_SPSC_PLAY_STATUS:
 		{
+			com_set_palette_by_id(ID_PHOTO_PLAY_STA_PAL_BMP);
 			phot_spsc_paint_play_status(spsc_ctrl);
 			break;
 		}
 		case PAINT_PHOTO_SPSC_VOLUME:
 		{
+			com_set_palette_by_id(ID_COMMON_VOL_PAL_BMP);
 			photo_spsc_paint_volume(spsc_ctrl);
 			break;
 		}
@@ -779,7 +782,7 @@ static __s32 photo_spsc_Proc(__gui_msg_t *msg)
 			BallocType(spsc_ctrl, photo_spsc_ctrl_t);
 			spsc_ctrl->spsc_para = spsc_para;
 			photo_spsc_init(spsc_ctrl);
-			spsc_ctrl->txt_color = GUI_WHITE;
+			spsc_ctrl->txt_color = APP_COLOR_WHITE;
 
 			GUI_SetTimer(msg->h_deswin, Timer_SpscStaId, DELAY_SPSCSTAID, 0);
 			GUI_WinSetAddData(msg->h_deswin, (__u32)spsc_ctrl);
