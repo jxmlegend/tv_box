@@ -44,12 +44,12 @@ static H_LYR __volume_8bpp_layer_create(RECT *rect, __s32 pipe)
 	{
 	    {0, 0},                                   		/* size      */
 	    {0, 0, 0},                                      /* buffer    */
-	    {FB_TYPE_RGB, {PIXEL_COLOR_ARGB8888, 0, (__rgb_seq_t)0}},    /* fmt       */
+	    {FB_TYPE_RGB, {PIXEL_MONO_8BPP, 0, (__rgb_seq_t)0}},    /* fmt       */
 	};
 
 	__disp_layer_para_t lstlyr =
 	{
-	    DISP_LAYER_WORK_MODE_NORMAL,                    /* mode      */
+	    DISP_LAYER_WORK_MODE_PALETTE,                    /* mode      */
 	    0,                                              /* ck_mode   */
 	    0,                                              /* alpha_en  */
 	    0,                                              /* alpha_val */
@@ -358,7 +358,7 @@ static __s32 __volume_update_volume_ui(movie_volume_scene_t* scene_para)
 		char str_val[32]={0};
 		GUI_RECT gui_rect;
 		//GUI_SetBkColor(0xF0);
-		GUI_SetColor(GUI_WHITE);
+		GUI_SetColor(APP_COLOR_WHITE);
 
 		gui_rect.x0 = ui_para->uipara_volume_text.x;
 		gui_rect.y0 = ui_para->uipara_volume_text.y;
@@ -533,7 +533,9 @@ static __s32 __volume_proc(__gui_msg_t* msg)
 			}
 
 			scene_para->hfrm = msg->h_deswin;//必须在此初始化，因为窗口创建未返回，否则该值仍然是空
-					
+
+			com_set_palette_by_id(ID_COMMON_VOL_PAL_BMP);
+			
 			__volume_init_ui();
 
 			__volume_draw_bg(scene_para);

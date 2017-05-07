@@ -20,7 +20,7 @@
 #include "VolumeBar.h"
 
 //
-static H_LYR VolumeBar32bppLayerCreate(RECT *rect, __s32 pipe)
+static H_LYR VolumeBar8bppLayerCreate(RECT *rect, __s32 pipe)
 {
 	__s32           screen_width;
     __s32 			screen_height;
@@ -29,15 +29,15 @@ static H_LYR VolumeBar32bppLayerCreate(RECT *rect, __s32 pipe)
 	{
 	    {0, 0},                                   		/* size      */
 	    {0, 0, 0},                                      /* buffer    */
-	    //{FB_TYPE_RGB, {PIXEL_MONO_8BPP, 0, (__rgb_seq_t)0}},    /* fmt       */
-	    {FB_TYPE_RGB, {PIXEL_COLOR_ARGB8888, 0, (__rgb_seq_t)0}},    /* fmt       */
+	    {FB_TYPE_RGB, {PIXEL_MONO_8BPP, 0, (__rgb_seq_t)0}},    /* fmt       */
+	    //{FB_TYPE_RGB, {PIXEL_COLOR_ARGB8888, 0, (__rgb_seq_t)0}},    /* fmt       */
 	    
 	};
 
 	__disp_layer_para_t lstlyr =
 	{
-	    //DISP_LAYER_WORK_MODE_PALETTE,                    /* mode      */
-	    DISP_LAYER_WORK_MODE_NORMAL,
+	    DISP_LAYER_WORK_MODE_PALETTE,                    /* mode      */
+	    //DISP_LAYER_WORK_MODE_NORMAL,
 	    0,                                              /* ck_mode   */
 	    0,                                              /* alpha_en  */
 	    0,                                              /* alpha_val */
@@ -59,7 +59,6 @@ static H_LYR VolumeBar32bppLayerCreate(RECT *rect, __s32 pipe)
 	
     fb.size.width		= rect->width;            
     fb.size.height		= rect->height;	        
-    fb.fmt.fmt.rgb.pixelfmt = PIXEL_COLOR_ARGB8888; //PIXEL_MONO_8BPP; //PIXEL_COLOR_ARGB8888;
 	
 	lstlyr.src_win.x  		= 0;
 	lstlyr.src_win.y  		= 0;
@@ -505,7 +504,7 @@ __s32 DrawVolumeBar(VolumeBar_t *This, __s32 vol_value)
 	//Color = GUI_GetBkColor();
 	Color = 0x99000000;
 	GUI_SetBkColor(0x99000000);
-	GUI_SetColor(GUI_WHITE);
+	GUI_SetColor(APP_COLOR_WHITE);
 
 	DrawVolumeBarBackground(This);
 	
@@ -548,7 +547,7 @@ __s32 VolumeBarOnAdd(VolumeBar_t *This)
 	
 	GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
 	GUI_SetBkColor(0x99000000);
-	GUI_SetColor(GUI_WHITE);	
+	GUI_SetColor(APP_COLOR_WHITE);	
 	
 	DrawVolumeBarVolNumber(This, vol);	
 	if(vol == 1)
@@ -584,7 +583,7 @@ __s32 VolumeBarOnDec(VolumeBar_t *This)
 	
 	GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
 	GUI_SetBkColor(0x99000000);
-	GUI_SetColor(GUI_WHITE);
+	GUI_SetColor(APP_COLOR_WHITE);
 	
 	DrawVolumeBarVolNumber(This, vol);
 	if(vol == 1)
@@ -714,6 +713,7 @@ __s32 VolumeBarCB(__gui_msg_t* msg)
 	{
 		case GUI_MSG_CREATE:
 		{
+			com_set_palette_by_id(ID_COMMON_VOL_PAL_BMP);
 			VolumeBarOnCreate(msg);
 			break;
 		}
@@ -789,7 +789,7 @@ VolumeBar_t* VolumeBarCreate(VolumeBarPara_t *Para)
 
 	eLIBs_memcpy((void *)(&(this->Para)), (void *)Para,sizeof(VolumeBarPara_t));
 
-	this->VB_Layer = VolumeBar32bppLayerCreate(&(Para->UI.Background), Para->CtrlVar.Pipe);
+	this->VB_Layer = VolumeBar8bppLayerCreate(&(Para->UI.Background), Para->CtrlVar.Pipe);
 	if(this->VB_Layer == NULL)
 	{
 		esMEMS_Bfree(this, sizeof(VolumeBar_t));		
