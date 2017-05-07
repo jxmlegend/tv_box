@@ -222,11 +222,11 @@ __s32 shellmain(void *p_arg)
         eLIBs_printf("pll clock = %u %x\n", *((volatile __u32*)(0xf1c20000+0x10)), *((volatile __u32*)(0xf1c20000+0x10)));
 	__msg(".Display Device Installed!...........................................................................................\n");
 
-    	esKSRV_GetTargetPara(&target);
+//    	esKSRV_GetTargetPara(&target);
 //    	if(target.debugenable == EPDK_TRUE)
-    	{
-		esDEV_Plugin("drv\\sdmmc.drv", 0, 0, 1);  //112350 Èç¹ûÊÇµ÷ÊÔ£¬Ôò¼ÓÔØsdmmc
-    	}  
+//    	{
+//		esDEV_Plugin("drv\\sdmmc.drv", 0, 0, 1);  //112350 Èç¹ûÊÇµ÷ÊÔ£¬Ôò¼ÓÔØsdmmc
+//    	}  
 	
     /* print shell begin information */    
 
