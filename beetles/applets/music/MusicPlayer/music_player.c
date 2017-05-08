@@ -936,7 +936,7 @@ static __s32 music_player_set_play_previous(music_player_ctrl_t *this)
 	
 	GUI_ResetTimer(this->h_framewin, MusicTimerId, MUSIC_TIMER_INTERVAL, NULL);
 	robin_set_cmd_stop();
-//	DrawMusicPlayPreButton(PRESSED);
+	DrawMusicPlayPreButton(PRESSED);
 	
 	ListCtrl = this->list_ctrl;
 	filename = this->play_file_info.filename;
@@ -971,7 +971,7 @@ static __s32 music_player_set_play_next(music_player_ctrl_t *this)
 	GUI_ResetTimer(this->h_framewin, MusicTimerId, MUSIC_TIMER_INTERVAL, NULL);
 	robin_set_cmd_stop();
 	
-//	DrawMusicPlayNextButton(PRESSED);
+	DrawMusicPlayNextButton(PRESSED);
 	
 	ListCtrl = this->list_ctrl;
 	filename = this->play_file_info.filename;
@@ -1003,13 +1003,13 @@ static __s32 music_player_set_play_pause(music_player_ctrl_t *this)
 	if(robin_get_fsm_status() == CEDAR_STAT_PLAY)
 	{
 		robin_set_cmd_pause();
-//		DrawMusicPlayPauseButton(PRESSED);
+		DrawMusicPlayPauseButton(PRESSED);
 		DrawMusicPlayStatusButton(MUSIC_PAUSE);
 	}
 	else
 	{
 		robin_set_cmd_play();
-//		DrawMusicPlayPauseButton(PRESSED);
+		DrawMusicPlayPauseButton(PRESSED);
 		DrawMusicPlayStatusButton(MUSIC_PLAYING);
 	}	
 	return EPDK_OK;
