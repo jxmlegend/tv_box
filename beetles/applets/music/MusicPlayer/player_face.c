@@ -264,12 +264,15 @@ __s32 DrawMusicVolumeStatus(__s32 volume)
 
 	char vol_text[3];
 
-	return EPDK_OK;	
+	//return EPDK_OK;	
 	headbar_ui = music_get_headbar_ui_param();				
 	
 	X = headbar_ui->volume_icon_rect.x;
 	Y = headbar_ui->volume_icon_rect.y;
-	pic_buf = music_get_icon_res(ID_MUSIC_VOL_STATUS_ICON);	
+	if(volume == 0)
+		pic_buf = music_get_icon_res(ID_MUSIC_MUTE_STATUS_ICON);
+	else
+		pic_buf = music_get_icon_res(ID_MUSIC_VOLY_STATUS_ICON);	
 	if(pic_buf != NULL)
 	{
 		GUI_BMP_Draw(pic_buf, X, Y);	
@@ -290,7 +293,7 @@ __s32 DrawMusicVolumeStatus(__s32 volume)
 	vol_rect.y1 = headbar_ui->volume_text_rect.y + headbar_ui->volume_text_rect.height;	
 	GUI_ClearRect(vol_rect.x0, vol_rect.y0, vol_rect.x1,vol_rect.y1);
 	//GUI_SetBkColor(GUI_BLACK);
-	GUI_DispStringInRect(vol_text, &vol_rect, GUI_TA_VCENTER);	
+	GUI_DispStringInRect(vol_text, &vol_rect, GUI_TA_HCENTER | GUI_TA_VCENTER);	
 	
 	return EPDK_OK;	
 }
