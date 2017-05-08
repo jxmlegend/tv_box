@@ -818,7 +818,7 @@ static __s32 music_player_set_play_mode(music_player_ctrl_t *this)
 			break;
 	}
 	
-	DrawMusicPlayModeButton(this->play_mode,PRESSED);
+	//DrawMusicPlayModeButton(this->play_mode,PRESSED);
 	DrawMusicPlayModeStatus(this->play_mode);	
 	
 	robin_set_play_mode(this->play_mode);
@@ -882,7 +882,7 @@ static __s32 music_player_set_EQ_mode(music_player_ctrl_t *this)
 	
 	
 	DrawMusicEQModeStatus(this->EQ_mode);
-	DrawMusicEQModeButton(this->EQ_mode,PRESSED);
+	//DrawMusicEQModeButton(this->EQ_mode,PRESSED);
 	
 	robin_set_eq_mode(eq_mode);
 	
@@ -936,7 +936,7 @@ static __s32 music_player_set_play_previous(music_player_ctrl_t *this)
 	
 	GUI_ResetTimer(this->h_framewin, MusicTimerId, MUSIC_TIMER_INTERVAL, NULL);
 	robin_set_cmd_stop();
-	DrawMusicPlayPreButton(PRESSED);
+	//DrawMusicPlayPreButton(PRESSED);
 	
 	ListCtrl = this->list_ctrl;
 	filename = this->play_file_info.filename;
@@ -971,7 +971,7 @@ static __s32 music_player_set_play_next(music_player_ctrl_t *this)
 	GUI_ResetTimer(this->h_framewin, MusicTimerId, MUSIC_TIMER_INTERVAL, NULL);
 	robin_set_cmd_stop();
 	
-	DrawMusicPlayNextButton(PRESSED);
+	//DrawMusicPlayNextButton(PRESSED);
 	
 	ListCtrl = this->list_ctrl;
 	filename = this->play_file_info.filename;
@@ -1003,13 +1003,13 @@ static __s32 music_player_set_play_pause(music_player_ctrl_t *this)
 	if(robin_get_fsm_status() == CEDAR_STAT_PLAY)
 	{
 		robin_set_cmd_pause();
-		DrawMusicPlayPauseButton(PRESSED);
+		//DrawMusicPlayPauseButton(PRESSED);
 		DrawMusicPlayStatusButton(MUSIC_PAUSE);
 	}
 	else
 	{
 		robin_set_cmd_play();
-		DrawMusicPlayPauseButton(PRESSED);
+		//DrawMusicPlayPauseButton(PRESSED);
 		DrawMusicPlayStatusButton(MUSIC_PLAYING);
 	}	
 	return EPDK_OK;
@@ -1045,7 +1045,7 @@ static __s32 music_player_set_play_backward(music_player_ctrl_t *this)
 	__s32 ret = 0;		
 	__u32 total_time = 0, cur_time = 0;
 	__cedar_status_t play_status;
-	DrawMusicPlayBackwardButton(PRESSED);
+	//DrawMusicPlayBackwardButton(PRESSED);
 	GUI_ResetTimer(this->h_framewin, MusicTimerId, MUSIC_TIMER_INTERVAL, NULL);
 	__here__;
 	DrawMusicPlayStatusButton(MUSIC_PLAYING);
@@ -1130,7 +1130,7 @@ static __s32 music_player_set_play_forward(music_player_ctrl_t *this)
 	__s32 ret = 0;		
 	__u32 total_time = 0, cur_time = 0;
 	__cedar_status_t play_status;
-	DrawMusicPlayForwardButton(PRESSED);
+	//DrawMusicPlayForwardButton(PRESSED);
 	
 	DrawMusicPlayStatusButton(MUSIC_PLAYING);
 	
@@ -1225,9 +1225,11 @@ static __s32 music_player_on_setting(music_player_ctrl_t *this)
 	switch(this->menu_id)
 	{
 		case SET_PLAY_MODE:
+			DrawMusicPlayModeButton(this->play_mode,PRESSED);
 			music_player_set_play_mode(this);
 			break;					
 		case SET_EQ_MODE:
+			DrawMusicEQModeButton(this->EQ_mode,PRESSED);
 			music_player_set_EQ_mode(this);
 			break;
 /*		case SET_BL_TIME:
@@ -1235,18 +1237,23 @@ static __s32 music_player_on_setting(music_player_ctrl_t *this)
 			break;
 */			
 		case SET_PLAY_PREVIOUS:
+			DrawMusicPlayPreButton(PRESSED);
 			music_player_set_play_previous(this);
 			break;
 		case SET_PLAY_NEXT:
+			DrawMusicPlayNextButton(PRESSED);
 			music_player_set_play_next(this);
 			break;
 		case SET_PLAY_PAUSE:
+			DrawMusicPlayPauseButton(PRESSED);
 			music_player_set_play_pause(this);
 			break;
 		case SET_PLAY_BACKWARD:
+			DrawMusicPlayBackwardButton(PRESSED);
 			music_player_set_play_backward(this);
 			break;
 		case SET_PLAY_FORWARD:
+			DrawMusicPlayForwardButton(PRESSED);
 			music_player_set_play_forward(this);
 			break;		
 	}
