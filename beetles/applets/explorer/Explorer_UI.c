@@ -956,6 +956,38 @@ __s32 explorer_draw_file_manager_title(void)
 	
 	return EPDK_OK;
 }
+
+__s32 explorer_draw_title(rat_media_type_t media_type)
+{
+	char str[30];
+	explorer_viewer_ui_t *ui_param;	
+	GUI_RECT rect;
+	ui_param = explorer_get_viewer_ui_param();	
+	rect.x0 = ui_param->list_item_ui_param.title_rect.x;		
+	rect.y0 = ui_param->list_item_ui_param.title_rect.y;			
+	rect.x1 = rect.x0 + ui_param->list_item_ui_param.title_rect.width;		
+	rect.y1 = rect.y0 + ui_param->list_item_ui_param.title_rect.height;
+
+	switch(media_type)
+	{
+		case RAT_MEDIA_TYPE_ALL:	
+			get_menu_text(STRING_HOME_EXPLORER, str, sizeof(str));
+			break;
+		case RAT_MEDIA_TYPE_VIDEO:
+			get_menu_text(STRING_HOME_MOVIE, str, sizeof(str));
+			break;		
+		case RAT_MEDIA_TYPE_PIC:
+			get_menu_text(STRING_HOME_PHOTO, str, sizeof(str));
+			break;
+		default:
+			break;
+	}
+	GUI_ClearRect(rect.x0,rect.y0, rect.x1, rect.y1);	
+	GUI_DispStringInRect(str, &rect, GUI_TA_VCENTER|GUI_TA_HCENTER);		
+	
+	return EPDK_OK;
+}
+
 void *explorer_get_file_item_icon(explorer_view_mode_e view_mode, rat_media_type_t media_type, exp_icon_status_e status)
 {
 	void *pic_buf = NULL;		

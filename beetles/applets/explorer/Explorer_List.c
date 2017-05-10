@@ -381,10 +381,12 @@ static __s32 explorer_listview_onpaint(H_WIN  list_win)
 	LISTBAR_ShowPage(list_para->listbar_handle);              
 	//LISTBAR_LostFocus(list_para->listbar_handle);	
 	//LISTBAR_SetFocusItem(list_para->listbar_handle, list_para->rat.index);
+
+	explorer_draw_title(list_para->media_type);
 		
 	if(list_para->media_type == RAT_MEDIA_TYPE_ALL)
 	{
-		explorer_draw_file_manager_title();
+		//explorer_draw_file_manager_title();
 	}
 	else
 	{
