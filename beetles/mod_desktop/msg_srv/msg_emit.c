@@ -378,7 +378,7 @@ static __s32 key_msg_cb(void *msg)
     __input_event_t        *pEventFrame;				
 
 
-     eLIBs_printf("ir/key down forative!");
+     __msg("ir/key down forative!");
 	
     if (msg == NULL)
     {
@@ -640,8 +640,7 @@ static __s32 key_msg_cb(void *msg)
 			}			
 			pmsg->data 	= pEventFrame->value;
 
-            		__msg("GUI_MSG_KEY_ val=%d, pmsg->type=%d\n", pmsg->id, pmsg->type);
-			 eLIBs_printf("GUI_MSG_KEY_ val=%d, pmsg->type=%d\n", pmsg->id, pmsg->type);
+            __msg("GUI_MSG_KEY_ val=%d, pmsg->type=%d\n", pmsg->id, pmsg->type);
 			 
 			esKRNL_QPost(emit_ctr.psys_msg_queue, pmsg);
 		}		
