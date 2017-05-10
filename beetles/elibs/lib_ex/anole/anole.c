@@ -158,8 +158,8 @@ static void __wait_willow_finish(void)
         __here__;
 		if (status == WILLOW_STATUS_FINISH)
 			break;			
-		//esKRNL_TimeDly(10);
-		esKRNL_TimeDly(1);		///by linyaoshu
+		esKRNL_TimeDly(10);
+		//esKRNL_TimeDly(1);		///by linyaoshu
         count--;
 	}
 }
