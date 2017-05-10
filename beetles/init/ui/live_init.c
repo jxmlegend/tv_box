@@ -31,6 +31,25 @@ __s32 		LCD_HEIGHT;
 /**************************************************************************************************************/
 
 /**************************************************************************************************************/
+void change_resolution(__s32 resolution)
+{
+	ES_FILE 	 * p_disp;
+
+	__s32 screen_width, screen_height;
+	dsk_display_get_size(&screen_width, &screen_height);
+
+	if((screen_width == 1024 && screen_height == 768 && resolution == 2) \
+		|| (screen_width == 1280 && screen_height == 768 && resolution == 1))
+	{
+		p_disp = eLIBs_fopen("b:\\DISP\\DISPLAY", "r+");
+		if(!p_disp)
+		{
+			return;
+		}
+		eLIBs_fioctrl(p_disp, DISP_CMD_LCD_SWITCH_OUTPUT, resolution, 0);
+		eLIBs_fclose(p_disp);
+	}
+}
 
 /**
  * 初始化 系统资源
@@ -83,6 +102,7 @@ __s32 live_init(void)
 	        para = (reg_system_para_t*)dsk_reg_get_para_by_app(REG_APP_SYSTEM);
 	        if(para)
 	        {
+	            change_resolution(para->resolution);
 	            //dsk_set_gamma(lion_reg_gamma_get());         
 	            	dsk_display_set_lcd_bright(para->backlight);		
 	            	__msg("para->backlight=%d\n", para->backlight);

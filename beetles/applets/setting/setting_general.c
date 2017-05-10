@@ -625,17 +625,14 @@ static __s32 setting_general_paint(__gui_msg_t *msg)
 				p_item_res = &general_attr->res_keytone;
 				if(setting_reg_para)
 				{
-					p_item_res->content_num = setting_reg_para->keytone; 
 					if(setting_reg_para->keytone==1)	//keytone on
 						p_item_res->content_num = 0;
-					else if(setting_reg_para->keytone==2)	//keytone off
-						p_item_res->content_num = 1;
 					else 
-						p_item_res->content_num = 0;
+						p_item_res->content_num = 1;
 				}
 				else
 				{
-					p_item_res->content_num = 0;
+					p_item_res->content_num = 1;
 				}
 				p_item_res->content_nr = sizeof(content_keytone_id)/sizeof(__s32);
 				get_menu_text(content_keytone_id[p_item_res->content_num], p_item_res->string_content, 128);
@@ -867,7 +864,7 @@ static __s32 _setting_general_Proc(__gui_msg_t *msg)
 			}
 			_setting_general_res_uninit(general_attr);
 
-			//dsk_reg_flush();	//写进文件里面
+			dsk_reg_flush();	//写进文件里面
 
 			general_para = general_attr->general_para;
 			if(general_para)
@@ -995,6 +992,8 @@ static __s32 _setting_general_Proc(__gui_msg_t *msg)
 							eLIBs_fioctrl(p_disp, DISP_CMD_LCD_SWITCH_OUTPUT, p_item_res->content_num, 0);
 							eLIBs_fclose(p_disp);
 						}
+						if(setting_reg_para)
+							setting_reg_para->resolution = p_item_res->content_num;
 						gscene_bgd_refresh();
 						main_cmd2parent(GUI_WinGetParent(msg->h_deswin), SWITCH_TO_OTHER_APP, SETTING_SW_TO_SETTING, 0);
 					}
@@ -1106,6 +1105,8 @@ static __s32 _setting_general_Proc(__gui_msg_t *msg)
 							eLIBs_fioctrl(p_disp, DISP_CMD_LCD_SWITCH_OUTPUT, p_item_res->content_num, 0);
 							eLIBs_fclose(p_disp);
 						}
+						if(setting_reg_para)
+							setting_reg_para->resolution = p_item_res->content_num;
 						gscene_bgd_refresh();
 						main_cmd2parent(GUI_WinGetParent(msg->h_deswin), SWITCH_TO_OTHER_APP, SETTING_SW_TO_SETTING, 0);
 					}

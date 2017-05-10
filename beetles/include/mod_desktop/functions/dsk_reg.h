@@ -66,6 +66,7 @@ typedef struct
 	__u32 	style;			//主题风格
 	__u32 	backlight;		//背光亮度
 	__u32 	backlightoff;	//
+	__u32	resolution;
 	__u32 	poweroff;
 	__u32	keytone;		//按键音
 	__u32 	gamma_r_value;
