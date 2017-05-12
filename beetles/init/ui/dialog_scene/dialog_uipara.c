@@ -46,7 +46,7 @@ void init_dialog_uipara(void)
 	else
 		screen_type = SCREEN_TYPE_LAST; 
 
-	screen_type = SCREEN_TYPE_720_576;
+	screen_type = SCREEN_TYPE_1024_768;
 	switch(screen_type) 
 	{
         case SCREEN_TYPE_400_240:		
@@ -137,18 +137,18 @@ void init_dialog_uipara(void)
 		case SCREEN_TYPE_1024_768:
 		{						
 			/* dialog layer */
-			dialog_uipara.dialog_lyr.fb_w  = 512;
-			dialog_uipara.dialog_lyr.fb_h  = 256;
+			dialog_uipara.dialog_lyr.fb_w  = 256;
+			dialog_uipara.dialog_lyr.fb_h  = 128;
 			
 			dialog_uipara.dialog_lyr.src_x = 0;
 			dialog_uipara.dialog_lyr.src_y = 0;
-			dialog_uipara.dialog_lyr.src_w = 512;
-			dialog_uipara.dialog_lyr.src_h = 256;
+			dialog_uipara.dialog_lyr.src_w = 256;
+			dialog_uipara.dialog_lyr.src_h = 128;
 			
-			dialog_uipara.dialog_lyr.scn_x = (width-512)/2;
-			dialog_uipara.dialog_lyr.scn_y = (height-256)/2;	
-			dialog_uipara.dialog_lyr.scn_w = 512; 	
-			dialog_uipara.dialog_lyr.scn_h = 256;
+			dialog_uipara.dialog_lyr.scn_x = (width-256)/2;
+			dialog_uipara.dialog_lyr.scn_y = (height-128)/2;	
+			dialog_uipara.dialog_lyr.scn_w = 256; 	
+			dialog_uipara.dialog_lyr.scn_h = 128;
 			
 			dialog_uipara.dialog_lyr.pipe  = 1;	
 			
