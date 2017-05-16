@@ -135,11 +135,11 @@ void __autosearch_thread(void *p_arg)
 				dsk_tv_rcv->wait_timer--;
 				if(dsk_tv_rcv->wait_timer==0)
 				{
-					timercnt++;
-					if(timercnt>2)
+					//timercnt++;
+					//if(timercnt>2)
 					{
-						timercnt = 0;
-						result++;
+					//	timercnt = 0;
+					//	result++;
 						tvserch_cmd2tvmenu(app_tv_data->h_menuwin,6,0,0);
 					}
 						
@@ -190,7 +190,7 @@ void __autosearch_thread(void *p_arg)
 							else
 								dsk_tv_rcv->shemod = 0;
 
-							dsk_tv_rcv->wait_timer = 4;			//   2
+							dsk_tv_rcv->wait_timer = 8;			//   2
 							dsk_tv_rcv->ubNorPicture = com_video_get_status();
 	
 
@@ -680,6 +680,8 @@ void Get2137PllData(void)
 		var = 0x10000 - var;
 //		ucTestFre = 1000*var;
 		dsk_tv_rcv->ucTestFre = 1000*var;
+		dsk_tv_rcv->ucTestFre = (dsk_tv_rcv->ucTestFre/FREQ_MIN_OFFSET_VALUE \
+			+ ((dsk_tv_rcv->ucTestFre%FREQ_MIN_OFFSET_VALUE>FREQ_MIN_OFFSET_VALUE/2)?1:0))*FREQ_MIN_OFFSET_VALUE;
 		dsk_tv_rcv->cur_freq = dsk_tv_rcv->cur_freq- dsk_tv_rcv->ucTestFre; 
 		
 	}	
@@ -688,6 +690,8 @@ void Get2137PllData(void)
 //		ucTestFre = 1000*var;
 //		ucSi2137Fre = ucSi2137Fre + ucTestFre; 	
 		dsk_tv_rcv->ucTestFre = 1000*var;
+		dsk_tv_rcv->ucTestFre = (dsk_tv_rcv->ucTestFre/FREQ_MIN_OFFSET_VALUE \
+			+ ((dsk_tv_rcv->ucTestFre%FREQ_MIN_OFFSET_VALUE>FREQ_MIN_OFFSET_VALUE/2)?1:0))*FREQ_MIN_OFFSET_VALUE;
 		dsk_tv_rcv->cur_freq = dsk_tv_rcv->cur_freq + dsk_tv_rcv->ucTestFre; 
 	}	
 	if(dsk_tv_rcv->ucTestFre>40000)

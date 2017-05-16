@@ -81,6 +81,7 @@ extern void * volatile  cb_ctx_search_over;
 
 #define FREQ_LOW_BAND_VALUE			  44250000
 #define FREQ_TOP_BAND_VALUE 			878250000			//878250000
+#define FREQ_MIN_OFFSET_VALUE			250000
 
 __u32 dsk_tv_rcv_open(void);
 void TVSearchNextChannel(void);
