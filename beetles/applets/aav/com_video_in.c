@@ -595,10 +595,10 @@ __here__;
 	video_ctrl.layer_para.src_win.height   = tvd_mode.size.width;
 
 #else
-    video_ctrl.layer_para.src_win.x        = 0;
-    video_ctrl.layer_para.src_win.y        = 0;
-    video_ctrl.layer_para.src_win.width    = tvd_mode.size.width;//tvd_mode.size.width;
-    video_ctrl.layer_para.src_win.height   = tvd_mode.size.height;//tvd_mode.size.height;
+    video_ctrl.layer_para.src_win.x        = 10;
+    video_ctrl.layer_para.src_win.y        = 10;
+    video_ctrl.layer_para.src_win.width    = tvd_mode.size.width -25;//tvd_mode.size.width;
+    video_ctrl.layer_para.src_win.height   = tvd_mode.size.height -20;//tvd_mode.size.height;
 #endif
 __here__;
 
