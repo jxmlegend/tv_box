@@ -135,27 +135,59 @@ static __s32 __reg_paramter_init(reg_app_para_t* para)
 	para->tv_para.bright = 50;
 	para->tv_para.contrast = 50;
 	para->tv_para.color = 50;
-	para->tv_para.tv_channel[1] = 85250000;
-	para->tv_para.tv_channel[2] = 144250000;
-	para->tv_para.tv_channel[3] = 184250000;
-	para->tv_para.tv_channel[4] = 289250000;
-	para->tv_para.tv_channel[5] = 312250000;
+	para->tv_para.tv_channel[1] = 49750000;
+	para->tv_para.tv_channel[2] = 61250000;
+	para->tv_para.tv_channel[3] = 77250000;
+	para->tv_para.tv_channel[4] = 91250000;
+	para->tv_para.tv_channel[5] = 120250000;
+	para->tv_para.tv_channel[6] = 152250000;
+	para->tv_para.tv_channel[7] = 160250000;
+	para->tv_para.tv_channel[8] = 168250000;
+	para->tv_para.tv_channel[9] = 181250000;
+	para->tv_para.tv_channel[10] = 192250000;
+	para->tv_para.tv_channel[11] = 211250000;
+	para->tv_para.tv_channel[12] = 304250000;
+	para->tv_para.tv_channel[13] = 312250000;
+	para->tv_para.tv_channel[14] = 392250000;
+	para->tv_para.tv_channel[15] = 400250000;
+	para->tv_para.tv_channel[16] = 416250000;
+	para->tv_para.tv_channel[17] = 456250000;
+	para->tv_para.tv_channel[18] = 471250000;
+	para->tv_para.tv_channel[19] = 483250000;
+	para->tv_para.tv_channel[20] = 603250000;
+	para->tv_para.tv_channel[21] = 655250000;
 
 	para->tv_para.SoundSystable[1] = 3;
 	para->tv_para.SoundSystable[2] = 3;
 	para->tv_para.SoundSystable[3] = 3;
 	para->tv_para.SoundSystable[4] = 3;
 	para->tv_para.SoundSystable[5] = 3;
+	para->tv_para.SoundSystable[6] = 3;
+	para->tv_para.SoundSystable[7] = 3;
+	para->tv_para.SoundSystable[8] = 3;
+	para->tv_para.SoundSystable[9] = 3;
+	para->tv_para.SoundSystable[10] = 3;
+	para->tv_para.SoundSystable[11] = 3;
+	para->tv_para.SoundSystable[12] = 3;
+	para->tv_para.SoundSystable[13] = 3;
+	para->tv_para.SoundSystable[14] = 3;
+	para->tv_para.SoundSystable[15] = 3;
+	para->tv_para.SoundSystable[16] = 3;
+	para->tv_para.SoundSystable[17] = 3;
+	para->tv_para.SoundSystable[18] = 3;
+	para->tv_para.SoundSystable[19] = 3;
+	para->tv_para.SoundSystable[20] = 3;
+	para->tv_para.SoundSystable[21] = 3;
 	
-	para->tv_para.total_channel = 4;
-
-	for(i=6;i<200;i++)
+	para->tv_para.total_channel = 21;
+/*
+	for(i=22;i<200;i++)
 	{
 		para->tv_para.tv_channel[i] = 312250000;
 		para->tv_para.SoundSystable[i] = 3;
 	}
 	para->tv_para.total_channel = 199;
-	
+*/
     para->calendar_para.time_format=0;
 
 	return EPDK_OK;
