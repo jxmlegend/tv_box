@@ -209,6 +209,8 @@ static __s32 photo_init(__gui_msg_t *msg)
     
 	//ANOLE_PlayCurFile();
 
+	notify_bg_music(msg->h_deswin, msg->h_deswin, get_photo_bgmusic());
+
 	return EPDK_TRUE;
 }
 /***********************************************************************************************************

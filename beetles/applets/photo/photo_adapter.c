@@ -130,20 +130,20 @@ __u32 _get_photo_ratio(void)
 
 __u32 _get_photo_bgmusic(void)
 {
-// 	reg_photo_para_t *para;
-// 
-// 	get_reg_pointer(para, reg_photo_para_t, REG_APP_PHOTO);
-// 
-// 	if (para)
-// 	{		
-// 		return para->bgmusic;
-// 	}
-// 	else
-// 	{
-// 		__err("dsk_reg_get_para_by_app fail...\n");
-// 		return 0;
-// 	}
-	return is_app_exist(APP_MUSIC);
+ 	reg_photo_para_t *para;
+ 
+ 	get_reg_pointer(para, reg_photo_para_t, REG_APP_PHOTO);
+ 
+ 	if (para)
+ 	{		
+ 		return para->bgmusic;
+ 	}
+ 	else
+ 	{
+ 		__err("dsk_reg_get_para_by_app fail...\n");
+ 		return 0;
+ 	}
+//	return is_app_exist(APP_MUSIC);
 }
 
 __u32 _get_photo_effect(void)

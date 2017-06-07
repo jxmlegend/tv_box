@@ -870,7 +870,7 @@ static __s32 app_root_command_proc(__gui_msg_t *msg)
 				case SWITCH_TO_EXPLORER:
 				{
                     			//…æ≥˝∫ÛÃ®“Ù¿÷
-                    			// __app_root_delete_bg_music(msg);
+                    			__app_root_delete_bg_music(msg);
                     
                     			__msg("**********photo to explorer**********\n");
 			
