@@ -1503,6 +1503,7 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 						case 1:
 							tvsouinputselect_menu();
 							tv_menu_paint_protel(msg,tv_data.item,1);
+							tv_menu_paint_protel(msg,2,0);
 							break;		
 						case 2:
 							if(dsk_tv_rcv->sourceInput==0)
