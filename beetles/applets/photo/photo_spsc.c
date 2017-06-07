@@ -329,7 +329,7 @@ __s32 update_pic_info(__s32 index, photo_spsc_para_t *spsc_para)
 */
 static __s32 phot_spsc_paint_info(photo_spsc_ctrl_t *spsc_ctrl)
 {
-//	GUI_RECT gui_rect;
+	GUI_RECT gui_rect;
 	char buf[1024], buf1[128];
 	__s32 x, y;
 	__s32 font_h = 20, sp_h = 30;
@@ -350,53 +350,41 @@ static __s32 phot_spsc_paint_info(photo_spsc_ctrl_t *spsc_ctrl)
 	y = SPSC_INFO_MENU_Y;
 	GUI_BMP_RES_Draw(spsc_ctrl->spsc_res.bmp_big_pause, x, y);
 
-	x += 60;//TODO:Macro
-	GUI_DispStringAt(spsc_ctrl->spsc_para->name, x, y);
-	y+= sp_h;
+	gui_rect.x0 = x + 60;
+	gui_rect.y0 = y;
+	gui_rect.x1 = gui_rect.x0 + 280;
+	gui_rect.y1 = gui_rect.y0 + font_h;
+	GUI_DispStringInRect(spsc_ctrl->spsc_para->name, &gui_rect, GUI_TA_VCENTER|GUI_TA_LEFT);
+
+	gui_rect.y0 += sp_h;
+	gui_rect.y1 = gui_rect.y0 + font_h;
 	eLIBs_strcpy(buf, spsc_ctrl->spsc_res.taken_time);
 	eLIBs_strcat(buf, " : ");
 	app_sprintf(buf1, "%d/%d/%d %d%d:%d%d", spsc_ctrl->spsc_para->time.year, spsc_ctrl->spsc_para->time.month, spsc_ctrl->spsc_para->time.day,
 						spsc_ctrl->spsc_para->time.hour/10, spsc_ctrl->spsc_para->time.hour%10, spsc_ctrl->spsc_para->time.minute/10, spsc_ctrl->spsc_para->time.minute%10);
 	eLIBs_strcat(buf, buf1);
-	GUI_DispStringAt(buf, x, y);
-	y+= font_h;
+	GUI_DispStringInRect(buf, &gui_rect, GUI_TA_VCENTER|GUI_TA_LEFT);
+
+	gui_rect.y0 += sp_h;
+	gui_rect.y1 = gui_rect.y0 + font_h;
 	eLIBs_strcpy(buf, spsc_ctrl->spsc_res.file_size);
 	eLIBs_strcat(buf, " : ");
 	filesize2str(spsc_ctrl->spsc_para->file_size, buf1);
 	eLIBs_strcat(buf, buf1);
-	GUI_DispStringAt(buf, x, y);
-	y+= font_h;
+	GUI_DispStringInRect(buf, &gui_rect, GUI_TA_VCENTER|GUI_TA_LEFT);
+
+	gui_rect.y0 += sp_h;
+	gui_rect.y1 = gui_rect.y0 + font_h;
 	eLIBs_strcpy(buf, spsc_ctrl->spsc_res.place);
 	eLIBs_strcat(buf, " : ");
 	eLIBs_strcat(buf, spsc_ctrl->spsc_para->place);
-	GUI_DispStringAt(buf, x, y);
-	y+= sp_h;
+	GUI_DispStringInRect(buf, &gui_rect, GUI_TA_VCENTER|GUI_TA_LEFT);
+
+	gui_rect.y0 += sp_h;
+	gui_rect.y1 = gui_rect.y0 + font_h;
 	app_sprintf(buf, "%s : %d x %d", spsc_ctrl->spsc_res.size, spsc_ctrl->spsc_para->width, spsc_ctrl->spsc_para->height);
-	GUI_DispStringAt(buf, x, y);
-	/*y+= font_h;
-	eLIBs_strcpy(buf, spsc_ctrl->spsc_res.resolution);
-	eLIBs_strcat(buf, " : ");
-	GUI_DispStringAt(buf, x, y);
-	y+= font_h;
-	eLIBs_strcpy(buf, spsc_ctrl->spsc_res.camera_model);
-	eLIBs_strcat(buf, " : ");
-	GUI_DispStringAt(buf, x, y);
-	y+= font_h;
-	eLIBs_strcpy(buf, spsc_ctrl->spsc_res.exposurebais);
-	eLIBs_strcat(buf, " : ");
-	GUI_DispStringAt(buf, x, y);
-	y+= font_h;
-	eLIBs_strcpy(buf, spsc_ctrl->spsc_res.flash);
-	eLIBs_strcat(buf, " : ");
-	GUI_DispStringAt(buf, x, y);
-	y+= font_h;
-	eLIBs_strcpy(buf, spsc_ctrl->spsc_res.focus_length);
-	eLIBs_strcat(buf, " : ");
-	GUI_DispStringAt(buf, x, y);
-	y+= font_h;
-	eLIBs_strcpy(buf, spsc_ctrl->spsc_res.color_space);
-	eLIBs_strcat(buf, " : ");
-	GUI_DispStringAt(buf, x, y);*/
+	GUI_DispStringInRect(buf, &gui_rect, GUI_TA_VCENTER|GUI_TA_LEFT);
+
 	return 0;
 }
 /*
