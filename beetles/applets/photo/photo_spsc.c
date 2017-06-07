@@ -330,7 +330,7 @@ __s32 update_pic_info(__s32 index, photo_spsc_para_t *spsc_para)
 static __s32 phot_spsc_paint_info(photo_spsc_ctrl_t *spsc_ctrl)
 {
 //	GUI_RECT gui_rect;
-	char buf[128], buf1[128];
+	char buf[1024], buf1[128];
 	__s32 x, y;
 	__s32 font_h = 20, sp_h = 30;
 
