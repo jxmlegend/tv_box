@@ -27,9 +27,19 @@ static movie_spsc_ctrl_uipara_t uipara_400_240 =
 	
 	4,
 	{
-		0, 0, 672, 154,
-		ID_MOVIE_SPSC_BG_BMP
-	},		
+		{
+			0, 0, 672, 154,
+			ID_MOVIE_SPSC_BG_BMP
+		},	
+		{
+			0, 0, 672, 154,
+			ID_MOVIE_SPSC_FILE_NAME_BG_BMP
+		},	
+		{
+			0, 0, 672, 154,
+			ID_MOVIE_SPSC_FILE_INFO_BG_BMP
+		}
+	},
 	{
 		{
 			24, 33, 44, 26,			

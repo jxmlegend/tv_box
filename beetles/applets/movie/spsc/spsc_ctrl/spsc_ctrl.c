@@ -48,26 +48,30 @@ static __s32 __movie_spsc_ctrl_init_ui(void)
 		__msg("movie_spsc_get_uipara fail...\n");
 		return EPDK_FAIL;
 	}	
-
+	
 	{
+		int i;
 		int j;
 
-		for (j = 0 ; j < MOVIE_SPSC_CTRL_MAX_ICON_RES_NUM ; j++)
+		for (i = 0 ; i < 3 ; i++)
 		{
-			if (ui_para->uipara_bg.res_id[j])
+			for (j = 0 ; j < MOVIE_SPSC_CTRL_MAX_ICON_RES_NUM ; j++)
 			{
-				ui_para->uipara_bg.res_hdl[j] = dsk_theme_open(ui_para->uipara_bg.res_id[j]);
-				if (!ui_para->uipara_bg.res_hdl[j])
+				if (ui_para->uipara_bg[i].res_id[j])
 				{
-					__msg("dsk_theme_open fail...\n");
+					ui_para->uipara_bg[i].res_hdl[j] = dsk_theme_open(ui_para->uipara_bg[i].res_id[j]);
+					if (!ui_para->uipara_bg[i].res_hdl[j])
+					{
+						__msg("dsk_theme_open fail...\n");
+					}
+                    else//先占住内存
+                    {
+                      //  dsk_theme_hdl2buf(ui_para->uipara_icon[i].res_hdl[j]);
+                    }                    
 				}
-                else//先占住内存
-                {
-                  //  dsk_theme_hdl2buf(ui_para->uipara_bg.res_hdl[j]);
-                }
 			}
 		}
-	}
+	}	
 
 	{
 		int i;
@@ -167,14 +171,18 @@ static __s32 __movie_spsc_ctrl_deinit_ui(void)
 	}	
 
 	{
+		int i;
 		int j;
-
-		for (j = 0 ; j < MOVIE_SPSC_CTRL_MAX_ICON_RES_NUM ; j++)
+		
+		for (i = 0 ; i < 3 ; i++)
 		{
-			if (ui_para->uipara_bg.res_hdl[j])
+			for (j = 0 ; j < MOVIE_SPSC_CTRL_MAX_ICON_RES_NUM ; j++)
 			{
-				dsk_theme_close(ui_para->uipara_bg.res_hdl[j]);
-				ui_para->uipara_bg.res_hdl[j] = NULL;
+				if (ui_para->uipara_bg[i].res_hdl[j])
+				{
+					dsk_theme_close(ui_para->uipara_bg[i].res_hdl[j]);
+					ui_para->uipara_bg[i].res_hdl[j] = NULL;
+				}
 			}
 		}
 	}
@@ -366,16 +374,16 @@ static __s32 __movie_spsc_ctrl_bg_draw(movie_spsc_ctrl_scene_t *scene_para)
 		
 		for (j = 0 ; j < MOVIE_SPSC_CTRL_MAX_ICON_RES_NUM ; j++)
 		{
-			if (ui_para->uipara_bg.res_hdl[j])
+			if (ui_para->uipara_bg[0].res_hdl[j])
 			{
-				pbmp = dsk_theme_hdl2buf(ui_para->uipara_bg.res_hdl[j]);
+				pbmp = dsk_theme_hdl2buf(ui_para->uipara_bg[0].res_hdl[j]);
 				if (!pbmp)
 				{
 					__msg("dsk_theme_hdl2buf fail...\n");
 					continue;
 				}
 				
-				GUI_BMP_Draw(pbmp, ui_para->uipara_bg.x, ui_para->uipara_bg.y);		
+				GUI_BMP_Draw(pbmp, ui_para->uipara_bg[0].x, ui_para->uipara_bg[0].y);		
 			}
 		}       
 	}
@@ -579,6 +587,7 @@ static __s32 __movie_spsc_ctrl_static_icon_draw(movie_spsc_ctrl_scene_t *scene_p
             
 			{
 				GUI_RECT gui_rect;
+				void* pbmp;
 				
 				if (SWFFont)
 				{
@@ -597,7 +606,14 @@ static __s32 __movie_spsc_ctrl_static_icon_draw(movie_spsc_ctrl_scene_t *scene_p
 				gui_rect.y0 = ui_para->uipara_static_icon[movie_spsc_ctrl_static_icon_file_info].y;
 				gui_rect.x1 = gui_rect.x0+ui_para->uipara_static_icon[movie_spsc_ctrl_static_icon_file_info].w;
 				gui_rect.y1 = gui_rect.y0+ui_para->uipara_static_icon[movie_spsc_ctrl_static_icon_file_info].h;
-				GUI_ClearRectEx(&gui_rect);
+				//GUI_ClearRectEx(&gui_rect);
+				pbmp = dsk_theme_hdl2buf(ui_para->uipara_bg[2].res_hdl[0]);
+				if (!pbmp)
+				{
+					__msg("dsk_theme_hdl2buf fail...\n");
+					return EPDK_FAIL;
+				}
+				GUI_BMP_Draw(pbmp, gui_rect.x0, gui_rect.y0);	
 				GUI_DispStringInRect(str, &gui_rect, GUI_TA_VCENTER|GUI_TA_LEFT);
 			}
 
@@ -645,6 +661,7 @@ static __s32 __movie_spsc_ctrl_static_icon_draw(movie_spsc_ctrl_scene_t *scene_p
 			
 			{
 				GUI_RECT gui_rect;
+				void* pbmp;
 
 				if (SWFFont)
 				{
@@ -663,7 +680,14 @@ static __s32 __movie_spsc_ctrl_static_icon_draw(movie_spsc_ctrl_scene_t *scene_p
 				gui_rect.y0 = ui_para->uipara_static_icon[movie_spsc_ctrl_static_icon_video_info].y;
 				gui_rect.x1 = gui_rect.x0+ui_para->uipara_static_icon[movie_spsc_ctrl_static_icon_video_info].w;
 				gui_rect.y1 = gui_rect.y0+ui_para->uipara_static_icon[movie_spsc_ctrl_static_icon_video_info].h;
-				GUI_ClearRectEx(&gui_rect);
+				//GUI_ClearRectEx(&gui_rect);
+				pbmp = dsk_theme_hdl2buf(ui_para->uipara_bg[2].res_hdl[0]);
+				if (!pbmp)
+				{
+					__msg("dsk_theme_hdl2buf fail...\n");
+					return EPDK_FAIL;
+				}
+				GUI_BMP_Draw(pbmp, gui_rect.x0, gui_rect.y0);	
 				GUI_DispStringInRect(str, &gui_rect, GUI_TA_VCENTER|GUI_TA_LEFT);
 			}
 
@@ -711,6 +735,7 @@ static __s32 __movie_spsc_ctrl_static_icon_draw(movie_spsc_ctrl_scene_t *scene_p
             
 			{
 				GUI_RECT gui_rect;
+				void* pbmp;
 
 				if (SWFFont)
 				{
@@ -729,8 +754,14 @@ static __s32 __movie_spsc_ctrl_static_icon_draw(movie_spsc_ctrl_scene_t *scene_p
 				gui_rect.y0 = ui_para->uipara_static_icon[movie_spsc_ctrl_static_icon_audio_info].y;
 				gui_rect.x1 = gui_rect.x0+ui_para->uipara_static_icon[movie_spsc_ctrl_static_icon_audio_info].w;
 				gui_rect.y1 = gui_rect.y0+ui_para->uipara_static_icon[movie_spsc_ctrl_static_icon_audio_info].h;
-				
-				GUI_ClearRectEx(&gui_rect);
+				//GUI_ClearRectEx(&gui_rect);
+				pbmp = dsk_theme_hdl2buf(ui_para->uipara_bg[2].res_hdl[0]);
+				if (!pbmp)
+				{
+					__msg("dsk_theme_hdl2buf fail...\n");
+					return EPDK_FAIL;
+				}
+				GUI_BMP_Draw(pbmp, gui_rect.x0, gui_rect.y0);	
 				GUI_DispStringInRect(str, &gui_rect, GUI_TA_VCENTER|GUI_TA_LEFT);
 			}
 
@@ -745,6 +776,7 @@ static __s32 __movie_spsc_ctrl_static_icon_draw(movie_spsc_ctrl_scene_t *scene_p
             char* pstr;
         	movie_spsc_ctrl_uipara_t* ui_para;	
             GUI_RECT gui_rect;
+            void* pbmp;
 
             //return EPDK_OK;//长字符串滚动已经画了。
 
@@ -795,7 +827,14 @@ static __s32 __movie_spsc_ctrl_static_icon_draw(movie_spsc_ctrl_scene_t *scene_p
             GUI_SetBkColor(0xF0);
             GUI_UC_SetEncodeUTF8();
             GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
-            GUI_ClearRectEx(&gui_rect);
+            //GUI_ClearRectEx(&gui_rect);
+        	pbmp = dsk_theme_hdl2buf(ui_para->uipara_bg[1].res_hdl[0]);
+			if (!pbmp)
+			{
+				__msg("dsk_theme_hdl2buf fail...\n");
+				return EPDK_FAIL;
+			}
+			GUI_BMP_Draw(pbmp, gui_rect.x0, gui_rect.y0);
 
             GetClippedString(&gui_rect, pstr, dst_string, "  ");
             
@@ -1027,7 +1066,7 @@ static __s32 __movie_spsc_ctrl_long_string_start_roll(movie_spsc_ctrl_scene_t *s
         __here__;
         GUI_SetDrawMode(GUI_DRAWMODE_NORMAL);
         __here__;
-        GUI_ClearRectEx(&gui_rect);
+        //GUI_ClearRectEx(&gui_rect);
         __here__;
         gui_rect.x1--;
         gui_rect.y1--;
@@ -1051,7 +1090,7 @@ static __s32 __movie_spsc_ctrl_long_string_start_roll(movie_spsc_ctrl_scene_t *s
         show_info.fontColor = GUI_WHITE;
 	    show_info.encode_id = EPDK_CHARSET_ENM_UTF8;
         show_info.align = GUI_TA_LEFT| GUI_TA_BOTTOM;
-        show_info.bmp = NULL;
+        show_info.bmp = dsk_theme_hdl2buf(ui_para->uipara_bg[1].res_hdl[0]);
         show_info.bmp_pos.x = 0;
         show_info.bmp_pos.y = 0;
 

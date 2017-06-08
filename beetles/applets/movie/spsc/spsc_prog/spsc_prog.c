@@ -228,6 +228,7 @@ static __s32 __spsc_prog_update_spsc_prog_ui(movie_spsc_prog_scene_t* scene_para
 											 , __u32 ui_type)
 {
 	movie_spsc_prog_uipara_t* ui_para;
+	void* pbmp;
 	
 	ui_para = movie_spsc_prog_get_uipara(GUI_GetScnDir());
 	
@@ -261,7 +262,6 @@ static __s32 __spsc_prog_update_spsc_prog_ui(movie_spsc_prog_scene_t* scene_para
 	__here__;
 	if(ui_type&MOVIE_SPSC_PROG_UI_TYPE_ICON)
 	{		
-		void* pbmp;
 		__s32 focus;		
 	
 		__here__;
@@ -279,6 +279,14 @@ static __s32 __spsc_prog_update_spsc_prog_ui(movie_spsc_prog_scene_t* scene_para
 			return EPDK_FAIL;
 		}		
 		GUI_BMP_Draw(pbmp, ui_para->uipara_icon[movie_spsc_prog_icon_playsta].x, ui_para->uipara_icon[movie_spsc_prog_icon_playsta].y);	
+	}
+
+	pbmp = dsk_theme_hdl2buf(ui_para->uipara_icon[movie_spsc_prog_icon_time_bg].res_hdl[0]);
+	if (!pbmp)
+	{
+		__msg("pbmp is null...\n");
+		//com_memdev_delete();
+		return EPDK_FAIL;
 	}
 
 	//当前时间
@@ -338,7 +346,8 @@ static __s32 __spsc_prog_update_spsc_prog_ui(movie_spsc_prog_scene_t* scene_para
 				gui_rect.y0 = ui_para->uipara_spsc_prog_cur_time[i].y;
 				gui_rect.x1 = gui_rect.x0+ui_para->uipara_spsc_prog_cur_time[i].w;
 				gui_rect.y1 = gui_rect.y0+ui_para->uipara_spsc_prog_cur_time[i].h;
-				GUI_ClearRectEx(&gui_rect);
+				//GUI_ClearRectEx(&gui_rect);
+				GUI_BMP_Draw(pbmp, gui_rect.x0, gui_rect.y0);
 				eLIBs_sprintf(str_val, "%.2d", format_time.data2[i]);
 				GUI_DispStringInRect(str_val, &gui_rect, GUI_TA_VCENTER|GUI_TA_HCENTER);
 			}
@@ -398,7 +407,8 @@ static __s32 __spsc_prog_update_spsc_prog_ui(movie_spsc_prog_scene_t* scene_para
 				gui_rect.y0 = ui_para->uipara_spsc_prog_total_time[i].y;
 				gui_rect.x1 = gui_rect.x0+ui_para->uipara_spsc_prog_total_time[i].w;
 				gui_rect.y1 = gui_rect.y0+ui_para->uipara_spsc_prog_total_time[i].h;
-				GUI_ClearRectEx(&gui_rect);
+				//GUI_ClearRectEx(&gui_rect);
+				GUI_BMP_Draw(pbmp, gui_rect.x0, gui_rect.y0);
 				eLIBs_sprintf(str_val, "%.2d", format_time.data2[i]);
 				GUI_DispStringInRect(str_val, &gui_rect, GUI_TA_VCENTER|GUI_TA_HCENTER);
 			}

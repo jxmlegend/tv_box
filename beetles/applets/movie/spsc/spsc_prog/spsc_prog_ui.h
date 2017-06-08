@@ -39,6 +39,7 @@ typedef enum
 	movie_spsc_prog_icon_playsta=0,
 	movie_spsc_prog_icon_prog_bg,
 	movie_spsc_prog_icon_prog_cursor,	
+	movie_spsc_prog_icon_time_bg,
 	movie_spsc_prog_icon_num
 }movie_spsc_prog_icon_t;
 

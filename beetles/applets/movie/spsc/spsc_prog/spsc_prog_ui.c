@@ -37,6 +37,10 @@ static movie_spsc_prog_uipara_t uipara_400_240 =
 		{
 			164, 117, 2, 8,
 			ID_MOVIE_SPSC_PROG_CURSOR_UF_BMP
+		},
+		{
+			164, 117, 2, 8,
+			ID_MOVIE_SPSC_PROG_TIME_BG_BMP
 		}
 	},
 	{

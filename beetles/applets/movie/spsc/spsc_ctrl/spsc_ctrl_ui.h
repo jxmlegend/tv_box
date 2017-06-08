@@ -52,7 +52,7 @@ typedef struct
 {	
 	movie_spsc_ctrl_rect_t	uipara_frm;
 	__s32				focus_icon_index;    
-	movie_spsc_ctrl_rect_t  uipara_bg;    
+	movie_spsc_ctrl_rect_t  uipara_bg[3];    
 	movie_spsc_ctrl_rect_t	uipara_icon[movie_spsc_ctrl_icon_num];
 	movie_spsc_ctrl_rect_t	uipara_icon_text[movie_spsc_ctrl_icon_num];
 	movie_spsc_ctrl_rect_t	uipara_static_icon[movie_spsc_ctrl_static_icon_num];
