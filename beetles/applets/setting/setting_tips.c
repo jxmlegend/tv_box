@@ -181,7 +181,7 @@ static void setting_tip_init(tips_ctrl_t *tips_ctrl)
 	}
 
 	get_menu_text(STRING_SET_OK, tips_ctrl->ok_txt, 128);
-	get_menu_text(STRING_SET_COMMON_PRODUCTINFO_TITLE , tips_ctrl->title_txt , 128);
+	get_menu_text(STRING_SET_COMMON_STORAGEINFO_TITLE , tips_ctrl->title_txt , 128);
 	get_menu_text(STRING_SET_TIPS_TSIZE, tips_ctrl->tsize, 128);
 	get_menu_text(STRING_SET_TIPS_FSIZE, tips_ctrl->fsize, 128);
 	get_menu_text(STRING_SET_TIPS_SVERS, tips_ctrl->svers, 128);
