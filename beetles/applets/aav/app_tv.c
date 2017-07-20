@@ -721,6 +721,21 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 						__TvOSD_OPEN(msg,TVMENU_MUTE);
 				}
 			}
+			else if(GUI_MSG_KEY_VIDEO == msg->dwAddData1)
+			{
+				if(dsk_tv_rcv->tv_menuID !=TVMENU_MAIN)
+				{
+					__TvOSD_si(msg);
+					dsk_tv_rcv->switch_counter++;
+					if(dsk_tv_rcv->switch_counter > 1) {
+						dsk_tv_rcv->switch_counter = 0;
+						TV_cmd2parent(msg->h_deswin, SWITCH_TO_MMENU, 0, 0);
+					} else {
+						tvsouinputselect();
+						__TvOSD_OPEN(msg,TVMENU_NUM);
+					}
+				}
+			}
 	}
 	else
 	{
@@ -782,6 +797,7 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 							}
 						}	
 						break;
+					#if 0
 					case GUI_MSG_KEY_VIDEO:
 						if(dsk_tv_rcv->tv_menuID !=TVMENU_MAIN)
 						{
@@ -790,6 +806,7 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 							__TvOSD_OPEN(msg,TVMENU_NUM);
 						}	
 						break;
+					#endif
 					case GUI_MSG_KEY_INFO:
 						tv_para->res_flag = 1;
 						if(dsk_tv_rcv->tv_menuID==TVMENU_NUM)
@@ -1023,6 +1040,7 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 
 					}
 					break;
+					#if 0
 					case GUI_MSG_KEY_LONGMENU:
 					{
 						if(long_key++ >= 5) {
@@ -1032,6 +1050,7 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 						}
 					}
 					break;
+					#endif
 					case GUI_MSG_KEY_ZOOM_UP:
 					{
 		                ES_FILE      * p_disp;

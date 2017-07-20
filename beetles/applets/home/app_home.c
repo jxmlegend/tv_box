@@ -393,6 +393,18 @@ static __s32 app_home_proc(__gui_msg_t *msg)
 				}
 			}
 		}
+		if(msg->dwAddData1 == GUI_MSG_KEY_VIDEO) {
+			if(msg->dwAddData2 == KEY_UP_ACTION) {
+				home_para_t *home_para;
+				home_para = (home_para_t *)GUI_WinGetAddData(msg->h_deswin);
+				GUI_LyrWinSetSta(home_para->lyr_smenu, GUI_LYRWIN_STA_SUSPEND);
+				GUI_LyrWinSetSta(home_para->lyr_mmenu, GUI_LYRWIN_STA_SUSPEND);
+                main_menu_res_uninit(home_para->h_mmenu);
+                sub_menu_uninit_res(home_para->h_submenu);
+//                      GUI_LyrWinSetSta(home_para->lyr_total_bg, GUI_LYRWIN_STA_SUSPEND);
+				main_cmd2parent(msg->h_deswin, SWITCH_TO_OTHER_APP, ID_HOME_TV, 0);
+			}
+		}
 		__msg("******app_home_proc GUI_MSG_KEY*****\n");
 		break;
 	case GUI_MSG_TOUCH:

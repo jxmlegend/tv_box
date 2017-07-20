@@ -40,7 +40,7 @@ typedef struct
 	__u32				sourceInput;	
 	__u32				channltable[200];
 	__u8				SoundSystable[200];
-
+	__u8				switch_counter;
 }dsk_tv_rcv_t;
 
 
