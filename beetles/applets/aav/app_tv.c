@@ -571,10 +571,14 @@ static __s32 __tv_ctrl_para_init(__gui_msg_t *msg)
         	}
 		app_tv_data->audio_drv = paudio;
 
-		if(dsk_tv_rcv->sourceInput==0)
+		if(dsk_tv_rcv->sourceInput==0) {
+			eLIBs_fioctrl(paudio, AUDIO_DEV_CMD_STOP, 0, 0);
 		 	eLIBs_fioctrl(paudio, AUDIO_DEV_CMD_START, 0xff, 0);	
-		else
+		}
+		else {
+			eLIBs_fioctrl(paudio, AUDIO_DEV_CMD_STOP, 0xff, 0);
 			eLIBs_fioctrl(paudio, AUDIO_DEV_CMD_START, 0, 0);	
+		}
 
 		dsk_tv_rcv->lang = setting_reg_para->language;
 

@@ -399,7 +399,27 @@ static __s32 pc_audio_enable(void)
 		return EPDK_FAIL;
 	}
 
-	eLIBs_fioctrl(paudio, AUDIO_DEV_CMD_START, 0xff, 0);	
+	eLIBs_fioctrl(paudio, AUDIO_DEV_CMD_STOP, 0xff, 0);
+	eLIBs_fioctrl(paudio, AUDIO_DEV_CMD_START, 0, 0);	
+
+	eLIBs_fclose(paudio);
+
+	return EPDK_OK;
+}
+
+static __s32 pc_audio_disable(void)
+{	     		
+	ES_FILE *paudio;
+
+    paudio = eLIBs_fopen("b:\\AUDIO\\FM", "r+");
+   	if(!paudio)
+	{
+		__wrn("Open Audio Dev File Failed\n");
+		return EPDK_FAIL;
+	}
+
+	eLIBs_fioctrl(paudio, AUDIO_DEV_CMD_STOP, 0, 0);
+	eLIBs_fioctrl(paudio, AUDIO_DEV_CMD_STOP, 0xff, 0);	
 
 	eLIBs_fclose(paudio);
 
@@ -458,6 +478,8 @@ static __s32 display_switch_to_tv(void)
 {  
 	__s32            ret;
 	user_gpio_set_t  gpio_set[16];  
+
+	pc_audio_disable();
 	
 	if(!g_gpio_switch)
 	{
@@ -1799,12 +1821,12 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 				__app_pulldown_pe();
 				
 				//dsk_display_on(DISP_OUTPUT_TYPE_LCD);
-				activity_load_app("application://app_root");	
 				g_b_Ir_poweroff = 0;
 				bfirst = 1;
 				__here__;
 				dsk_volume_set(vol);
 				display_switch_to_tv();
+				activity_load_app("application://app_root");
 			}
 #else					
             //关屏计时开始
