@@ -350,9 +350,12 @@ static __s32 app_root_command_proc(__gui_msg_t *msg)
 	root_para_t *root_para;
 	root_ctrl_t   *root_ctrl;
 	__gui_msg_t mymsg;
+	H_WIN bak_focus_win, focus_win;
+	reg_root_para_t *para;
 
 	root_ctrl = (root_ctrl_t   *)GUI_WinGetAddData(msg->h_deswin);
 	root_para = root_ctrl->root_para;
+	bak_focus_win = GUI_WinGetFocusChild(msg->h_deswin);
 
     	__msg("*****************app_root_command_proc**************\n");
 
@@ -1213,7 +1216,29 @@ static __s32 app_root_command_proc(__gui_msg_t *msg)
 		default:
 			break;
 	}
-
+	focus_win = GUI_WinGetFocusChild(msg->h_deswin);
+	if(focus_win != bak_focus_win) {
+		para = dsk_reg_get_para_by_app(REG_APP_ROOT);
+	    if(para)
+	    {
+	    	if (focus_win == root_ctrl->h_app_home) {
+	    		eLIBs_strcpy(para->last_app_name, APP_HOME);
+	    	} else if (focus_win == root_ctrl->h_app_fm){
+	    		eLIBs_strcpy(para->last_app_name, APP_TV);
+	    	} else if (focus_win == root_ctrl->h_app_photo){
+	    		eLIBs_strcpy(para->last_app_name, APP_PHOTO);
+	    	} else if (focus_win == root_ctrl->h_app_music){
+	    		eLIBs_strcpy(para->last_app_name, APP_MUSIC);
+	    	} else if (focus_win == root_ctrl->h_app_movie){
+	    		eLIBs_strcpy(para->last_app_name, APP_MOVIE);
+	    	} else if (focus_win == root_ctrl->h_app_explorer){
+	    		eLIBs_strcpy(para->last_app_name, APP_EXPLORER);
+	    	} else if (focus_win == root_ctrl->h_app_setting){
+	    		eLIBs_strcpy(para->last_app_name, APP_SETTING);
+	    	}
+	    	//dsk_reg_flush();
+	    }
+	}
 	return EPDK_OK;
 }
 
