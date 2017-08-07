@@ -150,12 +150,13 @@ static __s32 __reg_paramter_init(reg_app_para_t* para)
 	para->tv_para.tv_channel[13] = 312250000;
 	para->tv_para.tv_channel[14] = 392250000;
 	para->tv_para.tv_channel[15] = 400250000;
-	para->tv_para.tv_channel[16] = 416250000;
-	para->tv_para.tv_channel[17] = 456250000;
-	para->tv_para.tv_channel[18] = 471250000;
-	para->tv_para.tv_channel[19] = 483250000;
-	para->tv_para.tv_channel[20] = 603250000;
-	para->tv_para.tv_channel[21] = 655250000;
+	para->tv_para.tv_channel[16] = 408250000;
+	para->tv_para.tv_channel[17] = 416250000;
+	para->tv_para.tv_channel[18] = 456250000;
+	para->tv_para.tv_channel[19] = 471250000;
+	para->tv_para.tv_channel[20] = 483250000;
+	para->tv_para.tv_channel[21] = 603250000;
+	para->tv_para.tv_channel[22] = 655250000;
 
 	para->tv_para.SoundSystable[1] = 3;
 	para->tv_para.SoundSystable[2] = 3;
@@ -178,8 +179,9 @@ static __s32 __reg_paramter_init(reg_app_para_t* para)
 	para->tv_para.SoundSystable[19] = 3;
 	para->tv_para.SoundSystable[20] = 3;
 	para->tv_para.SoundSystable[21] = 3;
+	para->tv_para.SoundSystable[22] = 3;
 	
-	para->tv_para.total_channel = 21;
+	para->tv_para.total_channel = 22;
 /*
 	for(i=22;i<200;i++)
 	{
