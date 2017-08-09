@@ -691,7 +691,7 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 
 		__msg("**********tvmenu_key_proc 2**********\n");
 		
-			if(GUI_MSG_KEY_MENU==msg->dwAddData1)				
+			if(GUI_MSG_KEY_MENU==msg->dwAddData1 || GUI_MSG_KEY_POWER == msg->dwAddData1)				
 			{
 				if(dsk_tv_rcv->tv_menuID==TVMENU_MAIN)
 				{
@@ -1040,17 +1040,17 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 
 					}
 					break;
-					#if 0
-					case GUI_MSG_KEY_LONGMENU:
+					case GUI_MSG_KEY_LONGPOWER:
 					{
 						if(long_key++ >= 5) {
 							long_key = 0;
 							__TvOSD_si(msg);
-							TV_cmd2parent(msg->h_deswin, SWITCH_TO_MMENU, 0, 0);
+							msg->h_deswin = GUI_WinGetParent(GUI_WinGetParent(GUI_WinGetHandFromName(APP_ROOT)));
+							msg->id = DSK_MSG_POWER_OFF;
+							GUI_SendNotifyMessage(msg);
 						}
 					}
 					break;
-					#endif
 					case GUI_MSG_KEY_ZOOM_UP:
 					{
 		                ES_FILE      * p_disp;
@@ -1163,7 +1163,7 @@ static __s32 PNsysChange(__gui_msg_t *msg)
 						esKRNL_TimeDly(1);
 
 						menunum = dsk_tv_rcv->tv_menuID;
-						__TvOSD_si(msg);
+						//__TvOSD_si(msg);
 						if(dsk_tv_rcv->sourceInput==0)
 						{
 							if(dsk_tv_rcv->ub_PN_sys==0)
@@ -1178,7 +1178,7 @@ static __s32 PNsysChange(__gui_msg_t *msg)
 							else
 								com_video_in_open(1,0,0,1);
 						}					
-						__TvOSD_OPEN(msg,menunum);
+						//__TvOSD_OPEN(msg,menunum);
 						__msg("open video in\n");
 						
 						

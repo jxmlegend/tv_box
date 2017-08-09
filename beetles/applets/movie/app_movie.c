@@ -2609,8 +2609,8 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
 		
 			if (KEY_UP_ACTION == msg->dwAddData2)
 			{
-				if (GUI_MSG_KEY_LONGENTER == last_key					
-					||GUI_MSG_KEY_LONGMENU == last_key)
+				if (GUI_MSG_KEY_LONGPOWER == last_key					
+					||GUI_MSG_KEY_MENU == last_key)
 				{	
                     			__s32 ret;
                     
@@ -2629,7 +2629,7 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
 		                    else
 		                    {
 		                        __here__;
-								//__movie_delete_subscene_by_id(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));                            
+								__movie_delete_subscene_by_id(movie_ctrl, MOVIE_SUB_SCENE_TYPE_ALL&(~MOVIE_SUB_SHOW_ID));                            
 		                        __here__;
 		                    }					
 
@@ -2814,7 +2814,7 @@ static __s32 __app_movie_proc(__gui_msg_t* msg)
 					}
 				}
 				else if (GUI_MSG_KEY_ESCAPE == last_key
-					||GUI_MSG_KEY_MENU == last_key
+					||GUI_MSG_KEY_POWER == last_key
 					)
 				{	
                     			__s32 ret;

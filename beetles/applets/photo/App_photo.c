@@ -1114,12 +1114,12 @@ static __s32 _app_photo_Proc(__gui_msg_t  *msg)
 			}
 			else
 			{
-				if (msg->dwAddData1 == GUI_MSG_KEY_MENU)
+				if (msg->dwAddData1 == GUI_MSG_KEY_POWER)
 				{
 					DEBUG_photo("\n _app_ GUI_MSG_KEY_MENU -> GUI_MSG_KEY_ESCAPE ____ \n");
 					msg->dwAddData1 = GUI_MSG_KEY_ESCAPE;
 				}
-				else if (msg->dwAddData1 == GUI_MSG_KEY_LONGMENU)
+				else if (msg->dwAddData1 == GUI_MSG_KEY_LONGPOWER)
 				{
 					DEBUG_photo("\n _app_ GUI_MSG_KEY_LONGMENU -> GUI_MSG_KEY_MENU ____ \n");
 					msg->dwAddData1 = GUI_MSG_KEY_MENU;

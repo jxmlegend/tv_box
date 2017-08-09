@@ -612,7 +612,7 @@ static __s32 photo_spsc_key_proc(__gui_msg_t *msg)
 				photo_spsc_pait(msg, PAINT_PHOTO_SPSC_NULL);
 			}
 		}
-		else if(last_key == GUI_MSG_KEY_LONGMENU)
+		else if(last_key == GUI_MSG_KEY_LONGPOWER)
 		{
 				photo_spsc_hide(spsc_ctrl);
 				spsc_ctrl->disp_type = PAINT_PHOTO_SPSC_NULL;
@@ -692,7 +692,7 @@ static __s32 photo_spsc_key_proc(__gui_msg_t *msg)
 				last_key = msg->dwAddData1;
 				break;
 			}
-			case GUI_MSG_KEY_LONGMENU:
+			case GUI_MSG_KEY_LONGPOWER:
 			{
 				key_cnt++;
 				last_key = msg->dwAddData1;

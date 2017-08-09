@@ -30,6 +30,14 @@
 #define LOW_POWER_CHECK_TIME_ID	1002
 #define CURSOR_TIME_ID			1003
 
+
+#define PIOC_MEM_BASE   (0xf1c20800)
+
+#define PIO_REG_CFG(n, i)               ((volatile unsigned int *)( PIOC_MEM_BASE + ((n)-1)*0x24 + ((i)<<2) + 0x00))
+#define PIO_REG_DLEVEL(n, i)            ((volatile unsigned int *)( PIOC_MEM_BASE + ((n)-1)*0x24 + ((i)<<2) + 0x14))
+#define PIO_REG_PULL(n, i)              ((volatile unsigned int *)( PIOC_MEM_BASE + ((n)-1)*0x24 + ((i)<<2) + 0x1C))
+#define PIO_REG_DATA(n) 	            ((volatile unsigned int *)( PIOC_MEM_BASE + ((n)-1)*0x24 + 0x10))
+
 static __bool g_b_enable_standby = 1;
 
 static __bool g_b_Ir_poweroff = 0;
@@ -69,6 +77,117 @@ void init_unlock(__gui_msg_t *msg)
 {
 	__init_ctl_t * init_ctr = (__init_ctl_t *)GUI_WinGetAttr(msg->h_deswin);
 	esKRNL_SemPost(init_ctr->state_sem);
+}
+
+static void pull_down_gpio(__u32 port, __u32 port_num)
+{
+	volatile  __u32    *tmp_addr;
+	__u32               tmp_data;
+	__u32               tmp1;
+	__u32               tmp2;
+	//设置为输出
+	tmp1 = (port_num - ((port_num >> 3) << 3)) << 2;
+	tmp_addr = PIO_REG_CFG(port, (port_num >> 3));
+	tmp_data = *tmp_addr;
+	tmp_data &= ~(0x07 << tmp1);
+	tmp_data |= (0x01 << tmp1);
+	*tmp_addr = tmp_data;
+	//设置为下拉
+	tmp2 = (port_num - ((port_num >> 4) << 4)) << 1;
+	tmp_addr = PIO_REG_PULL(port, (port_num >> 4));
+	tmp_data = *tmp_addr;
+	tmp_data &= ~(0x03 << tmp2);
+	tmp_data |= (0x02 << tmp2);
+	*tmp_addr = tmp_data;
+	//输出低电平
+	tmp_addr = PIO_REG_DATA(port);
+	tmp_data = *tmp_addr;
+	tmp_data &= ~(1 << port_num);
+	//tmp_data |=  (1 << port_num);
+	*tmp_addr = tmp_data;
+}
+
+static void pull_up_gpio(__u32 port, __u32 port_num)
+{
+	volatile  __u32    *tmp_addr;
+	__u32               tmp_data;
+	__u32               tmp1;
+	__u32               tmp2;
+	//设置为输出
+	tmp1 = (port_num - ((port_num >> 3) << 3)) << 2;
+	tmp_addr = PIO_REG_CFG(port, (port_num >> 3));
+	tmp_data = *tmp_addr;
+	tmp_data &= ~(0x07 << tmp1);
+	tmp_data |= (0x01 << tmp1);
+	*tmp_addr = tmp_data;
+	//设置为上拉
+	tmp2 = (port_num - ((port_num >> 4) << 4)) << 1;
+	tmp_addr = PIO_REG_PULL(port, (port_num >> 4));
+	tmp_data = *tmp_addr;
+	tmp_data &= ~(0x03 << tmp2);
+	tmp_data |= (0x01 << tmp2);
+	*tmp_addr = tmp_data;
+	//输出高电平
+	tmp_addr = PIO_REG_DATA(port);
+	tmp_data = *tmp_addr;
+	tmp_data &= ~(1 << port_num);
+	tmp_data |= (1 << port_num);
+	*tmp_addr = tmp_data;
+}
+
+static void pull_xor_gpio(__u32 port, __u32 port_num)
+{
+	volatile  __u32    *tmp_addr;
+	__u32               tmp_data;
+	__u32               tmp1;
+	__u32               tmp2;
+	//设置为输出
+	tmp1 = (port_num - ((port_num >> 3) << 3)) << 2;
+	tmp_addr = PIO_REG_CFG(port, (port_num >> 3));
+	tmp_data = *tmp_addr;
+	tmp_data &= ~(0x07 << tmp1);
+	tmp_data |= (0x01 << tmp1);
+	*tmp_addr = tmp_data;
+	//设置为上拉
+	tmp2 = (port_num - ((port_num >> 4) << 4)) << 1;
+	tmp_addr = PIO_REG_PULL(port, (port_num >> 4));
+	tmp_data = *tmp_addr;
+	tmp_data &= ~(0x03 << tmp2);
+	tmp_data |= (0x01 << tmp2);
+	*tmp_addr = tmp_data;
+	//输出高电平
+	tmp_addr = PIO_REG_DATA(port);
+	tmp_data = *tmp_addr;
+	tmp_data ^= (1 << port_num);
+	*tmp_addr = tmp_data;
+}
+
+static __s32 get_gpio_status(__u32 port, __u32 port_num)
+{
+	volatile  __u32    *tmp_addr;
+	__u32               tmp_data;
+	__s32               ret;
+	__u32               tmp1;
+	__u32               tmp2;
+	//设置为输入
+	tmp1 = (port_num - ((port_num >> 3) << 3)) << 2;
+	tmp_addr = PIO_REG_CFG(port, (port_num >> 3));
+	tmp_data = *tmp_addr;
+	tmp_data &= ~(0x07 << tmp1);
+	tmp_data |= (0x00 << tmp1);
+	*tmp_addr = tmp_data;
+	//设置为下拉
+	tmp2 = (port_num - ((port_num >> 4) << 4)) << 1;
+	tmp_addr = PIO_REG_PULL(port, (port_num >> 4));
+	tmp_data = *tmp_addr;
+	tmp_data &= ~(0x03 << tmp2);
+	tmp_data |= (0x02 << tmp2);
+	*tmp_addr = tmp_data;
+	tmp_addr = PIO_REG_DATA(port);
+	tmp_data = *tmp_addr;
+	__msg("tmp_data=0x%x\n", tmp_data);
+	ret = (tmp_data & (1 << port_num)) >> port_num;
+	return ret;
 }
 
 static void init_cursor_create(__init_ctl_t *m_ctl)
@@ -499,7 +618,7 @@ void __ledflash_thread(void *p_arg)
 
 	led_flash_rcv = (led_flash_rcv_t *)p_arg;
 
-	__app_request_pins();
+	//__app_request_pins();
 	while(1)
 	{
 		if(esKRNL_TDelReq(EXEC_prioself) == OS_TASK_DEL_REQ)
@@ -511,9 +630,11 @@ void __ledflash_thread(void *p_arg)
         	if(led_flash_rcv->flag == 0x01)
         	{
         		esKRNL_TimeDly(116);
-			__app_pullup_pe();
+			//__app_pullup_pe();
+			pull_up_gpio(5, 12);
 			esKRNL_TimeDly(120);
-			__app_pulldown_pe();
+			//__app_pulldown_pe();
+			pull_down_gpio(5, 12);
 	       }
 		else
 		{
@@ -521,9 +642,11 @@ void __ledflash_thread(void *p_arg)
 			{
 				led_flash_rcv->ubchange = 0;
 				if(led_flash_rcv->ub_onoff==1)
-					__app_pulldown_pe();					
+					//__app_pulldown_pe();
+					pull_down_gpio(5, 12);
 				else
-					__app_pullup_pe();
+					//__app_pullup_pe();
+					pull_up_gpio(5, 12);
 			}
 		}
         	esKRNL_TimeDly(4);
@@ -1462,8 +1585,8 @@ static __s32 init_mainwin_cb(__gui_msg_t *msg)
 						GUI_SendNotifyMessage(msg);
 					}
 					break;
-				case GUI_MSG_KEY_LONGMENU:
-					if(g_b_Ir_poweroff == 1 && msg->dwAddData2 != KEY_UP_ACTION) {
+				case GUI_MSG_KEY_POWER:
+					if(g_b_Ir_poweroff == 1 && msg->dwAddData2 == KEY_UP_ACTION) {
 						msg->id = DSK_MSG_POWER_OFF;
 						GUI_SendNotifyMessage(msg);
 					}

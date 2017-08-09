@@ -408,7 +408,7 @@ static __s32 __tvnum_update_tvnum_ui(tv_num_scene_t* scene_para)
 					}
 					if(dsk_tv_rcv->tv_barflag_input==1)
 					{
-										        gui_rect.x0 = ui_para->uipara_num0.x;
+							gui_rect.x0 = ui_para->uipara_num0.x;
 					        gui_rect.y0 = ui_para->uipara_num0.y;
 					        gui_rect.x1 = gui_rect.x0+ui_para->uipara_num0.w;
 					        gui_rect.y1 = gui_rect.y0+ui_para->uipara_num0.h;
@@ -450,7 +450,7 @@ static __s32 __tvnum_update_tvnum_ui(tv_num_scene_t* scene_para)
 						GUI_BMP_Draw(pbmp, gui_rect.x0, gui_rect.y0);
 
 						
-						temp2 /= 10;
+						temp2 = temp%10;
 						
 					        gui_rect.x0 = ui_para->uipara_num1.x;
 					        gui_rect.y0 = ui_para->uipara_num1.y;

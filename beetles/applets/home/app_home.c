@@ -381,7 +381,7 @@ static __s32 app_home_proc(__gui_msg_t *msg)
 		if(msg->dwAddData1==GUI_MSG_IR_LONGDOWN)	
 			msg->dwAddData1 = GUI_MSG_KEY_LONGDOWN;	
 
-		if(msg->dwAddData1==GUI_MSG_KEY_LONGMENU) {
+		if(msg->dwAddData1==GUI_MSG_KEY_LONGPOWER) {
 			if(msg->dwAddData2 == KEY_UP_ACTION) {
 				long_key = 0;
 			} else {

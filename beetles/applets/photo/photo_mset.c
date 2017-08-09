@@ -359,6 +359,7 @@ static __s32 photo_mset_key_proc(__gui_msg_t *msg)
 				break;
 			}
 		case GUI_MSG_KEY_ESCAPE:
+		case GUI_MSG_KEY_MENU:
 			{
 				photo_cmd2parent(msg->h_deswin, CMD_PHOTO_MSET_CLOSE, 0, 0);
 				break;

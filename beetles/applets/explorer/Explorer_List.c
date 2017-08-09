@@ -1342,8 +1342,13 @@ static __s32  explorer_list_win_key_proc(__gui_msg_t *msg)
 				}
 				break;
 			case GUI_MSG_KEY_MENU:
-			case GUI_MSG_KEY_ESCAPE:
 				last_key = GUI_MSG_KEY_MENU;
+				break;
+			case GUI_MSG_KEY_POWER:
+				last_key = GUI_MSG_KEY_POWER;
+				break;
+			case GUI_MSG_KEY_ESCAPE:
+				last_key = GUI_MSG_KEY_ESCAPE;
 				//explorer_list_long_string_stop_roll(list_para);
 				//explorer_cmd2parent(msg->h_deswin, SWITCH_TO_OTHER_APP, EXPLR_SW_TO_MAIN, 0);
 				break;
@@ -1358,8 +1363,8 @@ static __s32  explorer_list_win_key_proc(__gui_msg_t *msg)
 		switch(msg->dwAddData1)
 		{
 			case GUI_MSG_KEY_ESCAPE:
-			case GUI_MSG_KEY_MENU:
-				if(last_key == GUI_MSG_KEY_MENU)		//回到上一级菜单.
+			case GUI_MSG_KEY_POWER:
+				if(last_key == GUI_MSG_KEY_ESCAPE || last_key == GUI_MSG_KEY_POWER)		//回到上一级菜单.
 				{
                     __here__;
 					explorer_list_long_string_stop_roll(list_para);
@@ -1376,8 +1381,9 @@ static __s32  explorer_list_win_key_proc(__gui_msg_t *msg)
 					}
 				}
 				break;
-			case GUI_MSG_KEY_LONGMENU:
-				if(last_key == GUI_MSG_KEY_MENU)		//删除文件夹或文件
+			case GUI_MSG_KEY_LONGPOWER:
+			case GUI_MSG_KEY_MENU:
+				if(last_key == GUI_MSG_KEY_MENU || last_key == GUI_MSG_KEY_POWER)		//删除文件夹或文件
 				{
 					if(list_para->cur_file_list == NULL)
 					{

@@ -783,7 +783,7 @@ static __s32  setting_general_key_proc(__gui_msg_t *msg)
 			main_cmd2parent(msg->h_deswin, ID_OP_DOWN, general_attr->new_focus, 0);
 			break;	
 		case GUI_MSG_KEY_ESCAPE:
-		case GUI_MSG_KEY_MENU:
+		case GUI_MSG_KEY_POWER:
 			main_cmd2parent(msg->h_deswin, ID_OP_EXIT, general_attr->new_focus, 0);
 			break;
 		default:

@@ -525,8 +525,8 @@ static __s32 music_explorer_key_proc(__gui_msg_t *msg)
 				music_explorer_on_enter_key(msg);
 				break;				
 
-			case GUI_MSG_KEY_MENU:
-				if(last_key == GUI_MSG_KEY_MENU)
+			case GUI_MSG_KEY_POWER:
+				if(last_key == GUI_MSG_KEY_POWER)
 				{
 					//if(robin_get_fsm_status() != CEDAR_STAT_PLAY)			//¹Ø±ÕÒôÀÖ
 					//{
@@ -550,7 +550,8 @@ static __s32 music_explorer_key_proc(__gui_msg_t *msg)
 					}*/
 				}
 				break;
-			case GUI_MSG_KEY_LONGMENU:
+			case GUI_MSG_KEY_LONGPOWER:
+			case GUI_MSG_KEY_MENU:
 //				if(last_key == GUI_MSG_KEY_MENU)
 				{
 					music_explorer_on_menu_key(msg);
@@ -1308,7 +1309,7 @@ static __s32 music_setting_player_key_proc(__gui_msg_t *msg)
 				break;				
 			case GUI_MSG_KEY_VDEC:
 				break;				
-			//case GUI_MSG_KEY_ENTER:	
+			case GUI_MSG_KEY_POWER:	
 			case GUI_MSG_KEY_MENU:
 				last_key = GUI_MSG_KEY_MENU;
 				break;
@@ -1339,7 +1340,7 @@ static __s32 music_setting_player_key_proc(__gui_msg_t *msg)
 		{
 			//case GUI_MSG_KEY_ENTER:	
 			case GUI_MSG_KEY_MENU:
-			case GUI_MSG_KEY_LONGMENU:
+			case GUI_MSG_KEY_POWER:
 				if(last_key == GUI_MSG_KEY_MENU)
 				{
 					if(this->menu_mode == MUSIC_SET_PLAYER_MODE)

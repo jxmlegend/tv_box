@@ -512,7 +512,7 @@ static __s32  mmenu_key_proc(__gui_msg_t *msg)
 		
 	if (KEY_UP_ACTION == msg->dwAddData2)
 	{
-		if (GUI_MSG_KEY_ENTER == last_key || GUI_MSG_KEY_MENU == last_key)
+		if (GUI_MSG_KEY_ENTER == last_key || GUI_MSG_KEY_POWER== last_key)
 		{
 			main_cmd2parent(msg->h_deswin, ID_OP_SUB_ENTER, mmenu_attr->focus_item, mmenu_attr->first_item);
 		}

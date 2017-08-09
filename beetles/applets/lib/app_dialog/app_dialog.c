@@ -374,6 +374,7 @@ static __s32 on_dialog_key_up_action(H_WIN hwnd, __u32 keycode)
 		}
 		break;
 	case VK_ENTER:
+	case GUI_MSG_KEY_POWER:
 		{
 			ASSERT(0 <= ctrl->focus_id && ctrl->focus_id < wnd_para->res.btn_count);
 			wnd_para->result = wnd_para->res.btn_result[ctrl->focus_id];

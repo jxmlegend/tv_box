@@ -1501,9 +1501,13 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 							tv_menu_paint_all(msg);
 							break;
 						case 1:
-							tvsouinputselect_menu();
-							tv_menu_paint_protel(msg,tv_data.item,1);
-							tv_menu_paint_protel(msg,2,0);
+							if(dsk_tv_rcv->sourceInput == 1) {
+								TV_cmd2parent(GUI_WinGetParent(msg->h_deswin), SWITCH_TO_MMENU, 0, 0);
+							} else {
+								tvsouinputselect_menu();
+								tv_menu_paint_protel(msg,tv_data.item,1);
+								tv_menu_paint_protel(msg,2,0);
+							}
 							break;		
 						case 2:
 							if(dsk_tv_rcv->sourceInput==0)
@@ -1641,8 +1645,13 @@ static __s32  tv_main_menu_key(__gui_msg_t *msg)
 							tv_menu_paint_all(msg);
 							break;
 						case 1:
-							tvsouinputselect_menu();
-							tv_menu_paint_protel(msg,tv_data.item,1);
+							if(dsk_tv_rcv->sourceInput == 0) {
+								TV_cmd2parent(GUI_WinGetParent(msg->h_deswin), SWITCH_TO_MMENU, 0, 0);
+							} else {
+								tvsouinputselect_menu();
+								tv_menu_paint_protel(msg,tv_data.item,1);
+								tv_menu_paint_protel(msg,2,0);
+							}
 							break;	
 						case 2:
 							if(dsk_tv_rcv->sourceInput==0)
