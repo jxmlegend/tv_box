@@ -1381,6 +1381,7 @@ static __s32  explorer_list_win_key_proc(__gui_msg_t *msg)
 					}
 				}
 				break;
+#if 0 //屏蔽删除文件功能
 			case GUI_MSG_KEY_LONGPOWER:
 			case GUI_MSG_KEY_MENU:
 				if(last_key == GUI_MSG_KEY_MENU || last_key == GUI_MSG_KEY_POWER)		//删除文件夹或文件
@@ -1416,6 +1417,7 @@ static __s32  explorer_list_win_key_proc(__gui_msg_t *msg)
 					}
 				}
 				break;
+#endif
 		}
 	}
 	return EPDK_OK;
