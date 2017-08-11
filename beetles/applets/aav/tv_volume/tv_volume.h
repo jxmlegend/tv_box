@@ -39,6 +39,21 @@ typedef struct
 	__s32 cur_val;
 }tv_volume_create_para_t;
 
+typedef struct 
+{
+	//输入参数
+	H_WIN hparent;	
+	__s32 scene_id;
+	__s32 min_val;
+	__s32 max_val;
+	__s32 cur_val;
+
+	//内部参数
+	H_LYR hlyr;
+	H_WIN hfrm;
+	__u8  hide_timmer_id;
+}tv_volume_scene_t;
+
 void* tv_volume_scene_create(H_WIN h_parent, tv_volume_create_para_t *create_para);
 __s32 tv_volume_scene_delete(void* handle);
 __s32 tv_volume_scene_set_focus(void* handle);

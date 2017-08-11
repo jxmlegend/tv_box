@@ -518,6 +518,52 @@ __s32 __TvOSD_OPEN(__gui_msg_t *msg,__s32 num)
 	}
 }
 
+static H_LYR get_tv_menu_lyr(__gui_msg_t *msg,__s32 num)
+{
+	H_LYR lyr = NULL;
+	tv_para_t *tv_para;
+
+	tv_para = (tv_para_t *)GUI_WinGetAddData(msg->h_deswin);
+
+	__msg("num=%d\n",num);
+	
+	switch (num)
+	{
+		case TVMENU_MAIN:
+		{
+			tv_menu_scene_t *smenu_para = (tv_menu_scene_t *)tv_para->h_tv_menu;
+			lyr = smenu_para->hlyr;
+		}
+		break;
+		case TVMENU_VOL:
+		{
+			tv_volume_scene_t *sence_para = (tv_volume_scene_t *)tv_para->h_tv_volume;
+			lyr = sence_para->hlyr;
+		}
+		break;
+		case TVMENU_NUM:
+		{
+			tv_num_scene_t *sence_para = (tv_num_scene_t *)tv_para->h_Channel;
+			lyr = sence_para->hlyr;
+		}
+		break;
+		case TVMENU_MUTE:
+		{
+			tv_mute_scene_t *sence_para = (tv_mute_scene_t *)tv_para->h_mute;
+			lyr = sence_para->hlyr;
+		}
+		break;
+		case TVMENU_MODE:
+		{
+			tv_image_mode_scene_t *sence_para = (tv_image_mode_scene_t *)tv_para->h_image_mode;
+			lyr = sence_para->hlyr;
+		}
+		break;
+		default:
+			break;
+	}
+	return lyr;
+}
 
 //extern __s32 com_video_in_open(__s32 dev_index, __s32 tvd_channel, __s32 enable_3d,__drv_TVD_system system);
 static __s32 __tv_ctrl_para_init(__gui_msg_t *msg)
@@ -866,7 +912,6 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 							dsk_tv_rcv->tv_barflag_inputval=0;
 							__TvOSD_OPEN(msg,TVMENU_NUM);
 						}
-						break;
 						if(dsk_tv_rcv->tv_menuID==TVMENU_MODE)
 						{
 							__TvOSD_si(msg);
@@ -1127,7 +1172,7 @@ static __s32  tvmenu_key_proc(__gui_msg_t *msg)
 
 static __s32 PNsysChange(__gui_msg_t *msg)
 {
-
+	H_LYR hlyr;
 	__u8 PNsys;
 	__u8 PNsys2;
 	__u8 menunum=0;
@@ -1179,6 +1224,13 @@ static __s32 PNsysChange(__gui_msg_t *msg)
 								com_video_in_open(1,0,0,1);
 						}					
 						//__TvOSD_OPEN(msg,menunum);
+						if(dsk_tv_rcv->tv_menuID != TVMENU_NULL) {
+							hlyr = get_tv_menu_lyr(msg, dsk_tv_rcv->tv_menuID);
+							if(hlyr) {
+								//GUI_LyrWinSetSta(hlyr, GUI_LYRWIN_STA_ON);
+						        GUI_LyrWinSetTop(hlyr);
+							}
+						}
 						__msg("open video in\n");
 						
 						

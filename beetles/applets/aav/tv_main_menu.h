@@ -88,8 +88,43 @@ typedef struct
 	__u8  hide_timmer_id;	
 }tv_menu_create_para_t;
 */
+typedef struct 
+{
+	//输入参数
+	H_WIN hparent;	
+	__s8 scene_id;
+	__u32 item;
+	__bool	res_init;
+	GUI_FONT *tvmenu_font;
+	__s32 focus_txt_color;
+	__s32 unfocus_txt_color;
 
+	//内部参数
+	H_LYR hlyr;
+	H_WIN hfrm;
+	__u8  hide_timmer_id;
 
+	HTHEME bmp_bg[4];
+	HTHEME icon_fs[18]; 	// 5个小图标
+	HTHEME icon_selt[4];		// 两个三角形
+	HTHEME icon_page[6];		// page 小图标
+	HTHEME icon_bar[4]; 
+	char item_str[9][28];
+	char item_ch_str[3][8];
+	char item_page_str[3][18];
+}tv_menu_scene_t;
+
+typedef struct 
+{
+	 __u32	item;
+	 __u32	lastitem;
+	 __u32	tv_page;
+	 __u32	tv_sourceInput;
+	 __u32	tv_video_sys;
+	__u8	serch_cnt;	 
+	__u8	serch_ing;
+	
+}tv_menu_data_t;
 
 void * tv_sub_menu_win_create(H_WIN h_parent, tv_menu_para_t *para);
 __s32 tv_menu_scene_delete(void* handle);

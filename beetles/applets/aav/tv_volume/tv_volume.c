@@ -19,21 +19,6 @@
 #include "common/common.h"
 #include "app_tv_i.h"
 
-typedef struct 
-{
-	//输入参数
-	H_WIN hparent;	
-	__s32 scene_id;
-	__s32 min_val;
-	__s32 max_val;
-	__s32 cur_val;
-
-	//内部参数
-	H_LYR hlyr;
-	H_WIN hfrm;
-	__u8  hide_timmer_id;
-}tv_volume_scene_t;
-
 extern __u32 movie_muteflag;
 extern __u32 movie_volume;
 /***********************************************************************************************************
